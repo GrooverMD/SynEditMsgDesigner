@@ -804,7 +804,7 @@ function render() {
         ondrop="onLDP(event,'${lane.id}')">
         ${cards.length
           ? cards.map(c=>cardHtml(c,lane.color)).join('')
-          : `<div class="lane-empty">drag a ${typeName} card here</div>`}
+          : `<div class="lane-empty">drag a ${typeName} section here</div>`}
       </div>
     </div>`
   }).join('')
