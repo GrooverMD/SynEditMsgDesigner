@@ -557,7 +557,7 @@ input[type="checkbox"] {
 
       <div class="pc" draggable="true" data-type="header">
         <div class="pc-name"><i class="ti ti-file-text" style="color:var(--lh)"></i>Header<span class="pc-once">1 max</span></div>
-        <div class="pc-hint">Class · prefix · ident chars</div>
+        <div class="pc-hint">Class · prefix · identifier chars</div>
       </div>
 
       <div class="pc" draggable="true" data-type="sample">
@@ -841,7 +841,7 @@ function renderInsp() {
         <span class="cn-fixed">TSyn</span><span class="cn-core" id="cn-core-${c.id}">${esc(core)}</span><span class="cn-fixed">Syn</span>
       </div>
     </div>
-    ${fld('Token prefix','prefix',c.prefix,true,'Prefix for TtkTokenKind enum values')}
+    ${fld('Token prefix','prefix',c.prefix,true,'Prefix for TTokenKind enum values')}
     <div class="isec" style="margin-top:2px">Identifier characters</div>
     ${fld('Identifier start','identStart',c.identStart,true)}
     ${fld('Identifier continue','identCont',c.identCont,true)}`
