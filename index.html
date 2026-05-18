@@ -38,22 +38,19 @@
 <meta name="google-site-verification" content="1-YbrR-LcIbjpQpYyF8dXwM5tgNJnWhkQP04TLrpLO4" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SynGen .msg Designer – Generate SynEdit .msg Files</title>
-<meta name="description" content="SynGen .msg Designer is a web-based tool for generating SynEdit .msg files for syntax highlighting definitions. Create, edit, and export SynGen message files easily.">
-<meta name="keywords" content="SynGen, SynEdit, msg designer, Delphi, syntax highlighter, msg generator, SynEdit msg file">
+<title>SynGen .msg Designer</title>
+<meta name="description" content="SynGen .msg Designer — a visual IDE for creating and editing SynEdit highlighter descriptor (.msg) files. Design token types, keyword groups, char rules and enclosures with live preview.">
+<meta name="keywords" content="SynEdit, .msg, highlighter, designer, IDE, Delphi, Pascal, syntax highlighting, token types, keyword groups">
+<meta name="author" content="Mark Stephen Day">
 <meta name="robots" content="index, follow">
-
-<!-- OpenGraph for social sharing -->
 <meta property="og:title" content="SynGen .msg Designer">
-<meta property="og:description" content="Generate SynEdit .msg files with a clean, web-based designer.">
+<meta property="og:description" content="A visual IDE for creating SynEdit highlighter descriptor files. Design token styles, keyword groups and enclosures with live preview.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://groovermd.github.io/SynEditMsgDesigner/">
-
-<!-- Twitter Card -->
+<meta property="og:url" content="https://github.com/GrooverMD/SynEditMsgDesigner">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SynGen .msg Designer">
-<meta name="twitter:description" content="Generate SynEdit .msg files with a clean, web-based designer.">
-  
+<meta name="twitter:description" content="Visual IDE for SynEdit .msg highlighter descriptor files.">
+<link rel="canonical" href="https://github.com/GrooverMD/SynEditMsgDesigner">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap">
@@ -257,6 +254,54 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--s4);border-radius:3px}
 ::-webkit-scrollbar-thumb:hover{background:var(--s5)}
+
+/* ── Intro overlay ── */
+.intro-overlay{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:rgba(10,12,20,.92);backdrop-filter:blur(6px)}
+.intro-box{background:var(--s1);border:1px solid var(--s5);border-radius:var(--r3);width:600px;max-height:90vh;overflow-y:auto;box-shadow:0 32px 80px rgba(0,0,0,.7);display:flex;flex-direction:column}
+.intro-hero{padding:32px 36px 24px;border-bottom:1px solid var(--s4);background:linear-gradient(135deg,#12172a,#1a2040)}
+.intro-hero-logo{font-size:22px;font-weight:700;color:var(--t0);letter-spacing:-.02em;margin-bottom:4px}
+.intro-hero-logo span{background:linear-gradient(90deg,var(--lh),var(--a));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.intro-hero-sub{font-size:13px;color:var(--t1);line-height:1.6}
+.intro-body{padding:24px 36px;display:flex;flex-direction:column;gap:20px}
+.intro-section-title{font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.intro-steps{display:flex;flex-direction:column;gap:10px}
+.intro-step{display:flex;gap:12px;align-items:flex-start}
+.intro-step-num{width:22px;height:22px;border-radius:50%;background:var(--a-bg);border:1px solid var(--a-bd);color:var(--a);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.intro-step-text{font-size:12px;color:var(--t1);line-height:1.55}
+.intro-step-text b{color:var(--t0);font-weight:500}
+.intro-links{display:flex;gap:8px;flex-wrap:wrap}
+.intro-link{font-size:12px;padding:6px 12px;border-radius:var(--r1);border:1px solid var(--s4);color:var(--t1);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .15s;background:var(--s2)}
+.intro-link:hover{border-color:var(--a-bd);color:var(--a);background:var(--a-bg)}
+.intro-link i{font-size:13px}
+.intro-footer{padding:16px 36px;border-top:1px solid var(--s4);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-shrink:0}
+.intro-copy{font-size:11px;color:var(--t2)}
+.intro-start-btn{font-family:var(--sans);font-size:13px;font-weight:600;padding:9px 22px;border-radius:var(--r2);border:none;background:linear-gradient(135deg,var(--lh),var(--a));color:#fff;cursor:pointer;letter-spacing:-.01em;transition:opacity .15s;box-shadow:0 4px 16px rgba(108,138,255,.3)}
+.intro-start-btn:hover{opacity:.88}
+
+/* ── Help panel (slide-in from right) ── */
+.help-panel{position:fixed;top:0;right:-520px;width:500px;height:100vh;z-index:150;background:var(--s1);border-left:1px solid var(--s5);display:flex;flex-direction:column;box-shadow:-12px 0 40px rgba(0,0,0,.5);transition:right .25s cubic-bezier(.4,0,.2,1)}
+.help-panel.open{right:0}
+.help-hd{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--s4);flex-shrink:0}
+.help-hd h2{font-size:14px;font-weight:600;color:var(--t0)}
+.help-cl{font-size:18px;cursor:pointer;color:var(--t1);padding:3px 6px;border-radius:4px;transition:color .12s}
+.help-cl:hover{color:var(--t0)}
+.help-body{overflow-y:auto;flex:1;padding:20px 22px;display:flex;flex-direction:column;gap:24px}
+.help-section{}
+.help-section h3{font-size:12px;font-weight:600;color:var(--a);letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid var(--s4)}
+.help-section p{font-size:12px;color:var(--t1);line-height:1.65;margin-bottom:8px}
+.help-section p:last-child{margin-bottom:0}
+.help-section b{color:var(--t0);font-weight:500}
+.help-table{width:100%;border-collapse:collapse;margin-bottom:6px}
+.help-table th{font-size:10px;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.06em;text-align:left;padding:4px 8px;border-bottom:1px solid var(--s4)}
+.help-table td{font-size:11px;color:var(--t1);padding:5px 8px;border-bottom:1px solid var(--s4);vertical-align:top;line-height:1.5}
+.help-table td:first-child{color:var(--t0);font-weight:500;font-family:var(--mono);white-space:nowrap}
+.help-table tr:last-child td{border-bottom:none}
+.help-kbd{display:inline-block;font-family:var(--mono);font-size:10px;background:var(--s2);border:1px solid var(--s4);border-radius:3px;padding:1px 5px;color:var(--t0)}
+.help-tip{background:var(--a-bg);border:1px solid var(--a-bd);border-radius:var(--r2);padding:8px 12px;font-size:11px;color:var(--t1);line-height:1.55;margin-top:4px}
+.help-tip i{color:var(--a);margin-right:4px}
+.help-scrim{position:fixed;inset:0;z-index:140;display:none}
+.help-scrim.open{display:block}
+
 </style>
 </head>
 <body>
@@ -272,6 +317,136 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
   <div class="vsep"></div>
   <button class="tbtn" onclick="doValidate()"><i class="ti ti-shield-check"></i>Validate</button>
   <button class="tbtn hi" onclick="showPreview()"><i class="ti ti-file-export"></i>Generate .msg</button>
+  <div class="vsep"></div>
+  <a class="tbtn" href="https://github.com/GrooverMD/SynEditMsgDesigner/tree/main" target="_blank" rel="noopener" title="View on GitHub"><i class="ti ti-brand-github"></i>GitHub</a>
+  <button class="tbtn" onclick="openHelp()"><i class="ti ti-help-circle"></i>Help</button>
+</div>
+
+
+<!-- ── Intro overlay ── -->
+<div class="intro-overlay" id="intro-overlay">
+  <div class="intro-box">
+    <div class="intro-hero">
+      <div class="intro-hero-logo">SynGen&thinsp;<span>.msg</span>&thinsp;Designer</div>
+      <div class="intro-hero-sub">A visual IDE for creating and editing SynEdit highlighter descriptor files.<br>
+      Design token types, keyword groups, char rules and enclosures — then export a ready-to-use <code style="font-family:var(--mono);font-size:11px;color:var(--a)">.msg</code> file.</div>
+    </div>
+    <div class="intro-body">
+      <div>
+        <div class="intro-section-title">How to use</div>
+        <div class="intro-steps">
+          <div class="intro-step"><div class="intro-step-num">1</div><div class="intro-step-text"><b>Drag sections</b> from the Palette on the left onto the canvas lanes. Each lane accepts only its matching section type. Drop onto the lane header or the lane body.</div></div>
+          <div class="intro-step"><div class="intro-step-num">2</div><div class="intro-step-text"><b>Click any card</b> to open it in the Inspector on the right. Edit the name, colours, font style, keywords or delimiters. Changes are reflected instantly in the live preview.</div></div>
+          <div class="intro-step"><div class="intro-step-num">3</div><div class="intro-step-text"><b>Validate</b> the document to check for cross-reference errors. Problem lanes are highlighted in red with a description of each issue.</div></div>
+          <div class="intro-step"><div class="intro-step-num">4</div><div class="intro-step-text"><b>Generate .msg</b> to export the finished descriptor file. Copy it to the clipboard or download it directly.</div></div>
+          <div class="intro-step"><div class="intro-step-num">5</div><div class="intro-step-text">Click <b>Example</b> in the toolbar to load a complete x86-64 assembly highlighter and explore a real-world document.</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="intro-section-title">Resources</div>
+        <div class="intro-links">
+          <a class="intro-link" href="https://github.com/GrooverMD/SynEditMsgDesigner/tree/main" target="_blank" rel="noopener"><i class="ti ti-brand-github"></i>GitHub Repository</a>
+          <a class="intro-link" href="https://github.com/SynEdit/SynEdit" target="_blank" rel="noopener"><i class="ti ti-external-link"></i>SynEdit Project</a>
+          <button class="intro-link" onclick="document.getElementById('intro-overlay').remove();openHelp()"><i class="ti ti-help-circle"></i>Read full help</button>
+        </div>
+      </div>
+    </div>
+    <div class="intro-footer">
+      <span class="intro-copy">Copyright &copy; 2026 Mark Stephen Day. All Rights Reserved.</span>
+      <button class="intro-start-btn" onclick="document.getElementById('intro-overlay').remove()">Start designing &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Help scrim ── -->
+<div class="help-scrim" id="help-scrim" onclick="closeHelp()"></div>
+
+<!-- ── Help panel ── -->
+<div class="help-panel" id="help-panel">
+  <div class="help-hd">
+    <h2><i class="ti ti-help-circle" style="color:var(--a);margin-right:6px"></i>Help &amp; Reference</h2>
+    <span class="help-cl" onclick="closeHelp()"><i class="ti ti-x"></i></span>
+  </div>
+  <div class="help-body">
+
+    <div class="help-section">
+      <h3>What is a .msg file?</h3>
+      <p>A <b>.msg</b> file is a SynEdit Highlighter Descriptor — a plain-text specification that the SynEdit highlighter generator uses to create a complete Delphi syntax-highlighting unit. It defines the token types, keywords, character dispatch rules and enclosure pairs for any programming language or file format.</p>
+      <p>SynGen .msg Designer gives you a visual canvas for building these files without writing any descriptor syntax by hand.</p>
+    </div>
+
+    <div class="help-section">
+      <h3>Canvas sections</h3>
+      <table class="help-table">
+        <thead><tr><th>Section</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td>Header</td><td>Sets the generated class name (TSyn…Syn), the token-kind enum prefix, and the identifier character sets. <em>One per document.</em></td></tr>
+          <tr><td>Token types</td><td>Each token type becomes a value in the TTokenKind enumeration and a TSynHighlighterAttributes instance with its own foreground, background and font style. Add as many as your language needs.</td></tr>
+          <tr><td>Key groups</td><td>A KEYS block maps a list of reserved words to one token type. The group name must exactly match a token type name.</td></tr>
+          <tr><td>Char rules</td><td>Auto-generated from the Header's Ident start chars. Defines which characters trigger the identifier scanner and provides the BeginProc/EndProc dispatch body. Read-only.</td></tr>
+          <tr><td>Enclosed by</td><td>Defines delimiter pairs (e.g. <code style="font-family:var(--mono)">{ }</code>, <code style="font-family:var(--mono)">/* */</code>, <code style="font-family:var(--mono)">" "</code>) and whether they can span multiple lines.</td></tr>
+          <tr><td>Sample source</td><td>A block of representative code shown in the SynEdit highlighter preview dialog. <em>One per document.</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="help-section">
+      <h3>Working with the canvas</h3>
+      <p><b>Adding sections:</b> drag a palette item onto a lane. Drop onto the lane header (<em>← drop here</em> hint) or the lane body. The lane highlights blue when the drop is valid, red when the type is wrong for that lane.</p>
+      <p><b>Reordering:</b> drag a card onto another card within the same lane to swap their positions. Order matters — it controls the order in the generated file.</p>
+      <p><b>Selecting:</b> click any card to open its properties in the Inspector. The selected card shows a blue outline.</p>
+      <p><b>Removing:</b> click the <i class="ti ti-x" style="font-size:11px"></i> icon on the top-right of any card. The Char rule card cannot be removed — it is managed automatically.</p>
+      <p><b>Resizing panels:</b> drag the thin vertical handles between the palette, canvas and inspector to adjust panel widths.</p>
+    </div>
+
+    <div class="help-section">
+      <h3>Inspector — token type colours</h3>
+      <p>Each token type has independent foreground and background colour controls. Enable a colour with the checkbox, then use the colour editor:</p>
+      <p><b>Swatch bar:</b> the wide bar shows the current colour. Click anywhere on it to open the browser's native colour picker.</p>
+      <p><b>RGB sliders:</b> drag the Red, Green and Blue sliders for precise channel control. The value updates live.</p>
+      <p><b>Output format:</b> choose how the colour is written into the .msg file — <span class="help-kbd">Name</span> (e.g. clNavy), <span class="help-kbd">$Hex</span> (Delphi BGR format, e.g. $00800000) or <span class="help-kbd">RGB()</span> (e.g. RGB(0,0,128)).</p>
+      <div class="help-tip"><i class="ti ti-info-circle"></i>The live preview in the Token type inspector shows exactly how a sample code snippet will look with the current token styles applied — including keywords, enclosures and identifier colours.</div>
+    </div>
+
+    <div class="help-section">
+      <h3>Validation</h3>
+      <p>Click <b>Validate</b> in the toolbar to check the document for structural errors. Each problem is shown as a red highlight on the affected lane, with a badge showing the number of issues and a list of descriptions below the lane body.</p>
+      <p>Common issues:</p>
+      <table class="help-table">
+        <thead><tr><th>Issue</th><th>Fix</th></tr></thead>
+        <tbody>
+          <tr><td>Key group has no matching token type</td><td>Ensure the group name exactly matches a token type name (case-sensitive).</td></tr>
+          <tr><td>Key group has no keywords</td><td>Add at least one keyword in the Inspector.</td></tr>
+          <tr><td>Enclosure references unknown token type</td><td>Set Token type to an existing token type name.</td></tr>
+          <tr><td>No Header section</td><td>Drag a Header card from the palette.</td></tr>
+        </tbody>
+      </table>
+      <p>Validation errors clear automatically as soon as you make any change to the document.</p>
+    </div>
+
+    <div class="help-section">
+      <h3>Generating &amp; exporting</h3>
+      <p>Click <b>Generate .msg</b> to open the output modal. The generated file is syntax-highlighted for readability. Use <b>Copy to clipboard</b> to paste it into your project, or <b>Save .msg file</b> to download it directly. The filename is derived from the class name in the Header card.</p>
+    </div>
+
+    <div class="help-section">
+      <h3>Keyboard shortcuts</h3>
+      <table class="help-table">
+        <thead><tr><th>Key</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td><span class="help-kbd">Enter</span></td><td>Add a keyword in the keyword input field</td></tr>
+          <tr><td><span class="help-kbd">Esc</span></td><td>Close the Generate modal or Help panel</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="help-section">
+      <h3>About</h3>
+      <p>SynGen .msg Designer is copyright &copy; 2026 <b>Mark Stephen Day</b>. All Rights Reserved.</p>
+      <p>Source code and issue tracking: <a href="https://github.com/GrooverMD/SynEditMsgDesigner/tree/main" target="_blank" rel="noopener" style="color:var(--a)">github.com/GrooverMD/SynEditMsgDesigner</a></p>
+    </div>
+
+  </div>
 </div>
 
 <div id="app">
@@ -398,6 +573,7 @@ function ceApply(id,slot,hex){
   const out=document.getElementById(`ce-out-${id}-${slot}`)
   if(out) out.textContent=c[slot]
   render()
+  refreshTokenPreview()
 }
 
 function setSlider(id,slot,ch,val){
@@ -445,6 +621,7 @@ function setCeFmt(id,slot,fmt){
     el.classList.toggle('on',el.dataset.fmt===fmt)
   })
   render()
+  refreshTokenPreview()
 }
 
 /* Build the full custom colour editor HTML for one slot */
@@ -673,8 +850,8 @@ function cardHtml(c,color){
    ════════════════════════════════════════════════════════════════════════════ */
 function render(){
   clearValidationUI()
-  // Refresh sample preview if one is open
-  const _smp=doc.sample[0]; if(_smp){const _p=document.getElementById('sp-preview-'+_smp.id);if(_p)_p.innerHTML=highlightSample(_smp.text)||'<span style="opacity:.3;font-style:italic">empty</span>';}
+  // Refresh token type preview after any doc change
+  setTimeout(refreshTokenPreview, 0)
   document.getElementById('canvas').innerHTML=LANE_CFG.map(lane=>{
     const cards=doc[lane.id]
     const typeName=lane.label.replace(/s$/,'').toLowerCase()
@@ -740,6 +917,10 @@ function renderInsp(){
   }
 
   else if(c.type==='tokentype'){
+    // Build preview using sample source (if available) — shows a word matching this token,
+    // plus a few keywords from the matching key group so style changes are immediately visible
+    const smp = doc.sample[0]
+    const previewText = smp ? smp.text : c.name + ' sample ' + c.name
     h=`<div class="isec">Token</div>
     <div class="fg"><div class="fl">Token name</div>
       <input class="fi" value="${esc(c.name)}" oninput="upd(${c.id},'name',this.value)">
@@ -764,7 +945,11 @@ function renderInsp(){
       <div class="crow">
         <input type="checkbox" ${c.hasStyle?'checked':''} onchange="upd(${c.id},'hasStyle',this.checked);renderInsp()">
         <div class="crow">${stb('bold','<b>B</b>')}${stb('italic','<i>I</i>')}${stb('underline','<u>U</u>')}${stb('strikeout','<s>S</s>')}</div>
-      </div></div>`
+      </div></div>
+    <div class="isec" style="margin-top:2px">Live preview
+      <span style="font-size:9px;font-weight:400;color:var(--t2);margin-left:4px;text-transform:none;letter-spacing:0">updates as you edit token style</span>
+    </div>
+    <div class="sp-preview" id="tt-preview-${c.id}">${highlightSample(previewText)||'<span style="opacity:.3;font-style:italic">add a Sample source section to preview</span>'}</div>`
   }
 
   else if(c.type==='keygroup'){
@@ -807,14 +992,11 @@ function renderInsp(){
 
   else if(c.type==='sample'){
     h=`<div class="isec">Sample source</div>
+    <div class="fhint" style="margin-bottom:4px">This text is used as the live preview in Token type cards. Edit it to test your token styles.</div>
     <div class="fg">
-      <textarea class="fi fta mn" style="min-height:110px" id="sp-ta-${c.id}"
-        oninput="upd(${c.id},'text',this.value);updSamplePreview(${c.id})">${esc(c.text)}</textarea>
-    </div>
-    <div class="isec" style="margin-top:2px">Live preview
-      <span style="font-size:9px;font-weight:400;color:var(--t2);margin-left:4px;text-transform:none;letter-spacing:0">reflects token styles &amp; keywords</span>
-    </div>
-    <div class="sp-preview" id="sp-preview-${c.id}">${highlightSample(c.text)||'<span style="opacity:.3;font-style:italic">empty</span>'}</div>`
+      <textarea class="fi fta mn" style="min-height:180px" id="sp-ta-${c.id}"
+        oninput="upd(${c.id},'text',this.value);refreshAllTokenPreviews()">${esc(c.text)}</textarea>
+    </div>`
   }
 
   insp.innerHTML=h
@@ -1369,10 +1551,55 @@ function updSamplePreview(id) {
   if(preview) preview.innerHTML = highlightSample(c.text) || '<span style="opacity:.3;font-style:italic">empty</span>'
 }
 
+// Refresh the live preview for whichever token type card is currently selected
+function refreshTokenPreview() {
+  const c = sel ? findCard(sel) : null
+  if(!c || c.type !== 'tokentype') return
+  const smp = doc.sample[0]
+  const previewText = smp ? smp.text : c.name
+  const el = document.getElementById('tt-preview-'+c.id)
+  if(el) el.innerHTML = highlightSample(previewText) || '<span style="opacity:.3;font-style:italic">add a Sample source section to preview</span>'
+}
+
+// Refresh previews in all visible token type inspector panes (called when sample changes)
+function refreshAllTokenPreviews() {
+  const smp = doc.sample[0]; if(!smp) return
+  const text = smp.text
+  document.querySelectorAll('[id^="tt-preview-"]').forEach(el => {
+    el.innerHTML = highlightSample(text) || '<span style="opacity:.3;font-style:italic">empty</span>'
+  })
+}
+
 /* ════════════════════════════════════════════════════════════════════════════
    UTILITY
    ════════════════════════════════════════════════════════════════════════════ */
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+
+/* ════════════════════════════════════════════════════════════════════════════
+   HELP PANEL
+   ════════════════════════════════════════════════════════════════════════════ */
+function openHelp(){
+  document.getElementById('help-panel').classList.add('open')
+  document.getElementById('help-scrim').classList.add('open')
+}
+function closeHelp(){
+  document.getElementById('help-panel').classList.remove('open')
+  document.getElementById('help-scrim').classList.remove('open')
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    // Close help if open
+    if(document.getElementById('help-panel').classList.contains('open')){closeHelp();return}
+    // Close any modal
+    const modal=document.querySelector('.modal-wrap')
+    if(modal){modal.remove();return}
+    // Close intro
+    const intro=document.getElementById('intro-overlay')
+    if(intro){intro.remove();return}
+  }
+})
 
 /* ── Boot ── */
 render(); renderInsp()
