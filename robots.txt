@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://groovermd.github.io/SynEditMsgDesigner/sitemap.xml
