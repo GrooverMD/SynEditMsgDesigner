@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SynEdit .msg Designer</title>
+<title>SynGen .msg Designer</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap">
@@ -538,10 +538,10 @@ function renderInsp(){
       <div class="fhint">Type any name — TSyn…Syn is added automatically</div>
       <div class="cn-preview"><span class="cn-fixed">TSyn</span><span class="cn-core" id="cn-core-${c.id}">${esc(core)}</span><span class="cn-fixed">Syn</span></div>
     </div>
-    ${fld('Token prefix','prefix',c.prefix,true,'Prefix for TtkTokenKind enum values')}
+    ${fld('Token prefix','prefix',c.prefix,true,'Prefix for TTokenKind enum values')}
     <div class="isec" style="margin-top:2px">Identifier characters</div>
-    ${fld('Ident start','identStart',c.identStart,true,'Also drives the auto-generated CHARS rule')}
-    ${fld('Ident continue','identCont',c.identCont,true)}`
+    ${fld('Identifier start','identStart',c.identStart,true,'Also drives the auto-generated CHARS rule')}
+    ${fld('Identifier continue','identCont',c.identCont,true)}`
   }
 
   else if(c.type==='tokentype'){
@@ -590,7 +590,7 @@ function renderInsp(){
 
   else if(c.type==='charrule'){
     h=`<div class="isec">Char rule <span style="font-weight:400;font-size:9px;color:var(--a);letter-spacing:.04em">AUTO-GENERATED · READ-ONLY</span></div>
-    <div class="fhint" style="margin-bottom:6px">This section is generated automatically from the Header's Ident start chars. Edit the Header to change it.</div>
+    <div class="fhint" style="margin-bottom:6px">This section is generated automatically from the Header's Identifier start chars. Edit the Header to change it.</div>
     ${fld('Character set','charset',c.charset,true,'',true)}
     ${fld('Proc name','procName',c.procName,false,'',true)}
     <div class="fg"><div class="fl">BeginProc body</div>
