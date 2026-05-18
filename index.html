@@ -1,0 +1,1365 @@
+<!--
+================================================================================
+  SynGen .msg Designer
+  index.html
+
+  Copyright (c) 2026 Mark Stephen Day. All Rights Reserved.
+
+  PROPRIETARY AND CONFIDENTIAL
+
+  This source code and all associated files, documentation, and related
+  materials are the exclusive intellectual property of Mark Stephen Day
+  and are protected by copyright law and international treaty provisions.
+
+  UNAUTHORISED USE, REPRODUCTION, OR DISTRIBUTION PROHIBITED:
+  No part of this software, in whole or in part, may be copied, reproduced,
+  modified, merged, published, distributed, sublicensed, reverse-engineered,
+  decompiled, or transmitted in any form or by any means — electronic,
+  mechanical, photocopying, recording, or otherwise — without the express
+  prior written permission of Mark Stephen Day.
+
+  PERMITTED USE:
+  This software is licensed, not sold. Use is strictly limited to the terms
+  agreed in writing with Mark Stephen Day. Any use outside those terms
+  constitutes an infringement of copyright and may result in civil and/or
+  criminal penalties.
+
+  NO WARRANTY:
+  This software is provided "as is" without warranty of any kind, either
+  express or implied, including but not limited to the warranties of
+  merchantability, fitness for a particular purpose, and non-infringement.
+
+  Contact: Mark Stephen Day
+================================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SynGen .msg Designer</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap">
+<style>
+:root {
+  --s0:#0f1117; --s1:#171b26; --s2:#1e2334; --s3:#252c3f; --s4:#2e3650; --s5:#3d4a6b;
+  --t0:#e8ecf4; --t1:#8b92a8; --t2:#525b75;
+  --a:#6c8aff; --a-bg:rgba(108,138,255,.12); --a-bd:rgba(108,138,255,.4);
+  --d:#f06060;  --d-bg:rgba(240,96,96,.1);
+  --lh:#9d8cff; --lt:#52c98a; --lk:#f4a44a; --lc:#f07070; --le:#70a8d8; --ls:#60c8c0;
+  --success:#52c98a; --warn:#f4a44a;
+  --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+  --r1:5px; --r2:8px; --r3:12px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:var(--sans);font-size:13px;background:var(--s0);color:var(--t0);overflow:hidden;-webkit-font-smoothing:antialiased}
+body{display:flex;flex-direction:column}
+
+/* ── Titlebar ── */
+.titlebar{display:flex;align-items:center;gap:8px;padding:0 14px;height:46px;background:var(--s1);border-bottom:1px solid var(--s4);flex-shrink:0}
+.tl-logo{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--t0);letter-spacing:-.01em;margin-right:6px}
+.tl-logo i{font-size:18px;background:linear-gradient(135deg,var(--lh),var(--a));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.tl-logo span{color:var(--a)} .tl-sep{flex:1}
+.vsep{width:1px;height:18px;background:var(--s4);margin:0 2px}
+.tbtn{font-family:var(--sans);font-size:12px;font-weight:500;padding:5px 11px;border-radius:var(--r1);border:1px solid var(--s4);background:transparent;color:var(--t1);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .15s;white-space:nowrap}
+.tbtn i{font-size:13px}
+.tbtn:hover{background:var(--s2);border-color:var(--s5);color:var(--t0)}
+.tbtn.hi{background:var(--a-bg);border-color:var(--a-bd);color:var(--a)}
+.tbtn.hi:hover{background:rgba(108,138,255,.2)}
+
+/* ── App grid — resizable via CSS vars ── */
+#app{display:grid;grid-template-columns:var(--pal-w,190px) 4px 1fr 4px var(--insp-w,240px);flex:1;min-height:0;position:relative}
+
+/* ── Resize handles ── */
+.resizer{background:var(--s4);cursor:col-resize;transition:background .15s;z-index:10;touch-action:none}
+.resizer:hover,.resizer.active{background:var(--a)}
+
+/* ── Sidebar / Inspector panels ── */
+.sidebar,.insp{display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.sidebar{background:var(--s1);border-right:1px solid var(--s4)}
+.insp{background:var(--s1);border-left:1px solid var(--s4)}
+.panel-hd{font-size:10px;font-weight:600;color:var(--t2);letter-spacing:.1em;text-transform:uppercase;padding:10px 12px 8px;border-bottom:1px solid var(--s4);flex-shrink:0}
+.pal-list{padding:9px 8px;display:flex;flex-direction:column;gap:4px;overflow-y:auto;flex:1}
+.pal-group{font-size:10px;font-weight:600;color:var(--t2);letter-spacing:.08em;text-transform:uppercase;padding:8px 4px 4px}
+
+/* ── Palette cards ── */
+.pc{padding:8px 10px;border-radius:var(--r2);border:1px solid var(--s4);cursor:grab;user-select:none;background:var(--s2);transition:border-color .15s,background .15s,transform .1s;position:relative}
+.pc:hover{border-color:var(--s5);background:var(--s3);transform:translateY(-1px)}
+.pc:active{cursor:grabbing;opacity:.7;transform:translateY(0)}
+.pc-name{font-size:12px;font-weight:500;color:var(--t0);display:flex;align-items:center;gap:6px}
+.pc-name i{font-size:14px}
+.pc-hint{font-size:10px;color:var(--t2);margin-top:2px;padding-left:20px}
+.pc-once{font-size:9px;font-weight:600;padding:1px 5px;border-radius:20px;background:var(--a-bg);color:var(--a);border:1px solid var(--a-bd);margin-left:auto;flex-shrink:0;letter-spacing:.02em}
+
+/* ── Canvas ── */
+.canvas-col{display:flex;flex-direction:column;min-height:0;background:var(--s0)}
+.canvas{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:9px;align-items:stretch}
+
+/* ── Lanes ── */
+.lane{border-radius:var(--r3);border:1px solid var(--s4);background:var(--s1);flex-shrink:0;transition:border-color .15s}
+.lane-hd{display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:var(--r3) var(--r3) 0 0;cursor:pointer;transition:background .15s;border-bottom:1px solid transparent}
+.lane-hd.has-cards{border-bottom-color:var(--s4)}
+.lane-hd.over{background:var(--a-bg);outline:1.5px dashed var(--a-bd);outline-offset:-2px;border-radius:var(--r3) var(--r3) 0 0}
+.lane-hd.reject{background:var(--d-bg);outline:1.5px dashed var(--d);outline-offset:-2px}
+.lane-ico{width:26px;height:26px;border-radius:var(--r1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
+.lane-title{font-size:12px;font-weight:600;color:var(--t0);flex:1;letter-spacing:-.01em}
+.lane-badge{font-size:10px;font-weight:500;color:var(--t2);font-family:var(--mono)}
+.lane-add-hint{font-size:10px;color:var(--t2);font-style:italic}
+.lane-body{padding:8px;display:flex;flex-direction:column;gap:6px;min-height:0;border-radius:0 0 var(--r3) var(--r3)}
+/* body drop zone (secondary fallback) */
+.lane-body.over{background:var(--a-bg);outline:1.5px dashed var(--a-bd);outline-offset:-2px;min-height:44px}
+.lane-body.reject{background:var(--d-bg);outline:1.5px dashed var(--d);outline-offset:-2px;min-height:44px}
+.lane-empty{font-size:11px;color:var(--t2);padding:6px 4px;text-align:center;font-style:italic}
+
+/* ── Cards ── */
+.card{border-radius:var(--r2);border:1px solid var(--s4);background:var(--s2);cursor:pointer;transition:border-color .15s,background .15s;user-select:none}
+.card:hover{border-color:var(--s5);background:var(--s3)}
+.card.sel{border-color:var(--a);background:var(--s2);box-shadow:0 0 0 2px var(--a-bg)}
+.card-hd{display:flex;align-items:center;gap:7px;padding:7px 10px}
+.card-ico{font-size:13px;flex-shrink:0}
+.card-lbl{font-size:12px;font-weight:500;color:var(--t0);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-rm{font-size:12px;color:var(--t2);opacity:.4;cursor:pointer;padding:2px 4px;border-radius:4px;line-height:1;flex-shrink:0;transition:opacity .12s,color .12s}
+.card-rm:hover{opacity:1;color:var(--d)}
+.card-body{padding:1px 10px 8px;display:flex;flex-direction:column;gap:3px}
+.cr{font-size:10px;color:var(--t1);display:flex;gap:5px;align-items:baseline;flex-wrap:wrap}
+.cr b{color:var(--t0);font-weight:500} .cr .mn{font-family:var(--mono);font-size:10px;color:var(--t0)}
+.chips{display:flex;flex-wrap:wrap;gap:3px;margin-top:2px}
+.chip{font-size:10px;padding:1px 6px;border-radius:20px;border:1px solid var(--s4);color:var(--t1);background:var(--s0);font-family:var(--mono)}
+
+/* ── Inspector ── */
+.insp-body{padding:11px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:10px}
+.insp-nil{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:7px;opacity:.3}
+.insp-nil i{font-size:26px} .insp-nil p{font-size:11px;text-align:center;line-height:1.5}
+.isec{font-size:10px;font-weight:600;color:var(--t2);letter-spacing:.08em;text-transform:uppercase;padding-bottom:5px;border-bottom:1px solid var(--s4);margin-bottom:1px}
+.fg{display:flex;flex-direction:column;gap:4px}
+.fl{font-size:11px;font-weight:500;color:var(--t1)}
+.fhint{font-size:10px;color:var(--t2);margin-top:-1px}
+.fi{font-family:var(--sans);font-size:12px;padding:6px 9px;border-radius:var(--r1);border:1px solid var(--s4);background:var(--s2);color:var(--t0);width:100%;outline:none;transition:border-color .15s}
+.fi:focus{border-color:var(--a)} .fi:disabled{opacity:.3;cursor:not-allowed}
+.fi.mn{font-family:var(--mono);font-size:11px}
+.fi[readonly]{opacity:.55;cursor:default;border-style:dashed}
+.fta{min-height:64px;resize:vertical;line-height:1.55}
+.crow{display:flex;align-items:center;gap:7px}
+.stb{font-family:var(--sans);font-size:11px;padding:3px 8px;border-radius:var(--r1);border:1px solid var(--s4);cursor:pointer;background:var(--s2);color:var(--t1);transition:all .15s}
+.stb.on{background:var(--a-bg);color:var(--a);border-color:var(--a-bd)}
+.kw-chips{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:5px}
+.kwc{font-size:10px;padding:2px 7px;border-radius:20px;background:var(--s2);border:1px solid var(--s4);color:var(--t1);cursor:pointer;font-family:var(--mono);transition:border-color .1s,color .1s}
+.kwc:hover{border-color:var(--d);color:var(--d)}
+.kwr{display:flex;gap:5px} .kwr .fi{flex:1}
+.addb{font-family:var(--sans);font-size:11px;padding:6px 10px;border-radius:var(--r1);border:1px solid var(--s4);background:transparent;color:var(--t1);cursor:pointer;white-space:nowrap;transition:all .15s}
+.addb:hover{background:var(--s2);border-color:var(--s5);color:var(--t0)}
+.cn-preview{font-family:var(--mono);font-size:11px;padding:5px 9px;border-radius:var(--r1);background:var(--s0);border:1px solid var(--s4);color:var(--t0);display:flex;align-items:center;margin-top:2px}
+.cn-fixed{color:var(--t2)} .cn-core{color:var(--a);font-weight:500}
+input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:pointer;flex-shrink:0}
+
+
+/* ── Sample source live preview ── */
+.sp-preview {
+  border-radius: var(--r2);
+  border: 1px solid var(--s4);
+  background: var(--s0);
+  padding: 10px 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  word-break: break-all;
+  min-height: 80px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+.sp-comment   { font-style: italic; }
+.sp-string    { }
+.sp-keyword   { font-weight: 600; }
+.sp-space     { }
+.sp-default   { }
+.sp-label     { font-size:10px; font-weight:600; color:var(--t2);
+  letter-spacing:.06em; text-transform:uppercase;
+  margin-bottom:4px; display:block; }
+/* ── Colour editor ── */
+.ce-wrap{display:flex;flex-direction:column;gap:8px}
+.ce-disabled{opacity:.35;pointer-events:none}
+
+/* Large preview swatch */
+.ce-swatch-bar{display:flex;align-items:stretch;gap:0;border-radius:var(--r2);overflow:hidden;border:1px solid var(--s5);height:38px}
+.ce-swatch-preview{flex:1;min-width:0;position:relative;cursor:pointer;transition:filter .15s}
+.ce-swatch-preview:hover{filter:brightness(1.12)}
+.ce-swatch-preview input[type=color]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;border:none;padding:0}
+.ce-swatch-hex{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.85);background:rgba(0,0,0,.35);padding:0 10px;display:flex;align-items:center;letter-spacing:.04em;pointer-events:none;flex-shrink:0;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+
+/* RGB sliders */
+.ce-sliders{display:flex;flex-direction:column;gap:5px}
+.ce-slider-row{display:flex;align-items:center;gap:7px}
+.ce-slider-label{font-size:10px;font-weight:600;width:10px;flex-shrink:0;text-align:center}
+.ce-slider{flex:1;height:6px;border-radius:3px;outline:none;cursor:pointer;appearance:none;-webkit-appearance:none;border:none}
+.ce-slider::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid var(--s5);cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+.ce-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid var(--s5);cursor:pointer}
+.ce-slider-val{font-family:var(--mono);font-size:11px;color:var(--t0);width:28px;text-align:right;flex-shrink:0}
+
+
+
+/* Format buttons + output */
+.ce-fmt-row{display:flex;gap:4px;align-items:center}
+.ce-fmt-btn{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:20px;border:1px solid var(--s4);background:transparent;color:var(--t1);cursor:pointer;transition:all .12s;white-space:nowrap}
+.ce-fmt-btn.on{background:var(--a-bg);border-color:var(--a-bd);color:var(--a)}
+.ce-output-box{flex:1;font-family:var(--mono);font-size:11px;color:var(--success);padding:4px 8px;background:var(--s0);border-radius:var(--r1);border:1px solid var(--s4);word-break:break-all;min-width:0;letter-spacing:.02em}
+
+
+/* ── Lane validation error state ── */
+.lane.lane-err { border-color:var(--d); box-shadow:0 0 0 2px var(--d-bg); }
+.lane.lane-err .lane-hd { background:var(--d-bg); }
+.lane.lane-err .lane-title { color:var(--d); }
+.lane-err-badge { font-size:10px; font-weight:600; color:var(--d);
+  background:var(--d-bg); border:1px solid var(--d);
+  padding:1px 6px; border-radius:20px; margin-left:4px; }
+.lane-err-list { margin:0 8px 8px;
+  background:rgba(240,96,96,.07); border:1px solid rgba(240,96,96,.25);
+  border-radius:var(--r2); padding:7px 10px;
+  display:flex; flex-direction:column; gap:3px; }
+.lane-err-item { font-size:11px; color:var(--d);
+  display:flex; align-items:baseline; gap:5px; }
+.lane-err-item::before { content:'!'; font-weight:700;
+  width:13px; flex-shrink:0; }
+/* card error highlight */
+.card.card-err { border-color:var(--d) !important;
+  background:rgba(240,96,96,.06) !important; }
+/* ── Modal ── */
+.modal-wrap{position:absolute;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:100;backdrop-filter:blur(3px)}
+.modal{background:var(--s1);border-radius:var(--r3);border:1px solid var(--s5);width:560px;max-height:590px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.6)}
+.modal-hd{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--s4);flex-shrink:0}
+.modal-hd h3{font-size:13px;font-weight:600;color:var(--t0)}
+.modal-cl{font-size:17px;cursor:pointer;color:var(--t1);padding:2px 5px;border-radius:4px;transition:color .12s}
+.modal-cl:hover{color:var(--t0)}
+.modal-body{padding:15px;overflow-y:auto;flex:1}
+.msg-pre{font-family:var(--mono);font-size:11px;line-height:1.9;color:var(--t0);white-space:pre-wrap;word-break:break-all;background:var(--s0);padding:12px 14px;border-radius:var(--r2);border:1px solid var(--s4)}
+.t-delim{color:var(--a)} .t-kw{color:var(--warn)} .t-val{color:var(--success)} .t-body{color:var(--t2)}
+.modal-btns{display:flex;gap:6px;margin-top:12px}
+.modal-btns .tbtn{flex:1;justify-content:center}
+
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--s4);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--s5)}
+</style>
+</head>
+<body>
+
+<div class="titlebar">
+  <div class="tl-logo">
+    <i class="ti ti-adjustments-horizontal"></i>
+    SynGen&thinsp;<span>.msg</span>&thinsp;Designer
+  </div>
+  <div class="tl-sep"></div>
+  <button class="tbtn" onclick="loadExample()"><i class="ti ti-bolt"></i>Example</button>
+  <button class="tbtn" onclick="clearAll()"><i class="ti ti-trash"></i>Clear</button>
+  <div class="vsep"></div>
+  <button class="tbtn" onclick="doValidate()"><i class="ti ti-shield-check"></i>Validate</button>
+  <button class="tbtn hi" onclick="showPreview()"><i class="ti ti-file-export"></i>Generate .msg</button>
+</div>
+
+<div id="app">
+  <!-- Palette -->
+  <div class="sidebar">
+    <div class="panel-hd">Palette</div>
+    <div class="pal-list" id="pal">
+      <div class="pal-group">Structure</div>
+      <div class="pc" draggable="true" data-type="header">
+        <div class="pc-name"><i class="ti ti-file-text" style="color:var(--lh)"></i>Header<span class="pc-once">1 max</span></div>
+        <div class="pc-hint">Class · prefix · ident chars</div>
+      </div>
+      <div class="pc" draggable="true" data-type="sample">
+        <div class="pc-name"><i class="ti ti-code" style="color:var(--ls)"></i>Sample source<span class="pc-once">1 max</span></div>
+        <div class="pc-hint">Preview code block</div>
+      </div>
+      <div class="pal-group">Tokens</div>
+      <div class="pc" draggable="true" data-type="tokentype">
+        <div class="pc-name"><i class="ti ti-tag" style="color:var(--lt)"></i>Token type</div>
+        <div class="pc-hint">Name + colour style</div>
+      </div>
+      <div class="pal-group">Keywords</div>
+      <div class="pc" draggable="true" data-type="keygroup">
+        <div class="pc-name"><i class="ti ti-list" style="color:var(--lk)"></i>Key group</div>
+        <div class="pc-hint">KEYS keyword list</div>
+      </div>
+      <div class="pal-group">Rules</div>
+      <div class="pc" draggable="true" data-type="enclosure">
+        <div class="pc-name"><i class="ti ti-brackets" style="color:var(--le)"></i>Enclosure</div>
+        <div class="pc-hint">ENCLOSEDBY pair</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Left resize handle -->
+  <div class="resizer" id="rz-left" title="Drag to resize palette"></div>
+
+  <!-- Canvas -->
+  <div class="canvas-col">
+    <div class="canvas" id="canvas"></div>
+  </div>
+
+  <!-- Right resize handle -->
+  <div class="resizer" id="rz-right" title="Drag to resize inspector"></div>
+
+  <!-- Inspector -->
+  <div class="insp">
+    <div class="panel-hd">Inspector</div>
+    <div class="insp-body" id="insp"></div>
+  </div>
+</div>
+
+<script>
+'use strict'
+
+/* ════════════════════════════════════════════════════════════════════════════
+   LANE CONFIG
+   Note: charrule is removed from palette — it auto-generates from the header.
+   ════════════════════════════════════════════════════════════════════════════ */
+const LANE_CFG = [
+  { id:'header',     label:'Header',        ico:'ti-file-text', color:'var(--lh)', type:'header',    multi:false, autoGen:false },
+  { id:'tokentype',  label:'Token types',   ico:'ti-tag',       color:'var(--lt)', type:'tokentype', multi:true,  autoGen:false },
+  { id:'keygroup',   label:'Key groups',    ico:'ti-list',      color:'var(--lk)', type:'keygroup',  multi:true,  autoGen:false },
+  { id:'chars',      label:'Char rules',    ico:'ti-braces',    color:'var(--lc)', type:'charrule',  multi:false, autoGen:true  },
+  { id:'enclosedby', label:'Enclosed by',   ico:'ti-brackets',  color:'var(--le)', type:'enclosure', multi:true,  autoGen:false },
+  { id:'sample',     label:'Sample source', ico:'ti-code',      color:'var(--ls)', type:'sample',    multi:false, autoGen:false },
+]
+
+/* ════════════════════════════════════════════════════════════════════════════
+   NAMED DELPHI COLOURS
+   ════════════════════════════════════════════════════════════════════════════ */
+const DELPHI_COLOURS = {
+  clBlack:'#000000',   clMaroon:'#800000', clGreen:'#008000',  clOlive:'#808000',
+  clNavy:'#000080',    clPurple:'#800080', clTeal:'#008080',   clGray:'#808080',
+  clSilver:'#c0c0c0',  clRed:'#ff0000',   clLime:'#00ff00',   clYellow:'#ffff00',
+  clBlue:'#0000ff',    clFuchsia:'#ff00ff',clAqua:'#00ffff',  clWhite:'#ffffff',
+  clWindowText:'#000000', clWindow:'#ffffff',
+  clBtnFace:'#ece9d8',    clBtnText:'#000000',
+  clHighlight:'#316ac5',  clHighlightText:'#ffffff',
+  clGrayText:'#808080',   clDefault:'#000000', clNone:'#000000',
+}
+
+/* Convert any stored colour value to #rrggbb */
+function colourToHex(val) {
+  const v=(val||'').trim()
+  if(DELPHI_COLOURS[v]) return DELPHI_COLOURS[v]
+  const d=v.match(/^\$([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})([0-9A-Fa-f]{2})$/)
+  if(d) return '#'+d[4]+d[3]+d[2]
+  const rgb=v.match(/^RGB\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i)
+  if(rgb){const h=n=>parseInt(n).toString(16).padStart(2,'0');return '#'+h(rgb[1])+h(rgb[2])+h(rgb[3])}
+  if(/^#[0-9A-Fa-f]{6}$/.test(v)) return v
+  return '#000000'
+}
+
+/* Format a #rrggbb value to the chosen output string */
+function hexToColourStr(hex,fmt){
+  const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16)
+  const hh=n=>n.toString(16).padStart(2,'0').toUpperCase()
+  if(fmt==='hex')  return '$00'+hh(b)+hh(g)+hh(r)
+  if(fmt==='rgb')  return `RGB(${r},${g},${b})`
+  const found=Object.entries(DELPHI_COLOURS).find(([,v])=>v===hex.toLowerCase())
+  return found?found[0]:`RGB(${r},${g},${b})`
+}
+
+/* Update stored colour + live editor UI without full re-render */
+function ceApply(id,slot,hex){
+  const c=findCard(id); if(!c) return
+  const fmt=c[slot+'Fmt']||'named'
+  c[slot]=hexToColourStr(hex,fmt)
+  // live swatch
+  const swatch=document.getElementById(`ce-prev-${id}-${slot}`)
+  if(swatch){ swatch.style.background=hex; swatch.querySelector('input').value=hex }
+  // hex label on bar
+  const hexLbl=document.getElementById(`ce-hex-${id}-${slot}`)
+  if(hexLbl) hexLbl.textContent=hex.toUpperCase()
+  // RGB sliders
+  const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16)
+  setSlider(id,slot,'r',r); setSlider(id,slot,'g',g); setSlider(id,slot,'b',b)
+  // named grid active state
+  document.querySelectorAll(`.ce-named-swatch[data-ce="${id}-${slot}"]`).forEach(el=>{
+    el.classList.toggle('active', el.dataset.hex===hex.toLowerCase())
+  })
+  // output
+  const out=document.getElementById(`ce-out-${id}-${slot}`)
+  if(out) out.textContent=c[slot]
+  render()
+}
+
+function setSlider(id,slot,ch,val){
+  const el=document.getElementById(`ce-sl-${id}-${slot}-${ch}`)
+  const vl=document.getElementById(`ce-sv-${id}-${slot}-${ch}`)
+  if(el){el.value=val;updateSliderBg(el,ch)}
+  if(vl) vl.textContent=val
+}
+
+function updateSliderBg(slider,ch){
+  const v=parseInt(slider.value)
+  const r=ch==='r'?v:0, g=ch==='g'?v:0, b=ch==='b'?v:0
+  const a=`rgb(${r},${g},${b})`, bk=ch==='r'?'#000,#f00':ch==='g'?'#000,#0f0':'#000,#00f'
+  slider.style.background=`linear-gradient(to right,${bk})`
+}
+
+/* Called from the native colour picker (swatch) */
+function onCePick(id,slot,hex){
+  ceApply(id,slot,hex)
+}
+
+/* Called from RGB sliders */
+function onCeSlider(id,slot){
+  const r=parseInt(document.getElementById(`ce-sl-${id}-${slot}-r`).value)
+  const g=parseInt(document.getElementById(`ce-sl-${id}-${slot}-g`).value)
+  const b=parseInt(document.getElementById(`ce-sl-${id}-${slot}-b`).value)
+  const hex='#'+[r,g,b].map(n=>n.toString(16).padStart(2,'0')).join('')
+  ceApply(id,slot,hex)
+}
+
+/* Called from named colour grid swatches */
+function onCeNamed(id,slot,hex){
+  ceApply(id,slot,hex)
+}
+
+/* Called from format buttons */
+function setCeFmt(id,slot,fmt){
+  const c=findCard(id); if(!c) return
+  c[slot+'Fmt']=fmt
+  c[slot]=hexToColourStr(colourToHex(c[slot]),fmt)
+  const out=document.getElementById(`ce-out-${id}-${slot}`)
+  if(out) out.textContent=c[slot]
+  // re-render format buttons
+  document.querySelectorAll(`.ce-fmt-btn[data-ce="${id}-${slot}"]`).forEach(el=>{
+    el.classList.toggle('on',el.dataset.fmt===fmt)
+  })
+  render()
+}
+
+/* Build the full custom colour editor HTML for one slot */
+function colourEditorHtml(cardId,slot,val,fmt,disabled){
+  const hex=colourToHex(val)
+  const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16)
+  const curStr=val||'clWindowText'
+  const dis=disabled?'disabled':''
+
+  const sliderRow=(ch,val,label)=>`
+    <div class="ce-slider-row">
+      <span class="ce-slider-label" style="color:${ch==='r'?'#f07070':ch==='g'?'#52c98a':'#70a8d8'}">${label}</span>
+      <input class="ce-slider" type="range" min="0" max="255" value="${val}"
+        id="ce-sl-${cardId}-${slot}-${ch}" ${dis}
+        oninput="document.getElementById('ce-sv-${cardId}-${slot}-${ch}').textContent=this.value;onCeSlider(${cardId},'${slot}')">
+      <span class="ce-slider-val" id="ce-sv-${cardId}-${slot}-${ch}">${val}</span>
+    </div>`
+
+  const fmtBtns=['named','hex','rgb'].map(f=>`
+    <button class="ce-fmt-btn${fmt===f?' on':''}" data-ce="${cardId}-${slot}" data-fmt="${f}"
+      onclick="setCeFmt(${cardId},'${slot}','${f}')">${f==='named'?'Name':f==='hex'?'$Hex':'RGB()'}</button>`).join('')
+
+  return `<div class="ce-wrap${disabled?' ce-disabled':''}">
+    <div class="ce-swatch-bar">
+      <div class="ce-swatch-preview" id="ce-prev-${cardId}-${slot}" style="background:${hex}">
+        <input type="color" value="${hex}" ${dis} oninput="onCePick(${cardId},'${slot}',this.value)">
+      </div>
+      <div class="ce-swatch-hex" id="ce-hex-${cardId}-${slot}">${hex.toUpperCase()}</div>
+    </div>
+    <div class="ce-sliders">
+      ${sliderRow('r',r,'R')}
+      ${sliderRow('g',g,'G')}
+      ${sliderRow('b',b,'B')}
+    </div>
+    <div class="ce-fmt-row">
+      <span style="font-size:10px;color:var(--t2)">Output:</span>
+      ${fmtBtns}
+      <div class="ce-output-box" id="ce-out-${cardId}-${slot}">${esc(curStr)}</div>
+    </div>
+  </div>`
+}
+
+function onCePick(id, slot, hex) {
+  const c=findCard(id); if(!c) return
+  const fmt=c[slot+'Fmt']||'named'
+  c[slot]=hexToColourStr(hex,fmt)
+  const out=document.getElementById(`ce-out-${id}-${slot}`)
+  if(out) out.textContent=c[slot]
+  // update swatch colour inline
+  const wrap=document.querySelector(`#ce-swatch-${id}-${slot}`)
+  render()
+}
+
+
+
+function setCeFmt(id, slot, fmt) {
+  const c=findCard(id); if(!c) return
+  c[slot+'Fmt']=fmt
+  c[slot]=hexToColourStr(colourToHex(c[slot]),fmt)
+  render(); renderInsp()
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   AUTO-GENERATE CHAR RULE from Header ident chars
+   ════════════════════════════════════════════════════════════════════════════ */
+function autoGenCharRule() {
+  const hdr = doc.header[0]
+  const charset = hdr ? hdr.identStart : "'A'..'Z', 'a'..'z', '_'"
+  const body =
+    'fTokenID := IdentKind(fLine + Run);\n' +
+    'inc(Run, fStringLen);\n' +
+    'while IsIdentChar(fLine[Run]) do\n' +
+    '  Inc(Run);'
+  const existing = doc.chars[0]
+  if (existing) {
+    existing.charset = charset
+    existing.body    = body
+  } else {
+    doc.chars = [{ id: mkid(), type:'charrule', charset, procName:'Ident', body, readOnly:true }]
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   DOC MODEL
+   ════════════════════════════════════════════════════════════════════════════ */
+const doc = {}
+LANE_CFG.forEach(l => doc[l.id] = [])
+
+let sel=null, dragPalType=null, dragCardId=null, idSeq=0
+const mkid=()=>++idSeq
+
+/* ── Class name helpers ── */
+function sanitizeIdent(raw) { return raw.replace(/[^A-Za-z0-9_]/g,'') }
+function buildClassName(raw) {
+  let core=sanitizeIdent(raw).replace(/^TSyn/i,'').replace(/Syn$/i,'')
+  if(!core) core='Custom'
+  core=core.charAt(0).toUpperCase()+core.slice(1)
+  return {full:'TSyn'+core+'Syn', core}
+}
+
+/* ── Default card factories ── */
+function defCard(type) {
+  const id=mkid()
+  switch(type){
+    case 'header':    return {id,type,classCore:'Custom',prefix:'tk',identStart:"'_', 'a'..'z', 'A'..'Z'",identCont:"'_', '0'..'9', 'a'..'z', 'A'..'Z'"}
+    case 'tokentype': return {id,type,name:'NewToken',hasFG:false,fg:'clWindowText',fgFmt:'named',hasBG:false,bg:'clWindow',bgFmt:'named',hasStyle:false,bold:false,italic:false,underline:false,strikeout:false}
+    case 'keygroup':  return {id,type,groupName:'keywords',words:[]}
+    case 'enclosure': return {id,type,tokenType:'Comment',ruleName:'BraceComment',openSeq:'{',closeSeq:'}',multiLine:true}
+    case 'sample':    return {id,type,text:'; sample source\nmov rax, 1\nsyscall'}
+  }
+}
+
+/* ── Finders ── */
+function findCard(id) { for(const l of LANE_CFG){const c=doc[l.id].find(c=>c.id===id);if(c)return c} return null }
+function laneIdForCard(id) { for(const l of LANE_CFG){if(doc[l.id].some(c=>c.id===id))return l.id} return null }
+
+function addCard(type, laneId) {
+  const lane=LANE_CFG.find(l=>l.id===laneId)
+  if(!lane||lane.autoGen) return
+  if(!lane.multi&&doc[laneId].length>=1) doc[laneId]=[]
+  const c=defCard(type)
+  doc[laneId].push(c)
+  sel=c.id
+  if(type==='header') autoGenCharRule()
+  render(); renderInsp()
+}
+
+function removeCard(id) {
+  const lid=laneIdForCard(id)
+  if(lid) doc[lid]=doc[lid].filter(c=>c.id!==id)
+  if(sel===id) sel=null
+  if(lid==='header'&&doc.chars.length) doc.chars=[]
+  render(); renderInsp()
+}
+
+function upd(id,k,v) {
+  const c=findCard(id); if(!c) return
+  c[k]=v
+  if(c.type==='header'&&(k==='identStart')) autoGenCharRule()
+  render()
+}
+function tog(id,k) { const c=findCard(id); if(c){c[k]=!c[k];render();renderInsp()} }
+function updClassName(id,raw) {
+  const c=findCard(id); if(!c) return
+  c.classCore=buildClassName(raw).core
+  render()
+  const el=document.getElementById('cn-core-'+id)
+  if(el) el.textContent=c.classCore
+}
+
+/* ── Keyword helpers ── */
+function rmW(id,i){const c=findCard(id);if(c){c.words.splice(i,1);render();renderInsp()}}
+function addW(id){
+  const el=document.getElementById('kwi-'+id),c=findCard(id)
+  if(!el||!c)return; const w=el.value.trim()
+  if(w&&!c.words.includes(w)){c.words.push(w);el.value='';render();renderInsp()}
+}
+function bulkW(id,v){
+  const c=findCard(id);if(!c)return
+  v.split('\n').map(s=>s.trim()).filter(s=>s&&!c.words.includes(s)).forEach(s=>c.words.push(s))
+  render();renderInsp()
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   CARD HTML
+   ════════════════════════════════════════════════════════════════════════════ */
+function cardIcon(type){
+  return {header:'ti-file-text',tokentype:'ti-tag',keygroup:'ti-list',charrule:'ti-braces',enclosure:'ti-brackets',sample:'ti-code'}[type]||'ti-circle'
+}
+function cardLabel(c){
+  if(c.type==='header')    return buildClassName(c.classCore||'Custom').full
+  if(c.type==='tokentype') return c.name
+  if(c.type==='keygroup')  return c.groupName
+  if(c.type==='charrule')  return 'Ident (auto-generated)'
+  if(c.type==='enclosure') return c.ruleName
+  if(c.type==='sample')    return 'Sample source'
+  return ''
+}
+function cardBodyHtml(c){
+  if(c.type==='header'){
+    const {full}=buildClassName(c.classCore||'Custom')
+    return `<div class="cr"><span>Class</span><b>${esc(full)}</b></div><div class="cr"><span>Prefix</span><b>${esc(c.prefix)}</b></div>`
+  }
+  if(c.type==='tokentype'){
+    const p=[]
+    if(c.hasBG) p.push('BG:'+c.bg)
+    if(c.hasFG) p.push('FG:'+c.fg)
+    const st=[c.bold&&'B',c.italic&&'I',c.underline&&'U',c.strikeout&&'S'].filter(Boolean)
+    if(c.hasStyle&&st.length) p.push('['+st.join('')+']')
+    return `<div class="cr">${esc(p.join(' · ')||'default style')}</div>`
+  }
+  if(c.type==='keygroup'){
+    if(!c.words.length) return `<div class="cr" style="opacity:.35;font-style:italic">no keywords yet</div>`
+    const prev=c.words.slice(0,6),more=c.words.length-6
+    return `<div class="chips">${prev.map(w=>`<span class="chip">${esc(w)}</span>`).join('')}${more>0?`<span class="chip">+${more}</span>`:''}</div>`
+  }
+  if(c.type==='charrule'){
+    return `<div class="cr"><b class="mn">${esc(c.charset)}</b></div><div class="cr" style="opacity:.5;font-style:italic">read-only · auto-generated</div>`
+  }
+  if(c.type==='enclosure'){
+    return `<div class="cr"><span>${esc(c.tokenType)}</span><b class="mn">${esc(c.openSeq)}…${esc(c.closeSeq)}</b><span>${c.multiLine?'multi':'single'}</span></div>`
+  }
+  if(c.type==='sample'){
+    const lines=c.text.split('\n')
+    return `<div class="cr mn" style="font-size:10px">${esc(lines.slice(0,2).join(' ↵ '))}${lines.length>2?' …':''}</div>`
+  }
+  return ''
+}
+function cardHtml(c,color){
+  const body=cardBodyHtml(c)
+  const noRm=c.type==='charrule'
+  return `<div class="card${c.id===sel?' sel':''}" id="c${c.id}"
+    onclick="selectCard(${c.id})" draggable="${noRm?'false':'true'}"
+    ondragstart="onCDS(event,${c.id})" ondragover="onCDO(event,${c.id})" ondrop="onCDP(event,${c.id})">
+    <div class="card-hd">
+      <i class="ti ${cardIcon(c.type)} card-ico" style="color:${color}"></i>
+      <span class="card-lbl">${esc(cardLabel(c))}</span>
+      ${noRm?'<i class="ti ti-lock" style="font-size:11px;color:var(--t2);opacity:.5;flex-shrink:0"></i>':`<span class="card-rm" onclick="event.stopPropagation();removeCard(${c.id})" title="Remove"><i class="ti ti-x"></i></span>`}
+    </div>
+    ${body?`<div class="card-body">${body}</div>`:''}
+  </div>`
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   RENDER CANVAS
+   ════════════════════════════════════════════════════════════════════════════ */
+function render(){
+  clearValidationUI()
+  // Refresh sample preview if one is open
+  const _smp=doc.sample[0]; if(_smp){const _p=document.getElementById('sp-preview-'+_smp.id);if(_p)_p.innerHTML=highlightSample(_smp.text)||'<span style="opacity:.3;font-style:italic">empty</span>';}
+  document.getElementById('canvas').innerHTML=LANE_CFG.map(lane=>{
+    const cards=doc[lane.id]
+    const typeName=lane.label.replace(/s$/,'').toLowerCase()
+    const isAutoGen=lane.autoGen
+    const hasCards=cards.length>0
+    return `<div class="lane">
+      <div class="lane-hd${hasCards?' has-cards':''}${isAutoGen?'':''}" id="lhd-${lane.id}"
+        ondragover="onHDO(event,'${lane.id}')"
+        ondragleave="onHDL('${lane.id}')"
+        ondrop="onHDP(event,'${lane.id}')">
+        <div class="lane-ico" style="background:${lane.color}1a"><i class="ti ${lane.ico}" style="color:${lane.color}"></i></div>
+        <span class="lane-title">${lane.label}</span>
+        <span class="lane-badge">${isAutoGen?'auto':''}${!isAutoGen&&hasCards?cards.length+(cards.length===1?' section':' sections'):''}</span>
+        ${!isAutoGen&&!hasCards?`<span class="lane-add-hint">← drop here</span>`:''}
+      </div>
+      <div class="lane-body" id="lb-${lane.id}"
+        ondragover="onLDO(event,'${lane.id}')"
+        ondragleave="onLDL('${lane.id}')"
+        ondrop="onLDP(event,'${lane.id}')">
+        ${hasCards
+          ? cards.map(c=>cardHtml(c,lane.color)).join('')
+          : isAutoGen
+            ? `<div class="lane-empty">auto-generated from Header ident start chars</div>`
+            : `<div class="lane-empty">drag a ${typeName} section here or drop on the header above</div>`}
+      </div>
+    </div>`
+  }).join('')
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   RENDER INSPECTOR
+   ════════════════════════════════════════════════════════════════════════════ */
+function selectCard(id){sel=id;render();renderInsp()}
+
+function renderInsp(){
+  const insp=document.getElementById('insp')
+  const c=sel?findCard(sel):null
+  if(!c){
+    insp.innerHTML=`<div class="insp-nil"><i class="ti ti-cursor-text"></i><p>Select a section card<br>to edit its properties</p></div>`
+    return
+  }
+  const fld=(label,key,val,mono=false,hint='',ro=false)=>
+    `<div class="fg"><div class="fl">${label}</div>
+      <input class="fi${mono?' mn':''}${ro?' ':''}" value="${esc(String(val??''))}" ${ro?'readonly':''} oninput="${ro?'':` upd(${c.id},'${key}',this.value)`}">
+      ${hint?`<div class="fhint">${hint}</div>`:''}
+    </div>`
+  const stb=(k,l)=>`<button class="stb${c[k]?' on':''}" onclick="tog(${c.id},'${k}')">${l}</button>`
+  let h=''
+
+  if(c.type==='header'){
+    const {full,core}=buildClassName(c.classCore||'Custom')
+    h=`<div class="isec">Identity</div>
+    <div class="fg">
+      <div class="fl">Highlighter name</div>
+      <input class="fi" value="${esc(c.classCore||'')}" placeholder="e.g. Pascal" oninput="updClassName(${c.id},this.value)">
+      <div class="fhint">Type any name — TSyn…Syn is added automatically</div>
+      <div class="cn-preview"><span class="cn-fixed">TSyn</span><span class="cn-core" id="cn-core-${c.id}">${esc(core)}</span><span class="cn-fixed">Syn</span></div>
+    </div>
+    ${fld('Token prefix','prefix',c.prefix,true,'Prefix for TTokenKind enum values')}
+    <div class="isec" style="margin-top:2px">Identifier characters</div>
+    ${fld('Ident start','identStart',c.identStart,true,'Also drives the auto-generated CHARS rule')}
+    ${fld('Ident continue','identCont',c.identCont,true)}`
+  }
+
+  else if(c.type==='tokentype'){
+    h=`<div class="isec">Token</div>
+    <div class="fg"><div class="fl">Token name</div>
+      <input class="fi" value="${esc(c.name)}" oninput="upd(${c.id},'name',this.value)">
+      <div class="fhint">Used as the TTokenKind enum value name</div>
+    </div>
+    <div class="isec" style="margin-top:2px">Style</div>
+    <div class="fg"><div class="fl">Foreground</div>
+      <div class="crow" style="margin-bottom:4px">
+        <input type="checkbox" ${c.hasFG?'checked':''} onchange="upd(${c.id},'hasFG',this.checked);renderInsp()">
+        <span style="font-size:11px;color:var(--t1)">Enable foreground colour</span>
+      </div>
+      ${colourEditorHtml(c.id,'fg',c.fg,c.fgFmt||'named',!c.hasFG)}
+    </div>
+    <div class="fg"><div class="fl">Background</div>
+      <div class="crow" style="margin-bottom:4px">
+        <input type="checkbox" ${c.hasBG?'checked':''} onchange="upd(${c.id},'hasBG',this.checked);renderInsp()">
+        <span style="font-size:11px;color:var(--t1)">Enable background colour</span>
+      </div>
+      ${colourEditorHtml(c.id,'bg',c.bg,c.bgFmt||'named',!c.hasBG)}
+    </div>
+    <div class="fg"><div class="fl">Font style</div>
+      <div class="crow">
+        <input type="checkbox" ${c.hasStyle?'checked':''} onchange="upd(${c.id},'hasStyle',this.checked);renderInsp()">
+        <div class="crow">${stb('bold','<b>B</b>')}${stb('italic','<i>I</i>')}${stb('underline','<u>U</u>')}${stb('strikeout','<s>S</s>')}</div>
+      </div></div>`
+  }
+
+  else if(c.type==='keygroup'){
+    const chips=c.words.map((w,i)=>`<span class="kwc" onclick="rmW(${c.id},${i})" title="click to remove">${esc(w)} ×</span>`).join('')
+    h=`<div class="isec">Group</div>
+    ${fld('Group name','groupName',c.groupName,false,'Must match a token type name')}
+    <div class="isec" style="margin-top:2px">Keywords (${c.words.length})</div>
+    <div class="fg">
+      <div class="kw-chips">${chips||'<span style="font-size:10px;color:var(--t2);font-style:italic">none yet</span>'}</div>
+      <div class="kwr">
+        <input class="fi" id="kwi-${c.id}" placeholder="type keyword…" onkeydown="if(event.key==='Enter')addW(${c.id})">
+        <button class="addb" onclick="addW(${c.id})">Add</button>
+      </div>
+      <textarea class="fi fta" style="margin-top:5px" placeholder="or paste multiple, one per line…"
+        oninput="bulkW(${c.id},this.value)" onblur="this.value=''"></textarea>
+    </div>`
+  }
+
+  else if(c.type==='charrule'){
+    h=`<div class="isec">Char rule <span style="font-weight:400;font-size:9px;color:var(--a);letter-spacing:.04em">AUTO-GENERATED · READ-ONLY</span></div>
+    <div class="fhint" style="margin-bottom:6px">This section is generated automatically from the Header's Ident start chars. Edit the Header to change it.</div>
+    ${fld('Character set','charset',c.charset,true,'',true)}
+    ${fld('Proc name','procName',c.procName,false,'',true)}
+    <div class="fg"><div class="fl">BeginProc body</div>
+      <textarea class="fi fta mn" readonly style="min-height:90px;opacity:.55;cursor:default;border-style:dashed">${esc(c.body)}</textarea>
+    </div>`
+  }
+
+  else if(c.type==='enclosure'){
+    h=`<div class="isec">Enclosure</div>
+    ${fld('Token type','tokenType',c.tokenType,false,'Must match a token type name')}
+    ${fld('Rule name','ruleName',c.ruleName)}
+    <div class="isec" style="margin-top:2px">Delimiters</div>
+    ${fld('Open sequence','openSeq',c.openSeq,true)}
+    ${fld('Close sequence','closeSeq',c.closeSeq,true)}
+    <div class="fg"><div class="fl">Multi-line</div>
+      <input type="checkbox" ${c.multiLine?'checked':''} onchange="upd(${c.id},'multiLine',this.checked)">
+    </div>`
+  }
+
+  else if(c.type==='sample'){
+    h=`<div class="isec">Sample source</div>
+    <div class="fg">
+      <textarea class="fi fta mn" style="min-height:110px" id="sp-ta-${c.id}"
+        oninput="upd(${c.id},'text',this.value);updSamplePreview(${c.id})">${esc(c.text)}</textarea>
+    </div>
+    <div class="isec" style="margin-top:2px">Live preview
+      <span style="font-size:9px;font-weight:400;color:var(--t2);margin-left:4px;text-transform:none;letter-spacing:0">reflects token styles &amp; keywords</span>
+    </div>
+    <div class="sp-preview" id="sp-preview-${c.id}">${highlightSample(c.text)||'<span style="opacity:.3;font-style:italic">empty</span>'}</div>`
+  }
+
+  insp.innerHTML=h
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   DRAG & DROP — palette → lane header (primary) and lane body (fallback)
+   ════════════════════════════════════════════════════════════════════════════ */
+function canDrop(laneId){
+  const lane=LANE_CFG.find(l=>l.id===laneId)
+  return lane&&!lane.autoGen&&lane.type===dragPalType&&(lane.multi||doc[laneId].length<1)
+}
+
+// Header drop zone
+function onHDO(e,lid){
+  if(!dragPalType) return
+  e.preventDefault()
+  const hd=document.getElementById('lhd-'+lid)
+  if(!hd) return
+  if(canDrop(lid)) hd.classList.add('over')
+  else             hd.classList.add('reject')
+}
+function onHDL(lid){
+  const hd=document.getElementById('lhd-'+lid)
+  if(hd){hd.classList.remove('over');hd.classList.remove('reject')}
+}
+function onHDP(e,lid){
+  onHDL(lid)
+  if(!dragPalType||!canDrop(lid)) return
+  e.preventDefault()
+  addCard(dragPalType,lid)
+  dragPalType=null
+}
+
+// Body drop zone (secondary fallback — same logic)
+function onLDO(e,lid){
+  if(!dragPalType) return
+  e.preventDefault()
+  const b=document.getElementById('lb-'+lid)
+  if(!b) return
+  if(canDrop(lid)) b.classList.add('over')
+  else             b.classList.add('reject')
+}
+function onLDL(lid){
+  const b=document.getElementById('lb-'+lid)
+  if(b){b.classList.remove('over');b.classList.remove('reject')}
+}
+function onLDP(e,lid){
+  onLDL(lid)
+  if(!dragPalType||!canDrop(lid)) return
+  e.preventDefault()
+  addCard(dragPalType,lid)
+  dragPalType=null
+}
+
+// Card reorder within lane
+function onCDS(e,id){dragCardId=id;dragPalType=null;e.stopPropagation()}
+function onCDO(e,id){if(!dragCardId)return;e.preventDefault();e.stopPropagation()}
+function onCDP(e,targetId){
+  e.preventDefault();e.stopPropagation()
+  if(!dragCardId||dragCardId===targetId)return
+  const srcL=laneIdForCard(dragCardId),tgtL=laneIdForCard(targetId)
+  if(srcL===tgtL){
+    const arr=doc[srcL]
+    const fi=arr.findIndex(c=>c.id===dragCardId),ti=arr.findIndex(c=>c.id===targetId)
+    if(fi>=0&&ti>=0){const[m]=arr.splice(fi,1);arr.splice(ti,0,m)}
+  }
+  dragCardId=null;render()
+}
+
+document.getElementById('pal').querySelectorAll('.pc').forEach(el=>{
+  el.addEventListener('dragstart',()=>{dragPalType=el.dataset.type;dragCardId=null})
+  el.addEventListener('dragend',()=>{dragPalType=null})
+})
+
+/* ════════════════════════════════════════════════════════════════════════════
+   PANEL RESIZE
+   ════════════════════════════════════════════════════════════════════════════ */
+function makeResizer(handleId, cssVar, side) {
+  const handle = document.getElementById(handleId)
+  let startX, startW
+  function onMove(e) {
+    const x = e.touches ? e.touches[0].clientX : e.clientX
+    const dx = x - startX
+    const newW = Math.max(120, Math.min(420, startW + (side==='left'?dx:-dx)))
+    document.documentElement.style.setProperty(cssVar, newW+'px')
+  }
+  function onUp() {
+    handle.classList.remove('active')
+    window.removeEventListener('mousemove',onMove)
+    window.removeEventListener('mouseup',onUp)
+    window.removeEventListener('touchmove',onMove)
+    window.removeEventListener('touchend',onUp)
+  }
+  handle.addEventListener('mousedown',e=>{
+    startX=e.clientX
+    startW=parseInt(getComputedStyle(document.documentElement).getPropertyValue(cssVar))||190
+    handle.classList.add('active')
+    window.addEventListener('mousemove',onMove)
+    window.addEventListener('mouseup',onUp)
+    e.preventDefault()
+  })
+  handle.addEventListener('touchstart',e=>{
+    startX=e.touches[0].clientX
+    startW=parseInt(getComputedStyle(document.documentElement).getPropertyValue(cssVar))||190
+    handle.classList.add('active')
+    window.addEventListener('touchmove',onMove,{passive:false})
+    window.addEventListener('touchend',onUp)
+    e.preventDefault()
+  },{passive:false})
+}
+makeResizer('rz-left','--pal-w','left')
+makeResizer('rz-right','--insp-w','right')
+
+/* ════════════════════════════════════════════════════════════════════════════
+   .MSG GENERATION
+   ════════════════════════════════════════════════════════════════════════════ */
+function buildStyleStr(c){
+  const p=[]
+  if(c.hasBG) p.push('Background='+c.bg)
+  if(c.hasFG) p.push('Foreground='+c.fg)
+  if(c.hasStyle){
+    const st=[c.bold&&'fsBold',c.italic&&'fsItalic',c.underline&&'fsUnderline',c.strikeout&&'fsStrikeOut'].filter(Boolean)
+    if(st.length) p.push('Style=['+st.join(', ')+']')
+  }
+  return p.join('|')
+}
+
+function generateMsg(){
+  const D='|><|', L=[]
+  const hdr=doc.header[0]
+  if(hdr){
+    const {full}=buildClassName(hdr.classCore||'Custom')
+    L.push(full,hdr.prefix,'IdentStart '+hdr.identStart+' :: '+hdr.identCont+'::')
+  } else {
+    L.push('TSynCustomSyn','tk',"IdentStart '_', 'a'..'z', 'A'..'Z' :: '_', '0'..'9', 'a'..'z', 'A'..'Z'::")
+  }
+  const tt=doc.tokentype
+  if(tt.length){L.push(D,'TOKENTYPES');tt.forEach(c=>{const s=buildStyleStr(c);L.push(s?c.name+' '+s:c.name)})}
+  doc.keygroup.forEach(c=>{L.push(D,'KEYS '+c.groupName);c.words.forEach(w=>L.push(w))})
+  const cr=doc.chars[0]
+  if(cr){L.push(D,'CHARS');L.push(cr.charset+':: '+cr.procName);L.push('BeginProc');cr.body.split('\n').forEach(l=>L.push('  '+l));L.push('EndProc')}
+  const enc=doc.enclosedby
+  if(enc.length){L.push(D,'ENCLOSEDBY');enc.forEach(c=>L.push([c.tokenType,c.ruleName,c.openSeq,c.closeSeq,c.multiLine?'MultiLine':''].filter(Boolean).join(',')))}
+  const smp=doc.sample[0]
+  if(smp){L.push(D,'SAMPLESOURCE');smp.text.split('\n').forEach(l=>L.push(l))}
+  L.push(D)
+  return L.join('\n')
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   PREVIEW MODAL  — clipboard and download fixed
+   ════════════════════════════════════════════════════════════════════════════ */
+function colourMsg(text){
+  return text.split('\n').map(line=>{
+    if(line==='|><|') return `<span class="t-delim">${esc(line)}</span>`
+    if(/^(TOKENTYPES|KEYS |CHARS|ENCLOSEDBY|SAMPLESOURCE|IdentStart)/.test(line)) return `<span class="t-kw">${esc(line)}</span>`
+    if(/^\s/.test(line)&&line.trim()) return `<span class="t-body">${esc(line)}</span>`
+    if(/^(BeginProc|EndProc)/.test(line)) return `<span class="t-body">${esc(line)}</span>`
+    return `<span class="t-val">${esc(line)}</span>`
+  }).join('\n')
+}
+
+// Store generated text at module scope so buttons can access it
+let _previewText = ''
+
+function showPreview(){
+  if(!LANE_CFG.some(l=>doc[l.id].length>0)){alert('Add some sections first.');return}
+  _previewText=generateMsg()
+  const app=document.getElementById('app')
+  app.style.position='relative'
+  const bg=document.createElement('div')
+  bg.className='modal-wrap'
+  bg.innerHTML=`<div class="modal">
+    <div class="modal-hd">
+      <h3>Generated .msg output</h3>
+      <span class="modal-cl" onclick="this.closest('.modal-wrap').remove()"><i class="ti ti-x"></i></span>
+    </div>
+    <div class="modal-body">
+      <pre class="msg-pre" id="msg-pre-out">${colourMsg(_previewText)}</pre>
+      <div class="modal-btns">
+        <button class="tbtn" id="btn-copy" onclick="doCopy()"><i class="ti ti-copy"></i>Copy to clipboard</button>
+        <button class="tbtn" id="btn-dl"   onclick="doDownload()"><i class="ti ti-download"></i>Save .msg file</button>
+      </div>
+    </div>
+  </div>`
+  bg.addEventListener('click',e=>{if(e.target===bg)bg.remove()})
+  app.appendChild(bg)
+}
+
+function doCopy(){
+  const btn=document.getElementById('btn-copy')
+  // Use modern clipboard API; fall back to execCommand
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(_previewText).then(()=>{
+      btn.innerHTML='<i class="ti ti-check"></i> Copied!'
+      setTimeout(()=>{btn.innerHTML='<i class="ti ti-copy"></i> Copy to clipboard'},2000)
+    }).catch(()=>copyFallback(btn))
+  } else {
+    copyFallback(btn)
+  }
+}
+
+function copyFallback(btn){
+  const ta=document.createElement('textarea')
+  ta.value=_previewText
+  ta.style.cssText='position:fixed;top:-9999px;left:-9999px'
+  document.body.appendChild(ta)
+  ta.select()
+  try{
+    document.execCommand('copy')
+    if(btn){btn.innerHTML='<i class="ti ti-check"></i> Copied!';setTimeout(()=>{btn.innerHTML='<i class="ti ti-copy"></i> Copy to clipboard'},2000)}
+  }catch(e){alert('Copy failed — please select the text manually.')}
+  document.body.removeChild(ta)
+}
+
+function doDownload(){
+  const hdr=doc.header[0]
+  const core=hdr?buildClassName(hdr.classCore||'Custom').core:'Highlighter'
+  const filename=core+'.msg'
+  try{
+    const blob=new Blob([_previewText],{type:'text/plain;charset=utf-8'})
+    const url=URL.createObjectURL(blob)
+    const a=document.createElement('a')
+    a.href=url; a.download=filename; a.style.display='none'
+    document.body.appendChild(a)
+    a.click()
+    setTimeout(()=>{URL.revokeObjectURL(url);document.body.removeChild(a)},1000)
+  }catch(e){
+    alert('Download not supported in this browser. Use Copy to clipboard instead.')
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   VALIDATE — collects errors per lane, highlights problem lanes & cards
+   ════════════════════════════════════════════════════════════════════════════ */
+
+// laneErrors: { laneId: [ {msg, cardId?} ] }
+let laneErrors = {}
+
+function clearValidationUI() {
+  laneErrors = {}
+  document.querySelectorAll('.lane.lane-err').forEach(el=>el.classList.remove('lane-err'))
+  document.querySelectorAll('.card.card-err').forEach(el=>el.classList.remove('card-err'))
+  document.querySelectorAll('.lane-err-list').forEach(el=>el.remove())
+  document.querySelectorAll('.lane-err-badge').forEach(el=>el.remove())
+}
+
+function addLaneError(laneId, msg, cardId=null) {
+  if(!laneErrors[laneId]) laneErrors[laneId]=[]
+  laneErrors[laneId].push({msg, cardId})
+}
+
+function applyValidationUI() {
+  Object.entries(laneErrors).forEach(([laneId, errs])=>{
+    // Highlight the lane
+    const laneEl = document.querySelector(`[id="lhd-${laneId}"]`)?.closest('.lane')
+    if(laneEl) {
+      laneEl.classList.add('lane-err')
+      // Add error count badge to lane header
+      const badge = document.createElement('span')
+      badge.className='lane-err-badge'
+      badge.textContent = errs.length === 1 ? '1 issue' : errs.length+' issues'
+      const hd = laneEl.querySelector('.lane-hd')
+      if(hd) hd.appendChild(badge)
+      // Inject error list beneath the lane body
+      const errList = document.createElement('div')
+      errList.className='lane-err-list'
+      errList.innerHTML = errs.map(e=>`<div class="lane-err-item">${esc(e.msg)}</div>`).join('')
+      laneEl.appendChild(errList)
+    }
+    // Highlight specific cards
+    errs.forEach(e=>{
+      if(e.cardId) {
+        const cardEl = document.getElementById('c'+e.cardId)
+        if(cardEl) cardEl.classList.add('card-err')
+      }
+    })
+  })
+}
+
+function doValidate(){
+  clearValidationUI()
+  const ttNames = doc.tokentype.map(c=>c.name)
+  let totalErrs = 0
+
+  // Header lane
+  if(!doc.header.length) {
+    addLaneError('header','No Header section — class name and prefix will use defaults')
+    totalErrs++
+  }
+
+  // Token types lane — check for duplicates
+  const seen = new Set()
+  doc.tokentype.forEach(c=>{
+    if(seen.has(c.name)) {
+      addLaneError('tokentype',`Duplicate token type name: "${c.name}"`,c.id); totalErrs++
+    }
+    seen.add(c.name)
+    if(!c.name.trim()) {
+      addLaneError('tokentype','A token type has an empty name',c.id); totalErrs++
+    }
+  })
+
+  // Key groups lane
+  doc.keygroup.forEach(c=>{
+    if(!ttNames.includes(c.groupName)) {
+      addLaneError('keygroup',`"${c.groupName}" has no matching token type`,c.id); totalErrs++
+    }
+    if(!c.words.length) {
+      addLaneError('keygroup',`"${c.groupName}" has no keywords`,c.id); totalErrs++
+    }
+  })
+
+  // Enclosures lane
+  doc.enclosedby.forEach(c=>{
+    if(!ttNames.includes(c.tokenType)) {
+      addLaneError('enclosedby',`"${c.ruleName}" references unknown token type "${c.tokenType}"`,c.id); totalErrs++
+    }
+    if(!c.openSeq) {
+      addLaneError('enclosedby',`"${c.ruleName}" has no open sequence`,c.id); totalErrs++
+    }
+  })
+
+  // Apply highlights to DOM
+  applyValidationUI()
+
+  if(totalErrs === 0) {
+    // Flash green on Validate button briefly
+    const btn = document.querySelector('.tbtn[onclick="doValidate()"]')
+    if(btn){
+      const orig = btn.innerHTML
+      btn.style.cssText='background:rgba(82,201,138,.15);border-color:rgba(82,201,138,.5);color:#52c98a'
+      btn.innerHTML='<i class="ti ti-check"></i> Valid'
+      setTimeout(()=>{btn.style.cssText='';btn.innerHTML=orig},2000)
+    }
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   CLEAR / LOAD EXAMPLE
+   ════════════════════════════════════════════════════════════════════════════ */
+function clearAll(){
+  if(LANE_CFG.some(l=>doc[l.id].length)&&!confirm('Clear all lanes?'))return
+  LANE_CFG.forEach(l=>doc[l.id]=[]); sel=null; render(); renderInsp()
+}
+
+function loadExample(){
+  if(LANE_CFG.some(l=>doc[l.id].length)&&!confirm('Replace canvas with x86-64 ASM example?'))return
+  LANE_CFG.forEach(l=>doc[l.id]=[]); idSeq=0; sel=null
+  const put=(lid,type,extra)=>{const c=Object.assign(defCard(type),extra);doc[lid].push(c);return c}
+
+  const hdr=put('header','header',{classCore:'Asm64',prefix:'tk',
+    identStart:"'_', 'a'..'z', 'A'..'Z'",identCont:"'_', '0'..'9', 'a'..'z', 'A'..'Z'"})
+  autoGenCharRule()
+
+  put('tokentype','tokentype',{name:'Identifier'})
+  put('tokentype','tokentype',{name:'Comment',      hasFG:true,fg:'clNavy',  fgFmt:'named',hasStyle:true,italic:true})
+  put('tokentype','tokentype',{name:'Space'})
+  put('tokentype','tokentype',{name:'String',       hasFG:true,fg:'clRed',   fgFmt:'named'})
+  put('tokentype','tokentype',{name:'registers8bit', hasBG:true,bg:'clSilver',bgFmt:'named',hasFG:true,fg:'clBlue',fgFmt:'named',hasStyle:true,underline:true,italic:true})
+  put('tokentype','tokentype',{name:'registers16bit',hasBG:true,bg:'clSilver',bgFmt:'named',hasFG:true,fg:'clBlue',fgFmt:'named',hasStyle:true,underline:true,italic:true})
+  put('tokentype','tokentype',{name:'registers32bit',hasBG:true,bg:'clSilver',bgFmt:'named',hasFG:true,fg:'clBlue',fgFmt:'named',hasStyle:true,underline:true,italic:true})
+  put('tokentype','tokentype',{name:'registers64bit',hasBG:true,bg:'clSilver',bgFmt:'named',hasFG:true,fg:'clBlue',fgFmt:'named',hasStyle:true,underline:true,italic:true})
+
+  put('keygroup','keygroup',{groupName:'registers8bit', words:['ah','al','bh','bl','ch','cl','dh','dl','sil','dil','spl','bpl','r8b','r9b','r10b','r11b','r12b','r13b','r14b','r15b']})
+  put('keygroup','keygroup',{groupName:'registers16bit',words:['ax','bx','cx','dx','si','di','sp','bp','r8w','r9w','r10w','r11w','r12w','r13w','r14w','r15w']})
+  put('keygroup','keygroup',{groupName:'registers32bit',words:['eax','ebx','ecx','edx','esi','edi','esp','ebp','r8d','r9d','r10d','r11d','r12d','r13d','r14d','r15d']})
+  put('keygroup','keygroup',{groupName:'registers64bit',words:['rax','rbx','rcx','rdx','rsi','rdi','rsp','rbp','r8','r9','r10','r11','r12','r13','r14','r15']})
+
+  put('enclosedby','enclosure',{tokenType:'Comment',ruleName:'BraceComment', openSeq:'{', closeSeq:'}', multiLine:true})
+  put('enclosedby','enclosure',{tokenType:'Comment',ruleName:'CStyleComment',openSeq:'/*',closeSeq:'*/',multiLine:true})
+  put('enclosedby','enclosure',{tokenType:'String', ruleName:'String',       openSeq:'"', closeSeq:'"', multiLine:false})
+
+  put('sample','sample',{text:
+    "; Hello World — x86_64 NASM assembly for Linux\n"+
+    "section .data\n    msg db 'Hello, World!', 0xa\n    len equ $ - msg\n"+
+    "section .text\n    global _start\n_start:\n"+
+    "    mov rax, 1\n    mov rdi, 1\n    mov rsi, msg\n    mov rdx, len\n    syscall\n"+
+    "    mov rax, 60\n    mov rdi, 0\n    syscall"})
+
+  sel=hdr.id; render(); renderInsp()
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════════
+   SAMPLE SOURCE LIVE PREVIEW
+   Tokenises the sample text line-by-line using the token types, keyword
+   groups, and enclosures defined in the current document, and renders
+   syntax-highlighted HTML into the preview pane.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+function buildHighlightRules() {
+  // Gather enclosures: {open, close, multiLine, tokenType}
+  const encs = doc.enclosedby.map(c=>({
+    open:c.openSeq, close:c.closeSeq, multi:c.multiLine, type:c.tokenType
+  }))
+  // Gather keyword sets: Map<word_lower, tokenTypeName>
+  const kwMap = new Map()
+  doc.keygroup.forEach(g=>{
+    g.words.forEach(w=>kwMap.set(w.toLowerCase(), g.groupName))
+  })
+  // Gather token type styles
+  const styleMap = {}
+  doc.tokentype.forEach(c=>{
+    const style={}
+    if(c.hasFG) style.color = colourToHex(c.fg)
+    if(c.hasBG) style.background = colourToHex(c.bg)
+    if(c.hasStyle){
+      if(c.bold)      style.fontWeight='bold'
+      if(c.italic)    style.fontStyle='italic'
+      if(c.underline) style.textDecoration='underline'
+      if(c.strikeout) style.textDecoration=(style.textDecoration?style.textDecoration+' ':'')+'line-through'
+    }
+    styleMap[c.name]=style
+  })
+  // Ident chars from header
+  const hdr = doc.header[0]
+  const identStartChars  = hdr ? charSetToRegexClass(hdr.identStart)  : '[A-Za-z_]'
+  const identContChars   = hdr ? charSetToRegexClass(hdr.identCont)   : '[A-Za-z0-9_]'
+  return {encs, kwMap, styleMap, identStartChars, identContChars}
+}
+
+// Parse a .msg char set expression like "'_', 'a'..'z', 'A'..'Z'"
+// and return a regex character class string like "[_a-zA-Z]"
+function charSetToRegexClass(expr) {
+  if(!expr) return '[A-Za-z_]'
+  let cls = ''
+  const re = /'(.)'\.\.'(.)'/g
+  let m, last=0
+  while((m=re.exec(expr))!==null){
+    // Add any literals before this range
+    const before = expr.slice(last, m.index)
+    const lits = [...before.matchAll(/'(.)'/g)]
+    lits.forEach(l=>{ cls += escRegCls(l[1]) })
+    cls += escRegCls(m[1])+'-'+escRegCls(m[2])
+    last = m.index+m[0].length
+  }
+  // remaining literals
+  const tail = expr.slice(last)
+  const lits = [...tail.matchAll(/'(.)'/g)]
+  lits.forEach(l=>{ cls += escRegCls(l[1]) })
+  return cls ? '['+cls+']' : '[A-Za-z_]'
+}
+function escRegCls(ch) {
+  return ch.replace(/[\]\^-]/g,'\$&')
+}
+
+function styleToAttr(style) {
+  if(!style||!Object.keys(style).length) return ''
+  return ' style="'+Object.entries(style).map(([k,v])=>{
+    const cssKey = k.replace(/([A-Z])/g,'-$1').toLowerCase()
+    return cssKey+':'+v
+  }).join(';')+'"'
+}
+
+function highlightSample(text) {
+  if(!text) return ''
+  const {encs, kwMap, styleMap, identStartChars, identContChars} = buildHighlightRules()
+  const identRe = new RegExp(identStartChars + identContChars + '*', 'g')
+
+  const lines = text.split('\n')
+  let inEnc = null  // currently open enclosure or null
+  let result = ''
+
+  for(let li=0; li<lines.length; li++){
+    let line = lines[li]
+    let pos = 0
+    let lineOut = ''
+
+    // If we're inside a multi-line enclosure, continue it
+    if(inEnc) {
+      const closeIdx = line.indexOf(inEnc.close)
+      if(closeIdx >= 0) {
+        const chunk = line.slice(0, closeIdx+inEnc.close.length)
+        const style = styleMap[inEnc.type]||{}
+        lineOut += `<span${styleToAttr(style)}>${esc(chunk)}</span>`
+        pos = closeIdx+inEnc.close.length
+        inEnc = null
+      } else {
+        const style = styleMap[inEnc.type]||{}
+        lineOut += `<span${styleToAttr(style)}>${esc(line)}</span>`
+        pos = line.length
+      }
+    }
+
+    while(pos < line.length) {
+      let matched = false
+
+      // Try each enclosure opener
+      for(const enc of encs) {
+        if(line.startsWith(enc.open, pos)) {
+          const closeIdx = line.indexOf(enc.close, pos+enc.open.length)
+          const style = styleMap[enc.type]||{}
+          if(closeIdx >= 0) {
+            const chunk = line.slice(pos, closeIdx+enc.close.length)
+            lineOut += `<span${styleToAttr(style)}>${esc(chunk)}</span>`
+            pos = closeIdx+enc.close.length
+          } else if(enc.multi) {
+            // extends to end of line — continue on next
+            const chunk = line.slice(pos)
+            lineOut += `<span${styleToAttr(style)}>${esc(chunk)}</span>`
+            pos = line.length
+            inEnc = enc
+          } else {
+            // single-line — extends to EOL
+            const chunk = line.slice(pos)
+            lineOut += `<span${styleToAttr(style)}>${esc(chunk)}</span>`
+            pos = line.length
+          }
+          matched = true
+          break
+        }
+      }
+      if(matched) continue
+
+      // Try identifier / keyword
+      identRe.lastIndex = pos
+      const idm = identRe.exec(line)
+      if(idm && idm.index === pos) {
+        const word = idm[0]
+        const kwType = kwMap.get(word.toLowerCase())
+        const style = kwType ? (styleMap[kwType]||{}) : (styleMap['Identifier']||{})
+        lineOut += `<span${styleToAttr(style)}>${esc(word)}</span>`
+        pos += word.length
+        continue
+      }
+
+      // Whitespace
+      if(line[pos]===' '||line[pos]==='\t'){
+        let wsEnd=pos
+        while(wsEnd<line.length&&(line[wsEnd]===' '||line[wsEnd]==='\t')) wsEnd++
+        const style = styleMap['Space']||{}
+        lineOut += `<span${styleToAttr(style)}>${esc(line.slice(pos,wsEnd))}</span>`
+        pos=wsEnd
+        continue
+      }
+
+      // Single character fall-through
+      lineOut += esc(line[pos])
+      pos++
+    }
+
+    result += lineOut + (li<lines.length-1 ? '\n' : '')
+  }
+  return result
+}
+
+function updSamplePreview(id) {
+  const c = findCard(id); if(!c) return
+  const preview = document.getElementById('sp-preview-'+id)
+  if(preview) preview.innerHTML = highlightSample(c.text) || '<span style="opacity:.3;font-style:italic">empty</span>'
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   UTILITY
+   ════════════════════════════════════════════════════════════════════════════ */
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+/* ── Boot ── */
+render(); renderInsp()
+</script>
+</body>
+</html>
