@@ -35,7 +35,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="google-site-verification" content="1-YbrR-LcIbjpQpYyF8dXwM5tgNJnWhkQP04TLrpLO4" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SynGen .msg Designer</title>
@@ -156,7 +155,7 @@ body{display:flex;flex-direction:column}
 .crow{display:flex;align-items:center;gap:7px}
 .stb{font-family:var(--sans);font-size:11px;padding:3px 8px;border-radius:var(--r1);border:1px solid var(--s4);cursor:pointer;background:var(--s2);color:var(--t1);transition:all .15s}
 .stb.on{background:var(--a-bg);color:var(--a);border-color:var(--a-bd)}
-.kw-chips{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:5px}
+.kw-chips{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:5px;min-height:20px}
 .kwc{font-size:10px;padding:2px 7px;border-radius:20px;background:var(--s2);border:1px solid var(--s4);color:var(--t1);cursor:pointer;font-family:var(--mono);transition:border-color .1s,color .1s}
 .kwc:hover{border-color:var(--d);color:var(--d)}
 .kwr{display:flex;gap:5px} .kwr .fi{flex:1}
@@ -313,12 +312,15 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
   </div>
   <div class="tl-sep"></div>
   <button class="tbtn" onclick="loadExample()"><i class="ti ti-bolt"></i>Example</button>
+  <button class="tbtn" onclick="triggerPasOpen()"><i class="ti ti-file-import"></i>Open .pas</button>
+  <input type="file" id="pas-file-input" accept=".pas" style="display:none" onchange="onPasFileSelected(event)">
   <button class="tbtn" onclick="clearAll()"><i class="ti ti-trash"></i>Clear</button>
   <div class="vsep"></div>
   <button class="tbtn" onclick="doValidate()"><i class="ti ti-shield-check"></i>Validate</button>
   <button class="tbtn hi" onclick="showPreview()"><i class="ti ti-file-export"></i>Generate .msg</button>
   <div class="vsep"></div>
   <a class="tbtn" href="https://github.com/GrooverMD/SynEditMsgDesigner/tree/main" target="_blank" rel="noopener" title="View on GitHub"><i class="ti ti-brand-github"></i>GitHub</a>
+  <a class="tbtn" href="https://claude.ai" target="_blank" rel="noopener" title="Claude AI"><i class="ti ti-sparkles"></i>Claude AI</a>
   <button class="tbtn" onclick="openHelp()"><i class="ti ti-help-circle"></i>Help</button>
 </div>
 
@@ -346,14 +348,20 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
         <div class="intro-section-title">Resources</div>
         <div class="intro-links">
           <a class="intro-link" href="https://github.com/GrooverMD/SynEditMsgDesigner/tree/main" target="_blank" rel="noopener"><i class="ti ti-brand-github"></i>GitHub Repository</a>
-          <a class="intro-link" href="https://github.com/SynEdit/SynEdit" target="_blank" rel="noopener"><i class="ti ti-external-link"></i>SynEdit Project</a>
+          <a class="intro-link" href="https://github.com/TurboPack/SynEdit" target="_blank" rel="noopener"><i class="ti ti-external-link"></i>SynEdit Project</a>
           <button class="intro-link" onclick="document.getElementById('intro-overlay').remove();openHelp()"><i class="ti ti-help-circle"></i>Read full help</button>
         </div>
       </div>
     </div>
     <div class="intro-footer">
       <span class="intro-copy">Copyright &copy; 2026 Mark Stephen Day. All Rights Reserved.</span>
-      <button class="intro-start-btn" onclick="document.getElementById('intro-overlay').remove()">Start designing &rarr;</button>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button class="intro-start-btn" style="background:var(--s3);color:var(--t0);box-shadow:none;border:1px solid var(--s5)"
+          onclick="document.getElementById('intro-overlay').remove();triggerPasOpen()">
+          <i class="ti ti-file-import" style="font-size:15px;vertical-align:-2px"></i> Open .pas file
+        </button>
+        <button class="intro-start-btn" onclick="document.getElementById('intro-overlay').remove()">Start designing &rarr;</button>
+      </div>
     </div>
   </div>
 </div>
@@ -381,7 +389,7 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
         <thead><tr><th>Section</th><th>Purpose</th></tr></thead>
         <tbody>
           <tr><td>Header</td><td>Sets the generated class name (TSyn…Syn), the token-kind enum prefix, and the identifier character sets. <em>One per document.</em></td></tr>
-          <tr><td>Token types</td><td>Each token type becomes a value in the TTokenKind enumeration and a TSynHighlighterAttributes instance with its own foreground, background and font style. Add as many as your language needs.</td></tr>
+          <tr><td>Token types</td><td>Each token type becomes a value in the TtkTokenKind enumeration and a TSynHighlighterAttributes instance with its own foreground, background and font style. Add as many as your language needs.</td></tr>
           <tr><td>Key groups</td><td>A KEYS block maps a list of reserved words to one token type. The group name must exactly match a token type name.</td></tr>
           <tr><td>Char rules</td><td>Auto-generated from the Header's Ident start chars. Defines which characters trigger the identifier scanner and provides the BeginProc/EndProc dispatch body. Read-only.</td></tr>
           <tr><td>Enclosed by</td><td>Defines delimiter pairs (e.g. <code style="font-family:var(--mono)">{ }</code>, <code style="font-family:var(--mono)">/* */</code>, <code style="font-family:var(--mono)">" "</code>) and whether they can span multiple lines.</td></tr>
@@ -441,9 +449,30 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
     </div>
 
     <div class="help-section">
+      <h3>Opening a SynHighlighter .pas file</h3>
+      <p>You can reverse-parse an existing SynEdit highlighter unit to populate the designer automatically. Click <b>Open .pas</b> in the toolbar or the <b>Open .pas file</b> button on the start page, then select a <code style="font-family:var(--mono);font-size:11px;color:var(--a)">SynHighlighterXxx.pas</code> file.</p>
+      <p>The parser extracts:</p>
+      <table class="help-table">
+        <thead><tr><th>Extracted from</th><th>Populated in</th></tr></thead>
+        <tbody>
+          <tr><td>class TSynXxxSyn</td><td>Header — class name and token prefix</td></tr>
+          <tr><td>TtkTokenKind enum values</td><td>Token type cards (one per tk… value)</td></tr>
+          <tr><td>fXxxAttri.Style/Foreground/Background in constructor</td><td>Token type colour and font style</td></tr>
+          <tr><td>Keyword string constants + EnumerateKeywords calls</td><td>Key group cards with full word lists</td></tr>
+          <tr><td>Next procedure char dispatch (#34, #39, ';', '//', '{'…)</td><td>Enclosure cards</td></tr>
+          <tr><td>GetSampleSource function</td><td>Sample source card</td></tr>
+          <tr><td>IdentProc character ranges in Next</td><td>Header ident start chars + auto Char rule</td></tr>
+        </tbody>
+      </table>
+      <div class="help-tip"><i class="ti ti-info-circle"></i>The parser works on standard SynEdit highlighter units. Highly customised units may need manual correction of some token types or enclosures after import. Use Validate to check for any cross-reference issues.</div>
+    </div>
+
+    <div class="help-section">
       <h3>About</h3>
       <p>SynGen .msg Designer is copyright &copy; 2026 <b>Mark Stephen Day</b>. All Rights Reserved.</p>
-      <p>Source code and issue tracking: <a href="https://github.com/GrooverMD/SynEditMsgDesigner/tree/main" target="_blank" rel="noopener" style="color:var(--a)">github.com/GrooverMD/SynEditMsgDesigner</a></p>
+      <p>Source code: <a href="https://github.com/GrooverMD/SynEditMsgDesigner/tree/main" target="_blank" rel="noopener" style="color:var(--a)">github.com/GrooverMD/SynEditMsgDesigner</a></p>
+      <p>Built with assistance from <a href="https://claude.ai" target="_blank" rel="noopener" style="color:var(--a)">Claude AI</a> by Anthropic.</p>
+      <p>SynEdit: <a href="https://github.com/TurboPack/SynEdit" target="_blank" rel="noopener" style="color:var(--a)">github.com/TurboPack/SynEdit</a></p>
     </div>
 
   </div>
@@ -785,6 +814,33 @@ function bulkW(id,v){
   render();renderInsp()
 }
 
+function toggleKwEdit(id){
+  const edit=document.getElementById('kw-edit-'+id)
+  const add=document.getElementById('kw-add-'+id)
+  const chips=document.getElementById('kw-chips-'+id)
+  if(!edit) return
+  const open=edit.style.display==='none'
+  edit.style.display=open?'block':'none'
+  add.style.display=open?'none':'block'
+  chips.style.display=open?'none':'flex'
+}
+
+function applyKwEdit(id){
+  const c=findCard(id); if(!c) return
+  const ta=document.getElementById('kw-ta-'+id); if(!ta) return
+  c.words=ta.value.split('\n').map(s=>s.trim()).filter(s=>s)
+  render(); renderInsp()
+}
+
+function cancelKwEdit(id){
+  const edit=document.getElementById('kw-edit-'+id)
+  const add=document.getElementById('kw-add-'+id)
+  const chips=document.getElementById('kw-chips-'+id)
+  if(edit){edit.style.display='none'}
+  if(add){add.style.display='block'}
+  if(chips){chips.style.display='flex'}
+}
+
 /* ════════════════════════════════════════════════════════════════════════════
    CARD HTML
    ════════════════════════════════════════════════════════════════════════════ */
@@ -910,7 +966,7 @@ function renderInsp(){
       <div class="fhint">Type any name — TSyn…Syn is added automatically</div>
       <div class="cn-preview"><span class="cn-fixed">TSyn</span><span class="cn-core" id="cn-core-${c.id}">${esc(core)}</span><span class="cn-fixed">Syn</span></div>
     </div>
-    ${fld('Token prefix','prefix',c.prefix,true,'Prefix for TTokenKind enum values')}
+    ${fld('Token prefix','prefix',c.prefix,true,'Prefix for TtkTokenKind enum values')}
     <div class="isec" style="margin-top:2px">Identifier characters</div>
     ${fld('Ident start','identStart',c.identStart,true,'Also drives the auto-generated CHARS rule')}
     ${fld('Ident continue','identCont',c.identCont,true)}`
@@ -924,7 +980,7 @@ function renderInsp(){
     h=`<div class="isec">Token</div>
     <div class="fg"><div class="fl">Token name</div>
       <input class="fi" value="${esc(c.name)}" oninput="upd(${c.id},'name',this.value)">
-      <div class="fhint">Used as the TTokenKind enum value name</div>
+      <div class="fhint">Used as the TtkTokenKind enum value name</div>
     </div>
     <div class="isec" style="margin-top:2px">Style</div>
     <div class="fg"><div class="fl">Foreground</div>
@@ -956,15 +1012,32 @@ function renderInsp(){
     const chips=c.words.map((w,i)=>`<span class="kwc" onclick="rmW(${c.id},${i})" title="click to remove">${esc(w)} ×</span>`).join('')
     h=`<div class="isec">Group</div>
     ${fld('Group name','groupName',c.groupName,false,'Must match a token type name')}
-    <div class="isec" style="margin-top:2px">Keywords (${c.words.length})</div>
+    <div class="isec" style="margin-top:2px">
+      Keywords (${c.words.length})
+      <button class="stb" style="margin-left:auto;font-size:10px;padding:2px 7px"
+        onclick="toggleKwEdit(${c.id})">
+        <i class="ti ti-pencil" style="font-size:11px"></i> Edit all
+      </button>
+    </div>
     <div class="fg">
-      <div class="kw-chips">${chips||'<span style="font-size:10px;color:var(--t2);font-style:italic">none yet</span>'}</div>
-      <div class="kwr">
-        <input class="fi" id="kwi-${c.id}" placeholder="type keyword…" onkeydown="if(event.key==='Enter')addW(${c.id})">
-        <button class="addb" onclick="addW(${c.id})">Add</button>
+      <div class="kw-chips" id="kw-chips-${c.id}">${chips||'<span style="font-size:10px;color:var(--t2);font-style:italic">none yet</span>'}</div>
+      <div id="kw-edit-${c.id}" style="display:none">
+        <textarea class="fi fta mn" style="min-height:120px;margin-bottom:5px"
+          id="kw-ta-${c.id}"
+          placeholder="one keyword per line…">${esc(c.words.join('\n'))}</textarea>
+        <div style="display:flex;gap:5px">
+          <button class="addb" style="flex:1" onclick="applyKwEdit(${c.id})"><i class="ti ti-check"></i> Apply</button>
+          <button class="addb" onclick="cancelKwEdit(${c.id})">Cancel</button>
+        </div>
       </div>
-      <textarea class="fi fta" style="margin-top:5px" placeholder="or paste multiple, one per line…"
-        oninput="bulkW(${c.id},this.value)" onblur="this.value=''"></textarea>
+      <div id="kw-add-${c.id}">
+        <div class="kwr">
+          <input class="fi" id="kwi-${c.id}" placeholder="type keyword…" onkeydown="if(event.key==='Enter')addW(${c.id})">
+          <button class="addb" onclick="addW(${c.id})">Add</button>
+        </div>
+        <textarea class="fi fta" style="margin-top:5px" placeholder="or paste multiple, one per line…"
+          oninput="bulkW(${c.id},this.value)" onblur="this.value=''"></textarea>
+      </div>
     </div>`
   }
 
@@ -992,11 +1065,13 @@ function renderInsp(){
 
   else if(c.type==='sample'){
     h=`<div class="isec">Sample source</div>
-    <div class="fhint" style="margin-bottom:4px">This text is used as the live preview in Token type cards. Edit it to test your token styles.</div>
+    <div class="fhint" style="margin-bottom:4px">Edit below — the highlighted preview updates live as you type.</div>
     <div class="fg">
-      <textarea class="fi fta mn" style="min-height:180px" id="sp-ta-${c.id}"
-        oninput="upd(${c.id},'text',this.value);refreshAllTokenPreviews()">${esc(c.text)}</textarea>
-    </div>`
+      <textarea class="fi fta mn" style="min-height:120px" id="sp-ta-${c.id}"
+        oninput="upd(${c.id},'text',this.value);refreshAllTokenPreviews();updSamplePreview(${c.id})">${esc(c.text)}</textarea>
+    </div>
+    <div class="isec" style="margin-top:2px">Highlighted preview</div>
+    <div class="sp-preview" id="sp-preview-${c.id}">${highlightSample(c.text)||'<span style="opacity:.3;font-style:italic">empty</span>'}</div>`
   }
 
   insp.innerHTML=h
@@ -1600,6 +1675,539 @@ document.addEventListener('keydown',e=>{
     if(intro){intro.remove();return}
   }
 })
+
+
+/* ════════════════════════════════════════════════════════════════════════════
+   SYNEDIT .PAS REVERSE PARSER  (v3)
+
+   Handles two major SynEdit highlighter patterns:
+
+   Pattern A — Dictionary/EnumerateKeywords (e.g. SynHighlighterAsm)
+     • Bare string constant:  Mnemonics: string = 'aaa,bbb,...'
+     • Constructor call:      EnumerateKeywords(Ord(tkKey), Mnemonics, ...)
+
+   Pattern B — Array constant + hash/func table (e.g. SynHighlighterPas)
+     • KeyWords: array[0..N] of string = ('word1','word2',...)
+     • Per-keyword Func returns specific TtkTokenKind (tkKey, tkType, ...)
+
+   Extracts:
+     Header      class name, token prefix, ident chars from Next dispatch
+     TokenTypes  all TtkTokenKind values (minus infrastructure ones)
+                 with Foreground/Background/Style from constructor
+     KeyGroups   per-type keyword lists from both patterns
+     Enclosures  from procedure names + Next char dispatch (#34 #39 ; // { (* )
+     Sample      from GetSampleSource string concatenation
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── File input wiring ────────────────────────────────────────────────────── */
+function triggerPasOpen() {
+  document.getElementById('pas-file-input').click()
+}
+
+function onPasFileSelected(evt) {
+  const file = evt.target.files[0]; if (!file) return
+  // Try UTF-8 first, fall back to latin-1 which covers Windows-1252
+  const reader = new FileReader()
+  reader.onload = e => {
+    try { parsePasFile(e.target.result, file.name) }
+    catch(ex) { showToast('Parse error: ' + ex.message, true) }
+    evt.target.value = ''
+  }
+  reader.onerror = () => {
+    const r2 = new FileReader()
+    r2.onload = e => {
+      try { parsePasFile(e.target.result, file.name) }
+      catch(ex) { showToast('Parse error: ' + ex.message, true) }
+      evt.target.value = ''
+    }
+    r2.readAsText(file, 'windows-1252')
+  }
+  // Most modern .pas files are UTF-8; TurboPack SynEdit ones are Windows-1252
+  // We read as binary then decode manually to handle both
+  const rb = new FileReader()
+  rb.onload = eb => {
+    const bytes = new Uint8Array(eb.target.result)
+    // Check for UTF-8 BOM
+    let text
+    if (bytes[0]===0xEF && bytes[1]===0xBB && bytes[2]===0xBF) {
+      text = new TextDecoder('utf-8').decode(bytes.slice(3))
+    } else {
+      // Try UTF-8 silently; if it fails use windows-1252
+      try {
+        text = new TextDecoder('utf-8', {fatal:true}).decode(bytes)
+      } catch(_) {
+        text = new TextDecoder('windows-1252').decode(bytes)
+      }
+    }
+    try { parsePasFile(text, file.name) }
+    catch(ex) { showToast('Parse error: ' + ex.message, true) }
+    evt.target.value = ''
+  }
+  rb.readAsArrayBuffer(file)
+}
+
+/* ── Comment stripper ─────────────────────────────────────────────────────── */
+function stripPasComments(src) {
+  // { ... }  block comments (but NOT {$ directives — we still need to see procedures)
+  src = src.replace(/\{[^$}][^}]*\}/g, ' ')
+  src = src.replace(/\{[^}]*\}/g, ' ')
+  // (* ... *)
+  src = src.replace(/\(\*[\s\S]*?\*\)/g, ' ')
+  // // line comments
+  src = src.replace(/\/\/[^\n]*/g, '')
+  return src
+}
+
+/* ── Resolve Pascal char constants to real characters ─────────────────────── */
+function resolvePasChars(s) {
+  return s.replace(/#(\d+)/g, (_, n) => {
+    const c = parseInt(n, 10)
+    if (c === 13) return '\r'
+    if (c === 10) return '\n'
+    return String.fromCharCode(c)
+  })
+}
+
+/* ── Extract all string fragments from a Pascal string expression ─────────── */
+// Handles:  'foo' + #13#10 + 'bar'  →  ['foo','\r\n','bar']
+function extractStrFragments(expr) {
+  // First resolve bare char consts so #13#10 between strings becomes \r\n
+  const resolved = resolvePasChars(expr)
+  const frags = []
+  const re = /'((?:[^']|'')*)'/g
+  let m
+  while ((m = re.exec(resolved)) !== null)
+    frags.push(m[1].replace(/''/g, "'"))
+  // Also capture char consts that appear BETWEEN string literals
+  // e.g. + #13#10 + (already converted by resolvePasChars above, but we need
+  // to handle the non-quoted inter-string chars)
+  return frags
+}
+
+/* ── Build a sample text from a GetSampleSource result expression ─────────── */
+function buildSampleText(resultExpr) {
+  // Replace all #NN (including #13#10 runs) with real chars, then extract strings
+  let expr = resultExpr
+  // Replace concatenated char consts between strings with newline markers
+  expr = expr.replace(/\s*\+\s*(?:#\d+\s*)+\s*\+\s*/g, '\n')
+  // Remaining leading/trailing char consts
+  expr = expr.replace(/#13#10/gi, '\n').replace(/#10/gi, '\n').replace(/#13/gi, '\n')
+  expr = expr.replace(/#(\d+)/g, (_, n) => String.fromCharCode(parseInt(n,10)))
+  // Now extract all single-quoted Pascal strings
+  const frags = []
+  const re = /'((?:[^']|'')*)'/g
+  let m
+  while ((m = re.exec(expr)) !== null)
+    frags.push(m[1].replace(/''/g, "'"))
+  return frags.join('').replace(/\r\n/g, '\n').replace(/\r/g, '\n')
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   MAIN PARSER
+   ════════════════════════════════════════════════════════════════════════════ */
+function parsePasFile(rawSrc, filename) {
+  if (LANE_CFG.some(l => doc[l.id].length) &&
+      !confirm('Replace current canvas with ' + (filename||'parsed file') + '?')) return
+
+  LANE_CFG.forEach(l => doc[l.id] = [])
+  idSeq = 0; sel = null
+
+  const src   = rawSrc.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
+  const clean = stripPasComments(src)
+
+  /* ── 1. Class name ─────────────────────────────────────────────────────── */
+  let className = 'TSynCustomSyn'
+  const classM  = clean.match(/\b(TSyn\w+(?:Syn|Highlighter))\s*=\s*class\s*\(/i)
+  if (classM) className = classM[1]
+  let classCore = className
+    .replace(/^TSyn/i, '')
+    .replace(/(?:Syn|Highlighter)$/i, '')
+  if (!classCore) classCore = 'Custom'
+  classCore = classCore.charAt(0).toUpperCase() + classCore.slice(1)
+
+  /* ── 2. TtkTokenKind enum ──────────────────────────────────────────────── */
+  // Infrastructure tokens we never want as card-level token types
+  const INFRA = new Set([
+    'null','unknown','number','float','hex','char','symbol','asm',
+    'space','direc','directive','whitespace'
+  ])
+
+  const rawTks   = []   // [{raw:'tkComment', name:'Comment'}]
+  const enumM    = clean.match(/TtkTokenKind\s*=\s*\(([\s\S]*?)\)\s*;/i)
+  if (enumM) {
+    enumM[1].split(',').forEach(tok => {
+      tok = tok.trim().split(/[\s{]/)[0]  // handle inline comments
+      if (/^tk\w+$/i.test(tok)) {
+        const lc   = tok.slice(2).toLowerCase()
+        const name = tok.slice(2,3).toUpperCase() + tok.slice(3)
+        rawTks.push({ raw: tok, lc, name, keep: !INFRA.has(lc) })
+      }
+    })
+  }
+  if (!rawTks.length) {
+    // Fallback: synthesise from fXxxAttri field declarations
+    const fieldRe = /f(\w+Attri)\s*:\s*TSynHighlighterAttributes/gi
+    let fm
+    while ((fm = fieldRe.exec(clean)) !== null) {
+      const lc   = fm[1].toLowerCase().replace(/attri$/,'')
+      const name = lc.charAt(0).toUpperCase() + lc.slice(1)
+      if (!INFRA.has(lc)) rawTks.push({ raw:'tk'+name, lc, name, keep:true })
+    }
+  }
+
+  /* ── 3. Published property → private field mapping ─────────────────────── */
+  // property CommentAttri ... read fCommentAttri
+  const propToField = {} // 'commentattri' → 'commentattri' (without leading f)
+  const pubRe = /property\s+(\w+Attri)\b[^;]*read\s+f(\w+Attri)/gi
+  let pm
+  while ((pm = pubRe.exec(clean)) !== null)
+    propToField[pm[1].toLowerCase()] = pm[2].toLowerCase()
+
+  /* ── 4. Constructor attribute styles ───────────────────────────────────── */
+  // Isolate the constructor body — everything between the outermost begin/end
+  let ctorBody = ''
+  const ctorStart = clean.search(/constructor\s+\w+\.\s*Create\b/i)
+  if (ctorStart >= 0) {
+    // Find the "begin" keyword that opens the constructor body
+    const afterDecl = clean.slice(ctorStart)
+    const beginIdx  = afterDecl.search(/\bbegin\b/i)
+    if (beginIdx >= 0) {
+      // Walk forward counting begin/end to find the matching end
+      let depth = 0, pos = beginIdx, body = afterDecl.slice(beginIdx)
+      const tokRe = /\b(begin|end)\b/gi
+      let tm
+      while ((tm = tokRe.exec(body)) !== null) {
+        if (tm[1].toLowerCase() === 'begin') depth++
+        else { depth--; if (depth === 0) { ctorBody = body.slice(0, tm.index+3); break } }
+      }
+    }
+  }
+
+  // Map: fieldname_lower (without leading f) → style object
+  const attrStyle = {}
+
+  const ensureA = k => { if (!attrStyle[k]) attrStyle[k] = {} }
+
+  const styleRe = /f(\w+attri)\.style\s*:=\s*\[([^\]]*)\]/gi
+  let sm
+  while ((sm = styleRe.exec(ctorBody)) !== null) {
+    const k = sm[1].toLowerCase(); ensureA(k)
+    const f = sm[2].toLowerCase()
+    attrStyle[k].bold      = /fsbold/i.test(f)
+    attrStyle[k].italic    = /fsitalic/i.test(f)
+    attrStyle[k].underline = /fsunderline/i.test(f)
+    attrStyle[k].strikeout = /fsstrikeout/i.test(f)
+  }
+  const fgRe = /f(\w+attri)\.foreground\s*:=\s*(\w+)/gi
+  while ((sm = fgRe.exec(ctorBody)) !== null) {
+    const k = sm[1].toLowerCase(); ensureA(k); attrStyle[k].fg = sm[2]
+  }
+  const bgRe = /f(\w+attri)\.background\s*:=\s*(\w+)/gi
+  while ((sm = bgRe.exec(ctorBody)) !== null) {
+    const k = sm[1].toLowerCase(); ensureA(k); attrStyle[k].bg = sm[2]
+  }
+
+  // Helper: look up style for a token name
+  const getStyle = name => {
+    const lc = name.toLowerCase()
+    return attrStyle[lc+'attri']
+        || attrStyle[propToField[lc+'attri']]
+        || attrStyle[(propToField[lc+'attri']||'').replace(/attri$/,'')+'attri']
+        || {}
+  }
+
+  /* ── 5. Keyword groups ─────────────────────────────────────────────────── */
+  const kwGroups = {}   // typeName → Set<string>
+  const addKw = (type, word) => {
+    word = word.trim()
+    if (!word) return
+    const cap = type.charAt(0).toUpperCase() + type.slice(1)
+    if (!kwGroups[cap]) kwGroups[cap] = new Set()
+    kwGroups[cap].add(word.toLowerCase())
+  }
+
+  /* Pattern A: bare identifier: string = 'a,b,c,...';  (may span lines with +) */
+  // Collect ALL bare-string constants (no type keyword needed — Mnemonics style)
+  const bareConstRe = /\b(\w+)\s*:\s*string\s*=([\s\S]*?);(?=\s*\n)/gi
+  const bareConsts  = {}
+  let bc
+  while ((bc = bareConstRe.exec(clean)) !== null) {
+    const name = bc[1]
+    // Assemble the full string value (may have + continuations and #NN)
+    const expr = bc[2]
+    const frags = extractStrFragments(expr)
+    const combined = frags.join('')
+    const words = combined.split(',').map(w => w.trim()).filter(w => /^[A-Za-z_]\w*$/.test(w))
+    if (words.length > 3) bareConsts[name] = words
+  }
+
+  /* EnumerateKeywords(Ord(tkXxx), ConstName, ...) in constructor */
+  const enumKwRe = /EnumerateKeywords\s*\(\s*Ord\s*\(\s*tk(\w+)\s*\)\s*,\s*(\w+)\s*,/gi
+  let ek
+  while ((ek = enumKwRe.exec(ctorBody)) !== null) {
+    const typeLc = ek[1].toLowerCase()
+    const constName = ek[2]
+    if (INFRA.has(typeLc)) continue
+    const words = bareConsts[constName]
+    if (words && words.length) words.forEach(w => addKw(ek[1], w))
+  }
+
+  /* Pattern B: array[0..N] of string = ('word1', ...) */
+  // Also handle KeyWords const that appears in the file
+  const arrRe = /\bKeyWords\s*(?::\s*array\s*\[[\s\S]*?\]\s*of\s*string\s*)?\s*=\s*\(([\s\S]*?)\)\s*;/gi
+  let ar
+  while ((ar = arrRe.exec(clean)) !== null) {
+    const content = ar[1]
+    const words = []
+    const wRe = /'([A-Za-z_]\w*)'/g; let wm
+    while ((wm = wRe.exec(content)) !== null) words.push(wm[1])
+    if (!words.length) continue
+
+    // Now determine which token type each keyword maps to.
+    // Build wordTypeMap: word_lower → typeName
+    const wordTypeMap = {}
+    words.forEach(w => wordTypeMap[w.toLowerCase()] = 'Key')
+
+    // Scan every Func… body in the file.
+    // Each Func returns a specific TtkTokenKind for its keyword(s).
+    // The function name hints at the keyword: FuncType → handles 'type' etc.
+    const funcRe = /function\s+\w+\.Func(\w+)\s*\([^)]*\)\s*:\s*TtkTokenKind\s*;[\s\S]*?begin([\s\S]*?)end\s*;/gi
+    let fm
+    while ((fm = funcRe.exec(clean)) !== null) {
+      const funcSuffix = fm[1].toLowerCase()  // e.g. 'type', 'asm', 'cdecl'
+      const body       = fm[2]
+      // Find all Result := tkXxx assignments; take the first non-Identifier one
+      const results    = [...body.matchAll(/Result\s*:=\s*(tk\w+)/gi)]
+        .map(r => r[1])
+        .filter(r => !/Identifier|Null|Unknown/i.test(r))
+      if (!results.length) continue
+      const tkName = results[0]
+      const typeLc = tkName.slice(2).toLowerCase()
+      if (INFRA.has(typeLc)) continue
+      const typeCap = tkName.slice(2,3).toUpperCase() + tkName.slice(3)
+      // The function name IS the keyword (FuncAsm → 'asm', FuncType → 'type' etc.)
+      if (wordTypeMap.hasOwnProperty(funcSuffix))
+        wordTypeMap[funcSuffix] = typeCap
+    }
+
+    // Also: KeyWordFunc (the default handler) returns tkKey for unrecognised
+    // We leave those as 'Key'.
+
+    words.forEach(w => addKw(wordTypeMap[w.toLowerCase()] || 'Key', w))
+  }
+
+  /* ── 6. Ident chars from Next procedure dispatch ───────────────────────── */
+  let identStart = "'_', 'a'..'z', 'A'..'Z'"
+  // Find Next procedure — locate its outermost case statement
+  const nextM = clean.match(/procedure\s+\w+\.Next\s*;[\s\S]*?\bcase\s+fLine\s*\[Run\]\s+of([\s\S]*?)(?=end\s*;[\s\S]{0,50}inherited|inherited)/i)
+  if (nextM) {
+    const cb = nextM[1]
+    // Match lines like: 'A'..'Z', 'a'..'z', '_': IdentProc;
+    const identM = cb.match(/((?:'[^']'(?:\.\.'[^']')?\s*,\s*)*'[^']'(?:\.\.'[^']')?)\s*:\s*\n?\s*IdentProc/i)
+    if (identM) identStart = identM[1].trim()
+  }
+
+  /* ── 7. Enclosures from Next dispatch and procedure bodies ─────────────── */
+  const enclosures = []
+  const hasProc = name => new RegExp('procedure\\s+\\w+\\.' + name + '\\b', 'i').test(clean)
+
+  // Brace comment { }
+  if (hasProc('BraceOpenProc') || hasProc('BorProc'))
+    enclosures.push({ tokenType:'Comment', ruleName:'BraceComment', openSeq:'{',  closeSeq:'}',  multiLine:true })
+
+  // Directive {$ }  — check BraceOpenProc body for '$'
+  const bopB = clean.match(/procedure\s+\w+\.BraceOpenProc[\s\S]*?begin([\s\S]*?)end\s*;/i)
+  if (bopB && /'\$'/.test(bopB[1]))
+    enclosures.push({ tokenType:'Directive', ruleName:'Directive', openSeq:'{$', closeSeq:'}', multiLine:false })
+
+  // Ansi comment (* *)
+  if (hasProc('AnsiProc') || hasProc('RoundOpenProc')) {
+    // Confirm RoundOpenProc actually opens (* not just (
+    const ropB = clean.match(/procedure\s+\w+\.RoundOpenProc[\s\S]*?begin([\s\S]*?)end\s*;/i)
+    if (!ropB || /'\*'|AnsiProc|tkComment/i.test(ropB[1]))
+      enclosures.push({ tokenType:'Comment', ruleName:'AnsiComment', openSeq:'(*', closeSeq:'*)', multiLine:true })
+  }
+
+  // // single-line comment
+  if (hasProc('SlashProc')) {
+    const spB = clean.match(/procedure\s+\w+\.SlashProc[\s\S]*?begin([\s\S]*?)end\s*;/i)
+    if (spB && /tkComment/i.test(spB[1]))
+      enclosures.push({ tokenType:'Comment', ruleName:'LineComment', openSeq:'//', closeSeq:'', multiLine:false })
+  }
+
+  // ; and/or # line comments — check Next dispatch AND CommentProc
+  if (hasProc('CommentProc')) {
+    const cpB = clean.match(/procedure\s+\w+\.CommentProc[\s\S]*?begin([\s\S]*?)end\s*;/i)
+    if (cpB && /tkComment/i.test(cpB[1])) {
+      // Check what triggers CommentProc in Next
+      if (nextM) {
+        const cb = nextM[1]
+        // '#', ';': CommentProc  or  ';': CommentProc
+        if (/'[;]'[^:]*CommentProc|CommentProc[^']*'[;]'/i.test(cb) ||
+            /"[;]"/.test(cb))
+          enclosures.push({ tokenType:'Comment', ruleName:'SemiComment', openSeq:';', closeSeq:'', multiLine:false })
+        if (/"#"|'#'[^:]*CommentProc/i.test(cb))
+          enclosures.push({ tokenType:'Comment', ruleName:'HashComment', openSeq:'#', closeSeq:'', multiLine:false })
+        // If the dispatch was '#', ';': CommentProc (grouped)
+        if (/'#',\s*';'|';',\s*'#'/i.test(cb)) {
+          if (!enclosures.find(e=>e.openSeq===';'))
+            enclosures.push({ tokenType:'Comment', ruleName:'SemiComment', openSeq:';', closeSeq:'', multiLine:false })
+          if (!enclosures.find(e=>e.openSeq==='#'))
+            enclosures.push({ tokenType:'Comment', ruleName:'HashComment', openSeq:'#', closeSeq:'', multiLine:false })
+        }
+      }
+    }
+  }
+
+  // Check Next dispatch directly for '#', ';' if no CommentProc
+  if (nextM && !hasProc('CommentProc')) {
+    const cb = nextM[1]
+    if (/'#',\s*';'|';',\s*'#'/i.test(cb)) {
+      enclosures.push({ tokenType:'Comment', ruleName:'SemiComment', openSeq:';', closeSeq:'', multiLine:false })
+      enclosures.push({ tokenType:'Comment', ruleName:'HashComment', openSeq:'#', closeSeq:'', multiLine:false })
+    }
+  }
+
+  // String — #39 / 'StringProc'
+  if (hasProc('StringProc')) {
+    const spB = clean.match(/procedure\s+\w+\.StringProc[\s\S]*?begin([\s\S]*?)end\s*;/i)
+    if (spB && /tkString/i.test(spB[1]))
+      enclosures.push({ tokenType:'String', ruleName:'StringSQ', openSeq:"'", closeSeq:"'", multiLine:false })
+  } else if (nextM && /#39/.test(nextM[1])) {
+    enclosures.push({ tokenType:'String', ruleName:'StringSQ', openSeq:"'", closeSeq:"'", multiLine:false })
+  }
+
+  // Double-quote string — #34 / 'SingleQuoteStringProc' (ASM style DQ)
+  if (hasProc('SingleQuoteStringProc') ||
+      (nextM && /#34/.test(nextM[1])))
+    enclosures.push({ tokenType:'String', ruleName:'StringDQ', openSeq:'"', closeSeq:'"', multiLine:false })
+
+  /* ── 8. GetSampleSource ─────────────────────────────────────────────────── */
+  let sampleText = ''
+  // Match the function including its return type on the same or next line
+  const sampleFnRe = /function\s+\w+\.GetSampleSource\b[\s\S]*?\n\s*begin\b([\s\S]*?\n)\s*end\s*;/i
+  const sampleM    = src.match(sampleFnRe)   // use original src (not stripped)
+  if (sampleM) {
+    const body  = sampleM[1]
+    // Find Result := expression, which may span many lines with + continuation
+    const resM  = body.match(/Result\s*:=([\s\S]*?);(?=[\s\n]*end\b)/i)
+    if (resM) {
+      sampleText = buildSampleText(resM[1])
+    }
+  }
+
+  /* ── 9. Assemble the document ───────────────────────────────────────────── */
+
+  // Header
+  const hdr = Object.assign(defCard('header'), {
+    classCore, prefix: 'tk', identStart,
+    identCont: "'_', '0'..'9', 'a'..'z', 'A'..'Z'"
+  })
+  doc.header.push(hdr)
+  autoGenCharRule()
+
+  // Token types  — in enum order, keep-flagged only
+  const tokenNamesKept = []
+  rawTks.filter(t => t.keep).forEach(t => {
+    const card  = defCard('tokentype')
+    card.name   = t.name
+    const style = getStyle(t.name)
+    if (style.fg)  { card.hasFG = true; card.fg = style.fg; card.fgFmt = 'named' }
+    if (style.bg)  { card.hasBG = true; card.bg = style.bg; card.bgFmt = 'named' }
+    if (style.bold || style.italic || style.underline || style.strikeout) {
+      card.hasStyle   = true
+      card.bold       = !!style.bold
+      card.italic     = !!style.italic
+      card.underline  = !!style.underline
+      card.strikeout  = !!style.strikeout
+    }
+    doc.tokentype.push(card)
+    tokenNamesKept.push(t.name)
+  })
+  const ttSet = new Set(tokenNamesKept)
+
+  // Keyword groups — skip if no words, auto-add token type card if missing
+  Object.entries(kwGroups).forEach(([typeName, wordSet]) => {
+    if (!wordSet.size) return
+    if (!ttSet.has(typeName)) {
+      // Add a token type card for it with default styling
+      const card = defCard('tokentype')
+      card.name  = typeName
+      const style = getStyle(typeName)
+      if (style.fg) { card.hasFG = true; card.fg = style.fg; card.fgFmt = 'named' }
+      if (style.bold||style.italic) { card.hasStyle=true; card.bold=!!style.bold; card.italic=!!style.italic }
+      doc.tokentype.push(card)
+      ttSet.add(typeName)
+    }
+    const kg      = defCard('keygroup')
+    kg.groupName  = typeName
+    kg.words      = [...wordSet].sort()
+    doc.keygroup.push(kg)
+  })
+
+  // Enclosures — map token type to actual card name (fuzzy match)
+  enclosures.forEach(e => {
+    // Find the best matching token type card
+    let match = [...ttSet].find(n => n.toLowerCase() === e.tokenType.toLowerCase())
+    if (!match) {
+      // Try partial match: 'Comment' in 'LineComment' etc.
+      match = [...ttSet].find(n => n.toLowerCase().includes(e.tokenType.toLowerCase())
+                                || e.tokenType.toLowerCase().includes(n.toLowerCase()))
+    }
+    if (!match) return   // no match — skip this enclosure
+    const enc = defCard('enclosure')
+    Object.assign(enc, { ...e, tokenType: match })
+    doc.enclosedby.push(enc)
+  })
+
+  // Sample source
+  if (sampleText.trim()) {
+    const smp = defCard('sample')
+    smp.text  = sampleText.trim()
+    doc.sample.push(smp)
+  }
+
+  // Select header, render, show summary toast
+  sel = doc.header[0] ? doc.header[0].id : null
+  render(); renderInsp()
+
+  const parts = [
+    className,
+    doc.tokentype.length + ' token type' + (doc.tokentype.length !== 1 ? 's' : ''),
+    doc.keygroup.length  + ' key group'  + (doc.keygroup.length  !== 1 ? 's' : ''),
+    doc.enclosedby.length + ' enclosure' + (doc.enclosedby.length !== 1 ? 's' : ''),
+    doc.sample.length    ? 'sample source' : '',
+  ].filter(Boolean)
+  showToast('Loaded ' + parts.join(' · '))
+}
+
+/* ── Toast notification ─────────────────────────────────────────────────── */
+function showToast(msg, isErr=false) {
+  let t = document.getElementById('syngen-toast')
+  if (!t) { t = document.createElement('div'); t.id = 'syngen-toast'; document.body.appendChild(t) }
+  t.textContent = msg
+  t.style.cssText = [
+    'position:fixed', 'bottom:24px', 'left:50%',
+    'transform:translateX(-50%) translateY(20px)',
+    'background:' + (isErr ? 'var(--d-bg)' : 'var(--s1)'),
+    'color:'       + (isErr ? 'var(--d)'    : 'var(--t0)'),
+    'border:1px solid ' + (isErr ? 'var(--d)' : 'var(--s5)'),
+    'border-radius:var(--r2)', 'padding:10px 22px',
+    'font-size:12px', 'font-family:var(--sans)', 'z-index:999',
+    'box-shadow:0 8px 32px rgba(0,0,0,.5)',
+    'opacity:0', 'transition:all .3s', 'white-space:nowrap',
+    'max-width:90vw', 'text-align:center',
+  ].join(';')
+  requestAnimationFrame(() => {
+    t.style.opacity    = '1'
+    t.style.transform  = 'translateX(-50%) translateY(0)'
+    setTimeout(() => {
+      t.style.opacity   = '0'
+      t.style.transform = 'translateX(-50%) translateY(20px)'
+    }, 3800)
+  })
+}
+
 
 /* ── Boot ── */
 render(); renderInsp()
