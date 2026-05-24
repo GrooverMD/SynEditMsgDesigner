@@ -12,7 +12,7 @@ A web-based designer for creating and validating message files for the SynEdit S
 
 - [Overview](#overview)
 - [Why SynEditMsgDesigner?](#why-syneditmsgdesigner)
-- [Features](#features)
+- [Features](#Features)
 - [What's Coming](#-whats-coming)
 - [Tech Stack](#-tech-stack)
 - [Getting Started](#getting-started)
