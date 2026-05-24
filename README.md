@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 [![Live Demo](https://img.shields.io/badge/🚀%20Demo-Live-green?style=flat-square)](https://groovermd.github.io/SynEditMsgDesigner/)
 
-A web-based designer for creating and validating message files for the SynEdit SynGen tool. This tool provides an intuitive, visual interface to design and manage `.msg` files that define syntax highlighting rules—no manual coding required.
+A web-based designer for creating and validating message files for the SynEdit SynGen tool. This tool provides an intuitive, visual interface to design and manage `.msg` files that define syntax highlighting rules.
 
 **[🚀 Try the Live Demo](https://groovermd.github.io/SynEditMsgDesigner/)**
 
@@ -13,19 +13,19 @@ A web-based designer for creating and validating message files for the SynEdit S
 - [Overview](#overview)
 - [Why SynEditMsgDesigner?](#why-syneditmsgdesigner)
 - [Features](#features)
-- [What's Coming](#whats-coming)
-- [Tech Stack](#tech-stack)
+- [What's Coming](#-whats-coming)
+- [Tech Stack](#-tech-stack)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Architecture](#architecture)
-- [Troubleshooting](#troubleshooting)
-- [Resources](#resources)
+- [Troubleshooting](#-troubleshooting)
+- [Resources](#-resources)
 - [Contributing](#contributing)
 - [License](#license)
 
 ## Overview
 
-SynEditMsgDesigner is a visual tool designed to simplify the creation and editing of .msg files for the SynEdit SynGen tool. Manually writing `.msg` files is error-prone and tedious—this designer eliminates that pain by providing a graphical interface where you can:
+SynEditMsgDesigner is a visual tool designed to simplify the creation and editing of .msg files for the SynEdit SynGen tool. Manually writing `.msg` files is error-prone and tedious—this designer eliminates that complexity.
 
 - Define syntax highlighting rules visually
 - See real-time previews of your configurations
