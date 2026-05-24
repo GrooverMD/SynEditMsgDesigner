@@ -25,7 +25,7 @@ A web-based designer for creating and validating message files for SynEdit synta
 
 ## Overview
 
-SynEditMsgDesigner is a visual tool designed to simplify the creation and editing of SynEdit .msg files for SynGen. Manually writing `.msg` files is error-prone and tedious—this designer eliminates that pain by providing a graphical interface where you can:
+SynEditMsgDesigner is a visual tool designed to simplify the creation and editing of .msg files for SynEdit SynGen. Manually writing `.msg` files is error-prone and tedious—this designer eliminates that pain by providing a graphical interface where you can:
 
 - Define syntax highlighting rules visually
 - See real-time previews of your configurations
