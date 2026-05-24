@@ -145,6 +145,9 @@ The project is built with a focus on simplicity and usability:
 ```
 SynEditMsgDesigner/
 ├── index.html          # Main application entry point
+├── msg/
+│   └── basic.msg
+│   └── Asm64.msg
 ├── css/
 │   └── styles.css      # Application styling
 ├── js/
