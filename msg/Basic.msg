@@ -6,8 +6,7 @@ TOKENTYPES
 Comment Foreground=RGB(66,160,255)|Style=[fsItalic]
 Identifier Foreground=RGB(121,121,255)
 Keywords Foreground=RGB(92,204,94)
-Test Foreground=RGB(199,165,41)|Style=[fsBold]
-Symbol Foreground=clGray
+Test Foreground=RGB(157,0,0)|Style=[fsBold]
 |><|
 KEYS Keywords
 add
@@ -37,11 +36,15 @@ Comment,BraceComment,{,},MultiLine
 SAMPLESOURCE
 {Paste your sample source here}
 {Token types example - keywords come from Key groups}
-{Styling from Token types - Comment, Keywords, Test and Identifier}
+{Styling from Token types - Comment, Identifier, Keywords and Test}
+{Keywords}
 add
 your
 keywords
 here
+{Indentifier}
+These are indentifiers
+{Test}
 This is the tokentype test
-every thing else an identifier
+
 |><|
