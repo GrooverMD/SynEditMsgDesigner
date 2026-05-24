@@ -4,13 +4,21 @@ IdentStart '_', 'a'..'z', 'A'..'Z' :: '_', '0'..'9', 'a'..'z', 'A'..'Z'::
 |><|
 TOKENTYPES
 Comment Foreground=clGreen|Style=[fsItalic]
-Keywords Foreground=RGB(168,125,31)
+Keywords Foreground=RGB(92,204,94)
+Test Foreground=RGB(199,165,41)|Style=[fsBold]
 |><|
 KEYS Keywords
 add
 your
 keywords
 here
+|><|
+KEYS Test
+This
+is
+the
+tokentype
+test
 |><|
 CHARS
 '_', 'a'..'z', 'A'..'Z':: Ident
@@ -26,9 +34,11 @@ Comment,BraceComment,{,},MultiLine
 |><|
 SAMPLESOURCE
 {Paste your sample source here}
-{keywords example}
+{Token types example - keywords come from Key groups}
+{Styling from Token types - Comment, Keywords and Test}
 add
 your
 keywords
 here
+This is the tokentype test
 |><|
