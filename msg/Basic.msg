@@ -35,8 +35,10 @@ Comment,BraceComment,{,},MultiLine
 |><|
 SAMPLESOURCE
 {Paste your sample source here}
-{Token types example - keywords come from Key groups}
-{Styling from Token types - Comment, Identifier, Keywords and Test}
+{Token types example 
+- keywords come from Key groups - Keywords and Test}
+{Styling from Token types
+ - Comment, Identifier, Keywords and Test}
 {Keywords}
 add
 your
@@ -46,5 +48,5 @@ here
 These are indentifiers
 {Test}
 This is the tokentype test
-
 |><|
+
