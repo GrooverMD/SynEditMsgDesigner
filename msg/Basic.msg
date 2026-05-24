@@ -3,9 +3,11 @@ tk
 IdentStart '_', 'a'..'z', 'A'..'Z' :: '_', '0'..'9', 'a'..'z', 'A'..'Z'::
 |><|
 TOKENTYPES
-Comment Foreground=clGreen|Style=[fsItalic]
+Comment Foreground=RGB(66,160,255)|Style=[fsItalic]
+Identifier Foreground=RGB(121,121,255)
 Keywords Foreground=RGB(92,204,94)
 Test Foreground=RGB(199,165,41)|Style=[fsBold]
+Symbol Foreground=clGray
 |><|
 KEYS Keywords
 add
@@ -41,4 +43,5 @@ your
 keywords
 here
 This is the tokentype test
+every thing else an identifier
 |><|
