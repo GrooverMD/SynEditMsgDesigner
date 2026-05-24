@@ -30,8 +30,6 @@ SynEditMsgDesigner is a visual tool designed to simplify the creation and editin
 
 - **Reverse Parser** - Automatic extraction of highlighting rules from existing `SynHighlighter.pas` files
 - **File Validation** - Load and validate `.msg` files to ensure correctness
-- **Advanced Rule Editor** - More sophisticated options for complex highlighting scenarios
-- **Import/Export Wizard** - Simplified workflow for managing multiple language configurations
 
 ## Getting Started
 
@@ -87,8 +85,6 @@ Contributions are welcome! If you'd like to help improve SynEditMsgDesigner:
 5. Open a Pull Request
 
 ## License
-
-This project is currently unlicensed. Please check back soon or contact the repository owner for licensing information.
 
 ---
 
