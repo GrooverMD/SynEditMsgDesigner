@@ -51,7 +51,7 @@ Traditional Way:         ❌ Edit text → Test → Validate → Debug
 SynEditMsgDesigner Way:  ✅ Design UI → Preview → Export → Done
 ```
 
-## ✨ Features
+## Features
 
 - **Interactive Web-Based Designer** - No installation required; run directly in your browser
 - **Real-Time Preview** - See changes instantly as you design highlighting rules
@@ -60,14 +60,14 @@ SynEditMsgDesigner Way:  ✅ Design UI → Preview → Export → Done
 - **Browser-Based** - Works on Windows, macOS, and Linux
 - **No Dependencies** - Use online without any local setup
 
-## 🚀 What's Coming
+## What's Coming
 
 - **Reverse Parser** - Automatically extract highlighting rules from existing `SynHighlighter.pas` files
 - **File Validation** - Load and validate existing `.msg` files to ensure correctness
 - **Template Library** - Pre-built highlighting profiles for popular languages
 - A new SynGen Delphi project.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend:** HTML5, CSS3, JavaScript (Vanilla)
 - **Architecture:** Modular, client-side only (no backend required)
@@ -158,7 +158,7 @@ SynEditMsgDesigner/
 └── README.md           # This file
 ```
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Port 3000 Already in Use
 ```bash
@@ -183,7 +183,7 @@ npm install
 - Check browser console for error messages (F12 → Console tab)
 - Try exporting a new file and comparing the format
 
-## 📚 Resources
+## Resources
 
 - **[SynEdit Component Docs](https://github.com/search?q=SynEdit)** - Learn more about the SynEdit component
 - **.msg File Format** - Documentation coming soon
