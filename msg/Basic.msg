@@ -37,7 +37,7 @@ Comment,BraceComment,{,},MultiLine
 SAMPLESOURCE
 {Paste your sample source here}
 {Token types example - keywords come from Key groups}
-{Styling from Token types - Comment, Keywords and Test}
+{Styling from Token types - Comment, Keywords, Test and Identifier}
 add
 your
 keywords
