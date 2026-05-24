@@ -3,12 +3,13 @@ tk
 IdentStart '_', 'a'..'z', 'A'..'Z' :: '_', '0'..'9', 'a'..'z', 'A'..'Z'::
 |><|
 TOKENTYPES
-Comment Foreground=RGB(66,160,255)|Style=[fsItalic]
-Identifier Foreground=RGB(121,121,255)
-Keywords Foreground=RGB(92,204,94)
-Test Foreground=RGB(157,0,0)|Style=[fsBold]
+Comment Foreground=$00408080|Style=[fsItalic]
+Keyword Foreground=RGB(92,204,94)|Style=[fsBold, fsItalic]
+Identifier Foreground=RGB(121,121,255)|Style=[fsUnderline]
+Test Foreground=RGB(157,0,0)|Style=[fsBold, fsStrikeOut]
+String Background=$00004646|Foreground=RGB(0,128,64)
 |><|
-KEYS Keywords
+KEYS Keyword
 add
 your
 keywords
@@ -18,7 +19,8 @@ KEYS Test
 This
 is
 the
-tokentype
+token
+type
 test
 |><|
 CHARS
@@ -32,21 +34,29 @@ EndProc
 |><|
 ENCLOSEDBY
 Comment,BraceComment,{,},MultiLine
+String,StringDQ,","
 |><|
 SAMPLESOURCE
 {Paste your sample source here}
-{Token types example 
-- keywords come from Key groups - Keywords and Test}
-{Styling from Token types
- - Comment, Identifier, Keywords and Test}
+{
+Token types example - 
+Keywords from Key groups - Keywords and Test
+}
+
+{
+Styling from Token types - 
+Comment, Keywords, Identifier, Test and String
+}
+
 {Keywords}
-add
-your
-keywords
-here
+Add your keywords here
+
 {Indentifier}
 These are indentifiers
-{Test}
-This is the tokentype test
-|><|
 
+{Test}
+This is the token type test
+
+{String}
+"This is a string"
+|><|
