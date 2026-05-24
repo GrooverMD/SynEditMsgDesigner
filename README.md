@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 [![Live Demo](https://img.shields.io/badge/🚀%20Demo-Live-green?style=flat-square)](https://groovermd.github.io/SynEditMsgDesigner/)
 
-A web-based designer for creating and validating message files for SynEdit syntax highlighters. This tool provides an intuitive, visual interface to design and manage `.msg` files that define syntax highlighting rules—no manual coding required.
+A web-based designer for creating and validating message files for the SynEdit SynGen tool. This tool provides an intuitive, visual interface to design and manage `.msg` files that define syntax highlighting rules—no manual coding required.
 
 **[🚀 Try the Live Demo](https://groovermd.github.io/SynEditMsgDesigner/)**
 
@@ -13,7 +13,7 @@ A web-based designer for creating and validating message files for SynEdit synta
 - [Overview](#overview)
 - [Why SynEditMsgDesigner?](#why-syneditmsgdesigner)
 - [Features](#features)
-- [What's Coming](#whats-coming)
+- [What's Coming](#What's Coming)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
@@ -25,7 +25,7 @@ A web-based designer for creating and validating message files for SynEdit synta
 
 ## Overview
 
-SynEditMsgDesigner is a visual tool designed to simplify the creation and editing of .msg files for SynEdit SynGen. Manually writing `.msg` files is error-prone and tedious—this designer eliminates that pain by providing a graphical interface where you can:
+SynEditMsgDesigner is a visual tool designed to simplify the creation and editing of .msg files for the SynEdit SynGen tool. Manually writing `.msg` files is error-prone and tedious—this designer eliminates that pain by providing a graphical interface where you can:
 
 - Define syntax highlighting rules visually
 - See real-time previews of your configurations
@@ -65,6 +65,7 @@ SynEditMsgDesigner Way:  ✅ Design UI → Preview → Export → Done
 - **Reverse Parser** - Automatically extract highlighting rules from existing `SynHighlighter.pas` files
 - **File Validation** - Load and validate existing `.msg` files to ensure correctness
 - **Template Library** - Pre-built highlighting profiles for popular languages
+- A new SynGen Delphi project.
 
 ## 🛠️ Tech Stack
 
