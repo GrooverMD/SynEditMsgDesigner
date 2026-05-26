@@ -32,6 +32,23 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <section class="intro">
+  <h1>SynGen .msg Designer – Online SynEdit Message File Editor</h1>
+  <p>
+    SynGen .msg Designer is a browser-based tool for creating and editing 
+    SynEdit .msg files used in Delphi syntax highlighters. It provides 
+    structured editors for KEYS, CHARS, TOKENS, and sample source sections, 
+    validates your grammar, and exports a fully compliant .msg file for use 
+    in custom syntax highlighters.
+  </p>
+  <p>
+    This tool is designed for Delphi developers working with SynEdit, 
+    SynHighlighter, and grammar-based syntax systems. It simplifies the 
+    creation of message files by providing a clean interface, live validation, 
+    and instant export.
+  </p>
+</section>
+  
 <div class="titlebar">
   <div class="tl-logo">
     <i class="ti ti-adjustments-horizontal"></i>
@@ -315,5 +332,28 @@
 </div>
 
 <script src="js/app.js"></script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "SynGen .msg Designer",
+    "url": "https://groovermd.github.io/SynEditMsgDesigner/",
+    "applicationCategory": "DeveloperApplication",
+    "description": "A browser-based tool for creating and editing SynEdit .msg files used in Delphi syntax highlighters.",
+    "operatingSystem": "Any",
+    "image": "https://groovermd.github.io/SynEditMsgDesigner/icon.png"
+  }
+  </script>
+  
+  <footer>
+    <p>
+      SynGen .msg Designer is part of a suite of tools for Delphi developers 
+      working with SynEdit syntax highlighters, token definitions, keyword 
+      sets, and grammar-based editors. This tool streamlines the creation of 
+      .msg files used in custom syntax highlighting engines.
+    </p>
+  </footer>
+
 </body>
 </html>
