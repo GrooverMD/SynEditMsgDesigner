@@ -303,4 +303,11 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 .msg-color {
   color: var(--a);
 }
+.intro {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 
