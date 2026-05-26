@@ -288,7 +288,7 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 .pal-preset:hover { border-color:var(--s5); background:var(--s3); color:var(--t0); }
 
 .footer-panel {
-  background: #1e1e1e;          /* dark panel */
+  background: var(--s1);          /* dark panel */
   color: #ccc;                  /* soft text */
   padding: 20px 30px;           /* breathing room */
   border-top: 1px solid #333;   /* subtle separation */
