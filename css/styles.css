@@ -300,4 +300,7 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 .footer-panel p {
   margin: 0;
 }
+.msg-color {
+  color: var(--a);
+}
 
