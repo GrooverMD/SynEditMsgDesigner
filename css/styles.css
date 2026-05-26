@@ -286,3 +286,18 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 }
 .pal-preset i { font-size:12px; flex-shrink:0; }
 .pal-preset:hover { border-color:var(--s5); background:var(--s3); color:var(--t0); }
+
+.footer-panel {
+  background: #1e1e1e;          /* dark panel */
+  color: #ccc;                  /* soft text */
+  padding: 20px 30px;           /* breathing room */
+  border-top: 1px solid #333;   /* subtle separation */
+  font-size: 0.9rem;            /* slightly smaller text */
+  line-height: 1.5;
+  margin-top: 40px;             /* space above panel */
+}
+
+.footer-panel p {
+  margin: 0;
+}
+
