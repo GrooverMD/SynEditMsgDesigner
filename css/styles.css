@@ -294,7 +294,7 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
   border-top: 1px solid #333;   /* subtle separation */
   font-size: 0.9rem;            /* slightly smaller text */
   line-height: 1.5;
-  margin-top: 40px;             /* space above panel */
+  margin-top: 2px;             /* space above panel */
 }
 
 .footer-panel p {
