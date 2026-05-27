@@ -299,9 +299,9 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
   background: var(--toolbar);          /* dark panel */
   color: var(--t0);                  /* soft text */
   padding: 10px 30px;           /* breathing room */
-  border-top:2px solid var(--s4);   /* subtle separation */
+  border-top:2px solid var(--resizer);   /* subtle separation */
   font-size: 0.9rem;            /* slightly smaller text */
-  line-height: 1.5;
+  line-height: 2;
   margin-top: 0px;             /* space above panel */
 }
 
