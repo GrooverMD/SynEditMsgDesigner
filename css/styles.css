@@ -39,7 +39,7 @@ html,body{height:100%;font-family:var(--sans);font-size:13px;background:var(--s0
 body{display:flex;flex-direction:column}
 
 /* ── Titlebar ── */
-.titlebar{display:flex;align-items:center;gap:8px;padding:0 14px;height:46px;background:var(--toolbar);border-bottom:1px solid var(--s4);flex-shrink:0}
+.titlebar{display:flex;align-items:center;gap:8px;padding:0 14px;height:46px;background:var(--toolbar);border-bottom:3px solid var(--resizer);flex-shrink:0}
 .tl-logo{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--t0);letter-spacing:-.01em;margin-right:6px}
 .tl-logo i{font-size:18px;background:var(--brblue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .tl-logo span{color:var(--a)} .tl-sep{flex:1}
@@ -299,7 +299,7 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
   background: var(--toolbar);          /* dark panel */
   color: var(--t0);                  /* soft text */
   padding: 10px 30px;           /* breathing room */
-  border-top:2px solid var(--resizer);   /* subtle separation */
+  border-top:3px solid var(--resizer);   /* subtle separation */
   font-size: 0.9rem;            /* slightly smaller text */
   line-height: 2;
   margin-top: 0px;             /* space above panel */
