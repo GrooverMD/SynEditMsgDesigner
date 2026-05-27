@@ -292,7 +292,7 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 
 
 .footer-panel {
-  background: var(--s1);          /* dark panel */
+  background: var(--toolbar);          /* dark panel */
   color: var(--t0);                  /* soft text */
   padding: 10px 30px;           /* breathing room */
   border-top:2px solid var(--s4);   /* subtle separation */
