@@ -21,6 +21,8 @@
   --toolbar:#3B4453;
   --brblue:#0696D7;
   --sidepanel:#2A333F;
+  --resizer:#1B2027;
+  
   --s0:#222933; --s1:#171b26; --s2:#3B4453; --s3:#252c3f; --s4:#1F252E; --s5:#3d4a6b;
   --t0:#e8ecf4; --t1:#8b92a8; --t2:#525b75;
   
@@ -52,8 +54,8 @@ body{display:flex;flex-direction:column}
 #app{display:grid;grid-template-columns:var(--pal-w,190px) 4px 1fr 4px var(--insp-w,240px);flex:1;min-height:0;position:relative}
 
 /* ── Resize handles ── */
-.resizer{background:var(--s4);cursor:col-resize;transition:background .15s;z-index:10;touch-action:none}
-.resizer:hover,.resizer.active{background:var(--a)}
+.resizer{background:var(--resizer);cursor:col-resize;transition:background .15s;z-index:10;touch-action:none}
+.resizer:hover,.resizer.active{background:var(--brblue)}
 
 /* ── Sidebar / Inspector panels ── */
 .sidebar,.insp{display:flex;flex-direction:column;min-height:0;overflow:hidden}
