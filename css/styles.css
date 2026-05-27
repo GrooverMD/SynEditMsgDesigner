@@ -23,6 +23,8 @@
   --sidepanel:#2A333F;
   --resizer:#1B2027;
   --btnborder:#8691A1;
+  --prborder:#262D39;
+  --color:#2C3340;
   
   --s0:#222933; --s1:#171b26; --s2:#3B4453; --s3:#252c3f; --s4:#1F252E; --s5:#3d4a6b;
   --t0:#e8ecf4; --t1:#8b92a8; --t2:#525b75;
@@ -40,7 +42,7 @@ html,body{height:100%;font-family:var(--sans);font-size:13px;background:var(--s0
 body{display:flex;flex-direction:column}
 
 /* ── Titlebar ── */
-.titlebar{display:flex;align-items:center;gap:8px;padding:0 14px;height:46px;background:var(--toolbar);border-bottom:2px solid var(--resizer);flex-shrink:0}
+.titlebar{display:flex;align-items:center;gap:8px;padding:0 14px;height:46px;background:var(--toolbar);border-bottom:3px solid var(--resizer);flex-shrink:0}
 .tl-logo{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--t0);letter-spacing:-.01em;margin-right:6px}
 .tl-logo i{font-size:18px;background:var(--brblue);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .tl-logo span{color:var(--brblue)} .tl-sep{flex:1}
@@ -93,7 +95,7 @@ body{display:flex;flex-direction:column}
 /* body drop zone (secondary fallback) */
 .lane-body.over{background:var(--a-bg);outline:1.5px dashed var(--a-bd);outline-offset:-2px;min-height:44px}
 .lane-body.reject{background:var(--d-bg);outline:1.5px dashed var(--d);outline-offset:-2px;min-height:44px}
-.lane-empty{font-size:11px;color:var(--t2);padding:6px 4px;text-align:center;font-style:italic}
+.lane-empty{font-size:11px;color:var(--brblue);padding:6px 4px;text-align:center;font-style:italic}
 
 /* ── Cards ── */
 .card{border-radius:var(--r2);border:1px solid var(--s4);background:var(--s2);cursor:pointer;transition:border-color .15s,background .15s;user-select:none}
