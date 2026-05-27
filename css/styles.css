@@ -28,7 +28,7 @@
   --lh:#9d8cff; --lt:#52c98a; --lk:#f4a44a; --lc:#f07070; --le:#70a8d8; --ls:#60c8c0;
   --success:#52c98a; --warn:#f4a44a;
   --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
-  --r1:5px; --r2:8px; --r3:12px;
+  --r1:4px; --r2:8px; --r3:12px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;font-family:var(--sans);font-size:13px;background:var(--s0);color:var(--t0);overflow:hidden;-webkit-font-smoothing:antialiased}
