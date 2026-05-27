@@ -24,7 +24,7 @@
   --resizer:#1B2027;
   --btnborder:#8691A1;
   --prborder:#262D39;
-  --color:#2C3340;
+  --prcolor:#2C3340;
   
   --s0:#222933; --s1:#171b26; --s2:#3B4453; --s3:#252c3f; --s4:#1F252E; --s5:#3d4a6b;
   --t0:#e8ecf4; --t1:#8b92a8; --t2:#525b75;
@@ -134,7 +134,7 @@ body{display:flex;flex-direction:column}
 .kwr{display:flex;gap:5px} .kwr .fi{flex:1}
 .addb{font-family:var(--sans);font-size:11px;padding:6px 10px;border-radius:var(--r1);border:1px solid var(--s4);background:transparent;color:var(--t1);cursor:pointer;white-space:nowrap;transition:all .15s}
 .addb:hover{background:var(--s2);border-color:var(--s5);color:var(--t0)}
-.cn-preview{font-family:var(--mono);font-size:11px;padding:5px 9px;border-radius:var(--r1);background:var(--s0);border:1px solid var(--s4);color:var(--t0);display:flex;align-items:center;margin-top:2px}
+.cn-preview{font-family:var(--mono);font-size:11px;padding:5px 9px;border-radius:var(--r1);background:var(--prcolor);border:1px solid var(--prborder);color:var(--t0);display:flex;align-items:center;margin-top:2px}
 .cn-fixed{color:var(--t2)} .cn-core{color:var(--brblue);font-weight:500}
 input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:pointer;flex-shrink:0}
 
