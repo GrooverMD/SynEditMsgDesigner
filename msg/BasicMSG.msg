@@ -1,4 +1,4 @@
-TSynBasicSyn
+TSynBasicMSGSyn
 tk
 IdentStart '_', 'a'..'z', 'A'..'Z' :: '_', '0'..'9', 'a'..'z', 'A'..'Z'::
 |><|
