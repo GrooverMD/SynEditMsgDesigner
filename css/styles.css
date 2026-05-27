@@ -25,6 +25,8 @@
   --btnborder:#8691A1;
   --prborder:#262D39;
   --prcolor:#2C3340;
+  --panelhdr:#8290ba;
+  --palgrp:#8290ba;
   
   --s0:#222933; --s1:#171b26; --s2:#3B4453; --s3:#252c3f; --s4:#1F252E; --s5:#3d4a6b;
   --t0:#e8ecf4; --t1:#8b92a8; --t2:#525b75;
@@ -64,9 +66,9 @@ body{display:flex;flex-direction:column}
 .sidebar,.insp{display:flex;flex-direction:column;min-height:0;overflow:hidden}
 .sidebar{background:var(--sidepanel);border-right:1px solid var(--resizer)}
 .insp{background:var(--sidepanel);border-left:1px solid var(--resizer)}
-.panel-hd{font-size:10px;font-weight:600;color:var(--t2);letter-spacing:.1em;text-transform:uppercase;padding:10px 12px 8px;border-bottom:1px solid var(--s4);flex-shrink:0}
+.panel-hd{font-size:10px;font-weight:600;color:var(--panelhdr);letter-spacing:.1em;text-transform:uppercase;padding:10px 12px 8px;border-bottom:1px solid var(--s4);flex-shrink:0}
 .pal-list{padding:9px 8px;display:flex;flex-direction:column;gap:4px;overflow-y:auto;flex:1}
-.pal-group{font-size:10px;font-weight:600;color:var(--t2);letter-spacing:.08em;text-transform:uppercase;padding:8px 4px 4px}
+.pal-group{font-size:10px;font-weight:600;color:var(--palgrp);letter-spacing:.08em;text-transform:uppercase;padding:8px 4px 4px}
 
 /* ── Palette cards ── */
 .pc{padding:8px 10px;border-radius:var(--r2);border:1px solid var(--s4);cursor:grab;user-select:none;background:var(--s2);transition:border-color .15s,background .15s,transform .1s;position:relative}
