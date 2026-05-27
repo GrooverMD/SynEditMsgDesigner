@@ -98,7 +98,7 @@ body{display:flex;flex-direction:column}
 /* body drop zone (secondary fallback) */
 .lane-body.over{background:var(--a-bg);outline:1.5px dashed var(--a-bd);outline-offset:-2px;min-height:44px}
 .lane-body.reject{background:var(--d-bg);outline:1.5px dashed var(--d);outline-offset:-2px;min-height:44px}
-.lane-empty{font-size:11px;color:var(--brblue);padding:6px 4px;text-align:center;font-style:italic}
+.lane-empty{font-size:12px;color:var(--brblue);padding:6px 4px;text-align:center;font-style:italic}
 
 /* ── Cards ── */
 .card{border-radius:var(--r2);border:1px solid var(--s4);background:var(--s2);cursor:pointer;transition:border-color .15s,background .15s;user-select:none}
@@ -116,9 +116,9 @@ body{display:flex;flex-direction:column}
 .chip{font-size:10px;padding:1px 6px;border-radius:20px;border:1px solid var(--s4);color:var(--t1);background:var(--s0);font-family:var(--mono)}
 
 /* ── Inspector ── */
-.insp-body{padding:11px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:10px}
+.insp-body{padding:12px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:10px}
 .insp-nil{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:7px;opacity:.3}
-.insp-nil i{font-size:26px} .insp-nil p{font-size:11px;text-align:center;line-height:1.5}
+.insp-nil i{font-size:26px} .insp-nil p{font-size:12px;text-align:center;line-height:1.5}
 .isec{font-size:10px;font-weight:600;color:var(--t2);letter-spacing:.08em;text-transform:uppercase;padding-bottom:5px;border-bottom:1px solid var(--s4);margin-bottom:1px}
 .fg{display:flex;flex-direction:column;gap:4px}
 .fl{font-size:11px;font-weight:500;color:var(--t1)}
