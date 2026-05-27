@@ -69,7 +69,7 @@ body{display:flex;flex-direction:column}
 .pc:active{cursor:grabbing;opacity:.7;transform:translateY(0)}
 .pc-name{font-size:12px;font-weight:500;color:var(--t0);display:flex;align-items:center;gap:6px}
 .pc-name i{font-size:14px}
-.pc-hint{font-size:10px;color:var(--t2);margin-top:2px;padding-left:20px}
+.pc-hint{font-size:10px;color:var(--brblue);margin-top:2px;padding-left:20px}
 .pc-once{font-size:9px;font-weight:600;padding:1px 5px;border-radius:20px;background:var(--a-bg);color:var(--a);border:1px solid var(--a-bd);margin-left:auto;flex-shrink:0;letter-spacing:.02em}
 
 /* ── Canvas ── */
