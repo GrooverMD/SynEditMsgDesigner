@@ -20,6 +20,7 @@
 :root {
   --toolbar:#3B4453;
   --brblue:#0696D7;
+  --sidepanel:#2A333F;
   --s0:#222933; --s1:#171b26; --s2:#3B4453; --s3:#252c3f; --s4:#1F252E; --s5:#3d4a6b;
   --t0:#e8ecf4; --t1:#8b92a8; --t2:#525b75;
   
@@ -56,7 +57,7 @@ body{display:flex;flex-direction:column}
 
 /* ── Sidebar / Inspector panels ── */
 .sidebar,.insp{display:flex;flex-direction:column;min-height:0;overflow:hidden}
-.sidebar{background:var(--s1);border-right:1px solid var(--s4)}
+.sidebar{background:var(--sidepanel);border-right:1px solid var(--s4)}
 .insp{background:var(--s1);border-left:1px solid var(--s4)}
 .panel-hd{font-size:10px;font-weight:600;color:var(--t2);letter-spacing:.1em;text-transform:uppercase;padding:10px 12px 8px;border-bottom:1px solid var(--s4);flex-shrink:0}
 .pal-list{padding:9px 8px;display:flex;flex-direction:column;gap:4px;overflow-y:auto;flex:1}
