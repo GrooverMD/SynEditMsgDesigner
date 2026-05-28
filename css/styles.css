@@ -64,7 +64,7 @@ body{display:flex;flex-direction:column}
   font-weight:500;
   padding:20px 5px;
   /*border-radius:var(--r1);*/
-  
+  border:1px transparent;
   
   border:transparent;
   background:transparent;
