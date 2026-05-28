@@ -415,7 +415,13 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 .card-lbl-input:focus { background:var(--s2); border-radius:3px; }
 
 /* ── Palette preset buttons ── */
-.pal-preset-grid { display:grid; grid-template-columns:1fr 1fr; gap:4px; padding:0 0 4px; }
+.pal-preset-grid { 
+  display:grid; 
+  grid-template-columns:1fr 1fr; 
+  gap:4px;
+  padding:0 0 4px; 
+}
+
 .pal-preset {
   font-size:12px; font-weight:500; padding:5px 6px;
   border-radius:var(--r1); border:1px solid var(--btnborder);
@@ -424,9 +430,17 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
   display:flex; align-items:center; gap:5px;
   transition:all .15s; white-space:nowrap; overflow:hidden;
 }
-.pal-preset i { font-size:12px; flex-shrink:0; }
-.pal-preset:hover { border-color:var(--s5); background:var(--s3); color:var(--t0); }
 
+.pal-preset i { 
+  font-size:12px;            
+  flex-shrink:0; 
+}
+
+.pal-preset:hover { 
+  border-color:var(--brblue); 
+  background:var(--cardcolor); 
+  color:var(--t0);
+}
 
 .footer-panel {
   background: var(--statuscolor);          /* dark panel */
