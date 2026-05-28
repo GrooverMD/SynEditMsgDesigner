@@ -150,7 +150,11 @@ body{display:flex;flex-direction:column}
   color:var(--brblue);
   font-family:var(--mono);
 }
-.lane-add-hint{font-size:12px;color:var(--lanehint);font-style:italic}
+.lane-add-hint{
+  font-size:12px;
+  color:var(--brblue);
+  font-style:italic;
+}
 
 .lane-body{
   padding:8px;
@@ -167,7 +171,14 @@ body{display:flex;flex-direction:column}
 .lane-empty{font-size:12px;color:var(--brblue);padding:6px 4px;text-align:center;font-style:italic}
 
 /* ── Cards ── */
-.card{border-radius:var(--r2);border:1px solid var(--s4);background:var(--s2);cursor:pointer;transition:border-color .15s,background .15s;user-select:none}
+.card{
+  border-radius:var(--r2);
+  border:1px solid var(--btnborder);
+  background:var(--cardcolor);
+  cursor:pointer;
+  transition:border-color .15s,background .15s;
+  user-select:none;
+}
 .card:hover{border-color:var(--s5);background:var(--s3)}
 .card.sel{border-color:var(--a);background:var(--s2);box-shadow:0 0 0 2px var(--a-bg)}
 .card-hd{display:flex;align-items:center;gap:7px;padding:7px 10px}
