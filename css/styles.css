@@ -210,7 +210,15 @@ body{display:flex;flex-direction:column}
 .card-rm{font-size:12px;color:var(--t2);opacity:.4;cursor:pointer;padding:2px 4px;border-radius:4px;line-height:1;flex-shrink:0;transition:opacity .12s,color .12s}
 .card-rm:hover{opacity:1;color:var(--d)}
 .card-body{padding:1px 10px 8px;display:flex;flex-direction:column;gap:3px}
-.cr{font-size:10px;color:var(--t1);display:flex;gap:5px;align-items:baseline;flex-wrap:wrap}
+
+.cr{
+  font-size:11px;
+  color:var(--brblue);
+  display:flex;
+  gap:5px;
+  align-items:baseline;
+  flex-wrap:wrap;
+}
 .cr b{color:var(--t0);font-weight:500} .cr .mn{font-family:var(--mono);font-size:10px;color:var(--t0)}
 .chips{display:flex;flex-wrap:wrap;gap:3px;margin-top:2px}
 .chip{font-size:10px;padding:1px 6px;border-radius:20px;border:1px solid var(--s4);color:var(--t1);background:var(--s0);font-family:var(--mono)}
