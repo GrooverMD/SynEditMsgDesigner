@@ -295,8 +295,8 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 .pal-preset-grid { display:grid; grid-template-columns:1fr 1fr; gap:4px; padding:0 0 4px; }
 .pal-preset {
   font-size:12px; font-weight:500; padding:5px 6px;
-  border-radius:var(--r1); border:1px solid var(--s4);
-  background:var(--s2); color:var(--t0);
+  border-radius:var(--r1); border:1px solid var(--btnborder);
+  background:var(--cardcolor); color:var(--t0);
   cursor:pointer; text-align:left;
   display:flex; align-items:center; gap:5px;
   transition:all .15s; white-space:nowrap; overflow:hidden;
