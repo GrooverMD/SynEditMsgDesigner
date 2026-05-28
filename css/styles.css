@@ -29,7 +29,7 @@
   --panelhdrbg:#272D37;
   --btnborder:#8691A1;
   --cardcolor:#4B5463;
-  
+  --tbtncolor:#3B4453;
   --palgrp:#8290ba;
   --lanehint:#8290ba;
   
@@ -54,7 +54,25 @@ body{display:flex;flex-direction:column}
 .tl-logo i{font-size:18px;background:var(--brblue);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .tl-logo span{color:var(--brblue)} .tl-sep{flex:1}
 .vsep{width:1px;height:18px;background:var(--s4);margin:0 2px}
-.tbtn{font-family:var(--sans);font-size:12px;font-weight:500;padding:5px 11px;border-radius:var(--r1);border:1px solid var(--btnborder);background:transparent;color:var(--t1);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .15s;white-space:nowrap}
+
+.tbtn{
+  font-family:var(--sans);
+  font-size:12px;
+  font-weight:500;
+  padding:5px 11px;
+  border-radius:var(--r1);
+  /*border:1px solid var(--btnborder);*/
+  
+  border:transparent;
+  background:transparent;
+  color:var(--t1);
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  transition:all .15s;
+  white-space:nowrap;
+}
 .tbtn i{font-size:13px}
 .tbtn:hover{background:var(--s2);border-color:var(--s5);color:var(--t0)}
 .tbtn.hi{background:var(--a-bg);border-color:var(--a-bd);color:var(--a)}
