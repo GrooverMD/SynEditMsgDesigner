@@ -342,14 +342,19 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 .modal-btns{display:flex;gap:6px;margin-top:12px}
 .modal-btns .tbtn{flex:1;justify-content:center}
 
-::-webkit-scrollbar{width:5px;height:5px}
-::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar{
+  width:5px;
+  height:5px;
+}
+::-webkit-scrollbar-track{
+  background:transparent;
+}
 ::-webkit-scrollbar-thumb{
-  background:var(--scrollbarcolor);
+  background-color:var(--scrollbarcolor);
   border-radius:3px;
 }
 ::-webkit-scrollbar-thumb:hover{
-  background:var(--scrollbarhover);
+  background-color:var(--scrollbarhover);
 }
 
 /* ── Intro overlay ── */
