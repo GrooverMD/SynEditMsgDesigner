@@ -64,7 +64,7 @@ body{display:flex;flex-direction:column}
   font-weight:500;
   padding:20px 5px;
   /*border-radius:var(--r1);*/
-  /*border:1px solid var(--btnborder);*/
+  
   
   border:transparent;
   background:transparent;
@@ -80,7 +80,8 @@ body{display:flex;flex-direction:column}
 
 .tbtn:hover{
   background:var(--tbtnhover);
-  border-color:var(--tbtnhoverborder);
+  /*border-color:var(--tbtnhoverborder);*/
+  border:1px solid var(--tbtnhoverborder);
   color:var(--tbtntext);
 }
 .tbtn.hi{background:var(--a-bg);border-color:var(--a-bd);color:var(--a)}
