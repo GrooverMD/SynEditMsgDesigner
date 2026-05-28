@@ -106,6 +106,7 @@ body{display:flex;flex-direction:column}
 .pal-group{
   font-size:10px;
   font-weight:600;
+  height:28px;
   color:var(--apptext);
   letter-spacing:.08em;
   text-transform:uppercase;
