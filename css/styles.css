@@ -37,6 +37,7 @@
   --palgrp:#8290ba;
   --lanehint:#8290ba;
   --statuscolor:#2E3440;
+  --canvascolor:#1A1F25;
   
   --s0:#222933; --s1:#171b26; --s2:#3B4453; --s3:#252c3f; --s4:#1F252E; --s5:#3d4a6b;
   --t0:#e8ecf4; --t1:#8b92a8; --t2:#525b75;
@@ -126,7 +127,12 @@ body{display:flex;flex-direction:column}
 .pc-once{font-size:9px;font-weight:600;padding:1px 5px;border-radius:20px;background:var(--a-bg);color:var(--a);border:1px solid var(--a-bd);margin-left:auto;flex-shrink:0;letter-spacing:.02em}
 
 /* ── Canvas ── */
-.canvas-col{display:flex;flex-direction:column;min-height:0;background:var(--s0)}
+.canvas-col{
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+  background:var(--canvascolor);
+}
 .canvas{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:9px;align-items:stretch}
 
 /* ── Lanes ── */
