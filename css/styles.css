@@ -40,6 +40,7 @@
   --canvascolor:#20262D;
   --scrollbarcolor:#20262D;
   --scrollbarhover:#677281;
+  --editcolor:#2C3340;
   
   --s0:#222933; --s1:#171b26; --s2:#3B4453; --s3:#252c3f; --s4:#1F252E; --s5:#3d4a6b;
   --t0:#e8ecf4; --t1:#8b92a8; --t2:#525b75;
@@ -241,7 +242,15 @@ body{display:flex;flex-direction:column}
   color:var(--brblue);
   margin-top:-1px;
 }
-.fi{font-family:var(--sans);font-size:12px;padding:6px 9px;border-radius:var(--r1);border:1px solid var(--s4);background:var(--s2);color:var(--t0);width:100%;outline:none;transition:border-color .15s}
+.fi{
+  font-family:var(--sans);
+  font-size:12px;padding:6px 9px;
+  border-radius:var(--r1);
+  border:1px solid var(--s4);
+  background:var(--editcolor);color:var(--apptext);
+  width:100%;outline:none;
+  transition:border-color .15s;
+}
 .fi:focus{border-color:var(--a)} .fi:disabled{opacity:.3;cursor:not-allowed}
 .fi.mn{font-family:var(--mono);font-size:11px}
 .fi[readonly]{opacity:.55;cursor:default;border-style:dashed}
