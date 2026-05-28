@@ -350,11 +350,11 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
   background:transparent;
 }
 ::-webkit-scrollbar-thumb{
-  background-color:var(--scrollbarcolor);
+  color:var(--scrollbarcolor);
   border-radius:3px;
 }
 ::-webkit-scrollbar-thumb:hover{
-  background-color:var(--scrollbarhover);
+  color:var(--scrollbarhover);
 }
 
 /* ── Intro overlay ── */
