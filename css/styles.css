@@ -111,7 +111,7 @@ body{display:flex;flex-direction:column}
   color:var(--apptext);
   letter-spacing:.08em;
   text-transform:uppercase;
-  padding:8px 0px;
+  padding:10px 0px;
   background:var(--palgrpbg);
   margin: 4px -8px 4px -8px;
   padding-left:8px;
@@ -218,7 +218,7 @@ body{display:flex;flex-direction:column}
   color:var(--apptext);
   letter-spacing:.08em;
   text-transform:uppercase;
-  padding:8px;
+  padding:10px;
   border-bottom:1px solid var(--s4);
   margin:0px -10px 0px -10px;
   background:var(--palgrpbg);
