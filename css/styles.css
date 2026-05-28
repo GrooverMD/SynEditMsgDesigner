@@ -164,7 +164,18 @@ body{display:flex;flex-direction:column}
 .insp-body{padding:12px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:10px}
 .insp-nil{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:7px;opacity:.3}
 .insp-nil i{font-size:26px} .insp-nil p{font-size:12px;text-align:center;line-height:1.5}
-.isec{font-size:10px;font-weight:600;color:var(--t2);letter-spacing:.08em;text-transform:uppercase;padding-bottom:5px;border-bottom:1px solid var(--s4);margin-bottom:1px}
+
+.isec{
+  font-size:12px;
+  font-weight:600;
+  color:var(--apptext);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:8px;
+  border-bottom:1px solid var(--s4);
+  margin:0px -10px 0px -10px;
+  background:var(--palbgr);
+}
 .fg{display:flex;flex-direction:column;gap:4px}
 .fl{font-size:11px;font-weight:500;color:var(--t1)}
 .fhint{font-size:10px;color:var(--t2);margin-top:-1px}
