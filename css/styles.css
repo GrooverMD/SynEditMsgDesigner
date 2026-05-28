@@ -130,7 +130,13 @@ body{display:flex;flex-direction:column}
 .canvas{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:9px;align-items:stretch}
 
 /* ── Lanes ── */
-.lane{border-radius:var(--r3);border:1px solid var(--s4);background:var(--s1);flex-shrink:0;transition:border-color .15s}
+.lane{
+  border-radius:var(--r3);
+  border:1px solid var(--s4);
+  background:var(--panelhdrbg);
+  flex-shrink:0;
+  transition:border-color .15s;
+}
 .lane-hd{display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:var(--r3) var(--r3) 0 0;cursor:pointer;transition:background .15s;border-bottom:1px solid transparent}
 .lane-hd.has-cards{border-bottom-color:var(--s4)}
 .lane-hd.over{background:var(--a-bg);outline:1.5px dashed var(--a-bd);outline-offset:-2px;border-radius:var(--r3) var(--r3) 0 0}
