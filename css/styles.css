@@ -286,6 +286,7 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
   min-height: 80px;
   max-height: 260px;
   overflow-y: auto;
+  resize: both;
 }
 .sp-comment   { font-style: italic; }
 .sp-string    { }
