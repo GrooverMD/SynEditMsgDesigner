@@ -192,7 +192,7 @@ body{display:flex;flex-direction:column}
   user-select:none;
 }
 .card:hover{
-  border-color:var(--btnborder);
+  border-color:var(--brblue);
   background:var(--cardcolor);
 }
 
