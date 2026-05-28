@@ -251,7 +251,10 @@ body{display:flex;flex-direction:column}
   width:100%;outline:none;
   transition:border-color .15s;
 }
-.fi:focus{border-color:var(--a)} .fi:disabled{opacity:.3;cursor:not-allowed}
+.fi:focus{
+  border-color:var(--brblue);
+} 
+.fi:disabled{opacity:.3;cursor:not-allowed}
 .fi.mn{font-family:var(--mono);font-size:11px}
 .fi[readonly]{opacity:.55;cursor:default;border-style:dashed}
 .fta{min-height:64px;resize:vertical;line-height:1.55}
