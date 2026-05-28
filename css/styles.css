@@ -38,6 +38,8 @@
   --lanehint:#8290ba;
   --statuscolor:#2E3440;
   --canvascolor:#20262D;
+  --scrollbarcolor:#20262D;
+  --scrollbarhover:#677281;
   
   --s0:#222933; --s1:#171b26; --s2:#3B4453; --s3:#252c3f; --s4:#1F252E; --s5:#3d4a6b;
   --t0:#e8ecf4; --t1:#8b92a8; --t2:#525b75;
@@ -342,8 +344,13 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--s4);border-radius:3px}
-::-webkit-scrollbar-thumb:hover{background:var(--s5)}
+::-webkit-scrollbar-thumb{
+  background:var(--scrollbarcolor);
+  border-radius:3px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:var(--scrollbarhover);
+}
 
 /* ── Intro overlay ── */
 .intro-overlay{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:rgba(10,12,20,.92);backdrop-filter:blur(6px)}
