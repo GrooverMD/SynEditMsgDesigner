@@ -151,7 +151,16 @@ body{display:flex;flex-direction:column}
   font-family:var(--mono);
 }
 .lane-add-hint{font-size:12px;color:var(--lanehint);font-style:italic}
-.lane-body{padding:8px;display:flex;flex-direction:column;gap:6px;min-height:0;border-radius:0 0 var(--r3) var(--r3)}
+
+.lane-body{
+  padding:8px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  min-height:0;
+  border-radius:0 0 var(--r3) var(--r3);
+  background:var(--toolbar);
+}
 /* body drop zone (secondary fallback) */
 .lane-body.over{background:var(--a-bg);outline:1.5px dashed var(--a-bd);outline-offset:-2px;min-height:44px}
 .lane-body.reject{background:var(--d-bg);outline:1.5px dashed var(--d);outline-offset:-2px;min-height:44px}
