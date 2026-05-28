@@ -110,8 +110,9 @@ body{display:flex;flex-direction:column}
   color:var(--apptext);
   letter-spacing:.08em;
   text-transform:uppercase;
-  padding:8px 4px 4px;
+  padding:8px 0px;
   background:var(--palgrpbg);
+  margin-botom:4px;
 }
 
 /* ── Palette cards ── */
