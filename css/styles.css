@@ -27,6 +27,8 @@
   --prcolor:#2C3340;
   --apptext:#F5F5F5;
   --panelhdrbg:#272D37;
+  --btnborder:#8691A1;
+  --cardcolor:#4B5463;
   
   --palgrp:#8290ba;
   --lanehint:#8290ba;
@@ -74,7 +76,7 @@ body{display:flex;flex-direction:column}
 .pal-group{font-size:10px;font-weight:600;color:var(--palgrp);letter-spacing:.08em;text-transform:uppercase;padding:8px 4px 4px}
 
 /* ── Palette cards ── */
-.pc{padding:8px 10px;border-radius:var(--r2);border:1px solid var(--s4);cursor:grab;user-select:none;background:var(--s2);transition:border-color .15s,background .15s,transform .1s;position:relative}
+.pc{padding:8px 10px;border-radius:var(--r2);border:1.5px solid var(--btnborder);cursor:grab;user-select:none;background:var(--cardcolor);transition:border-color .15s,background .15s,transform .1s;position:relative}
 .pc:hover{border-color:var(--s5);background:var(--s3);transform:translateY(-1px)}
 .pc:active{cursor:grabbing;opacity:.7;transform:translateY(0)}
 .pc-name{font-size:12px;font-weight:500;color:var(--t0);display:flex;align-items:center;gap:6px}
