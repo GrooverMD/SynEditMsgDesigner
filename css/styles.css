@@ -30,6 +30,9 @@
   --btnborder:#8691A1;
   --cardcolor:#4B5463;
   --tbtncolor:#3B4453;
+  --tbtnhover:#2C3440;
+  --tbtnhoverborder:#252D38;
+  --tbtntext:#D9D9D9;
   --palgrp:#8290ba;
   --lanehint:#8290ba;
   
@@ -60,12 +63,12 @@ body{display:flex;flex-direction:column}
   font-size:12px;
   font-weight:500;
   padding:5px 11px;
-  border-radius:var(--r1);
+  /*border-radius:var(--r1);*/
   /*border:1px solid var(--btnborder);*/
   
   border:transparent;
   background:transparent;
-  color:var(--t1);
+  color:var(--tbtntext);
   cursor:pointer;
   display:inline-flex;
   align-items:center;
@@ -74,7 +77,12 @@ body{display:flex;flex-direction:column}
   white-space:nowrap;
 }
 .tbtn i{font-size:13px}
-.tbtn:hover{background:var(--s2);border-color:var(--s5);color:var(--t0)}
+
+.tbtn:hover{
+  background:var(--tbtnhover);
+  border-color:var(--tbtnhoverborder);
+  color:var(--tbtntext);
+}
 .tbtn.hi{background:var(--a-bg);border-color:var(--a-bd);color:var(--a)}
 .tbtn.hi:hover{background:rgba(108,138,255,.2)}
 
