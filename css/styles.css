@@ -88,6 +88,7 @@ body{display:flex;flex-direction:column}
   /*border-color:var(--tbtnhoverborder);*/
   border:1px solid var(--tbtnhoverborder);
   color:var(--tbtntext);
+  padding:20px 5px;
 }
 .tbtn.hi{background:var(--a-bg);border-color:var(--a-bd);color:var(--a)}
 .tbtn.hi:hover{background:rgba(108,138,255,.2)}
