@@ -52,7 +52,7 @@ html,body{height:100%;font-family:var(--sans);font-size:13px;background:var(--s0
 body{display:flex;flex-direction:column}
 
 /* ── Titlebar ── */
-.titlebar{display:flex;align-items:center;gap:8px;padding:0 14px;height:46px;background:var(--toolbar);border-bottom:3px solid var(--resizer);flex-shrink:0}
+.titlebar{display:flex;align-items:center;gap:8px;padding:0 14px;height:70px;background:var(--toolbar);border-bottom:3px solid var(--resizer);flex-shrink:0}
 .tl-logo{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--t0);letter-spacing:-.01em;margin-right:6px}
 .tl-logo i{font-size:18px;background:var(--brblue);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .tl-logo span{color:var(--brblue)} .tl-sep{flex:1}
