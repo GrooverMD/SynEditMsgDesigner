@@ -20,12 +20,14 @@
 :root {
   --toolbar:#3B4453;
   --brblue:#0696D7;
-  --sidepanel:#2A333F;
+  --sidepanel:#3B4453;
   --resizer:#1B2027;
   --btnborder:#8691A1;
   --prborder:#262D39;
   --prcolor:#2C3340;
   --panelhdr:#8290ba;
+  --panelhdrbg:#272D37;
+  
   --palgrp:#8290ba;
   --lanehint:#8290ba;
   
@@ -67,7 +69,7 @@ body{display:flex;flex-direction:column}
 .sidebar,.insp{display:flex;flex-direction:column;min-height:0;overflow:hidden}
 .sidebar{background:var(--sidepanel);border-right:1px solid var(--resizer)}
 .insp{background:var(--sidepanel);border-left:1px solid var(--resizer)}
-.panel-hd{font-size:12px;font-weight:600;color:var(--panelhdr);letter-spacing:.1em;text-transform:uppercase;padding:10px 12px 8px;border-bottom:1px solid var(--s4);flex-shrink:0}
+.panel-hd{font-size:12px;font-weight:600;color:var(--panelhdr);letter-spacing:.1em;text-transform:uppercase;padding:10px 12px 8px;border-bottom:1px solid var(--panelhdrbg);flex-shrink:0;background:var(--panelhdrbg)}
 .pal-list{padding:9px 8px;display:flex;flex-direction:column;gap:4px;overflow-y:auto;flex:1}
 .pal-group{font-size:10px;font-weight:600;color:var(--palgrp);letter-spacing:.08em;text-transform:uppercase;padding:8px 4px 4px}
 
