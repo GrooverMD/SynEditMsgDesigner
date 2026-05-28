@@ -105,7 +105,7 @@ body{display:flex;flex-direction:column}
 .pal-list{padding:9px 8px;display:flex;flex-direction:column;gap:4px;overflow-y:auto;flex:1}
 
 .pal-group{
-  font-size:10px;
+  font-size:11px;
   font-weight:600;
   height:28px;
   color:var(--apptext);
@@ -213,7 +213,7 @@ body{display:flex;flex-direction:column}
 .insp-nil i{font-size:26px} .insp-nil p{font-size:12px;text-align:center;line-height:1.5}
 
 .isec{
-  font-size:12px;
+  font-size:11px;
   font-weight:600;
   color:var(--apptext);
   letter-spacing:.08em;
