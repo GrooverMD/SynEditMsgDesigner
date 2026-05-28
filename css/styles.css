@@ -73,7 +73,7 @@ body{display:flex;flex-direction:column}
 .insp{background:var(--sidepanel);border-left:1px solid var(--resizer)}
 .panel-hd{font-size:12px;font-weight:600;color:var(--apptext);letter-spacing:.1em;text-transform:uppercase;padding:10px 12px 8px;border-bottom:1px solid var(--panelhdrbg);flex-shrink:0;background:var(--panelhdrbg)}
 .pal-list{padding:9px 8px;display:flex;flex-direction:column;gap:4px;overflow-y:auto;flex:1}
-.pal-group{font-size:10px;font-weight:600;color:var(--palgrp);letter-spacing:.08em;text-transform:uppercase;padding:8px 4px 4px}
+.pal-group{font-size:10px;font-weight:600;color:var(--apptext);letter-spacing:.08em;text-transform:uppercase;padding:8px 4px 4px}
 
 /* ── Palette cards ── */
 .pc{padding:8px 10px;border-radius:var(--r2);border:1.5px solid var(--btnborder);cursor:grab;user-select:none;background:var(--cardcolor);transition:border-color .15s,background .15s,transform .1s;position:relative}
