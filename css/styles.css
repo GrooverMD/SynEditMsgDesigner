@@ -70,7 +70,7 @@ body{display:flex;flex-direction:column}
   font-weight:normal;
   padding:12px 10px;
   /*border-radius:var(--r1);*/
-  border:1px transparent;
+  border:1px solid transparent;
   
   /*border:transparent;*/
   background:transparent;
