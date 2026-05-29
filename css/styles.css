@@ -41,6 +41,7 @@
   --scrollbarcolor:#20262D;
   --scrollbarhover:#677281;
   --editcolor:#2C3340;
+  --claudecolor:#d97757;
   
   --s0:#222933; --s1:#171b26; --s2:#3B4453; --s3:#252c3f; --s4:#1F252E; --s5:#3d4a6b;
   --t0:#e8ecf4; --t1:#8b92a8; --t2:#525b75;
@@ -494,9 +495,15 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 .footer-panel p {
   margin: 0;
 }
+
 .msg-color {
   color: var(--brblue);
 }
+
+.claude-color{
+  color: var(--claudecolor);
+}
+
 .intro {
   position: absolute;
   left: -9999px;
