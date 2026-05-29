@@ -64,6 +64,9 @@ body{display:flex;flex-direction:column}
 .tl-logo span{color:var(--brblue)} .tl-sep{flex:1}
 .vsep{width:1px;height:18px;background:var(--s4);margin:0 2px}
 
+.ti {
+  stroke-width: 1;
+}
 .tbtn {
   font-family: var(--sans);
   font-size: 13px;
