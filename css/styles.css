@@ -271,7 +271,6 @@ body{display:flex;flex-direction:column}
 .fi{
   font-family:var(--sans);
   font-size:12px;padding:6px 9px;
-  border-radius:var(--r1);
   border:1px solid var(--s4);
   background:var(--editcolor);color:var(--apptext);
   width:100%;outline:none;
