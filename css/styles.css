@@ -91,7 +91,7 @@ body{display:flex;flex-direction:column}
 
 .tbtn.hi{
   background:var(--a-bg);
-  border-color:var(--a-bd);
+  border-color:var(--brblue);
   color:var(--a);
 }
 
