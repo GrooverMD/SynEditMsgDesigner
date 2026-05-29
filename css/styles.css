@@ -68,7 +68,7 @@ body{display:flex;flex-direction:column}
   font-family:var(--sans);
   font-size:13px;
   font-weight:500;
-  padding:20px 5px;
+  padding:10px 12px;
   /*border-radius:var(--r1);*/
   border:1px transparent;
   
@@ -82,7 +82,8 @@ body{display:flex;flex-direction:column}
   /*transition:all .15s;*/
   white-space:nowrap;
 }
-.tbtn i{font-size:13px}
+
+.tbtn i{font-size:32px}
 
 .tbtn:hover{
   background:var(--tbtnhover);
