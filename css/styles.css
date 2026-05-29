@@ -164,7 +164,7 @@ body{display:flex;flex-direction:column}
 
 /* ── Lanes ── */
 .lane{
-  border-radius:var(--r3);
+  /*border-radius:var(--r3);*/
   border:1px solid var(--s4);
   background:var(--panelhdrbg);
   flex-shrink:0;
