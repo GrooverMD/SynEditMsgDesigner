@@ -83,35 +83,43 @@
   <div class="tl-sep"></div>
   
   <button class="tbtn tooltip" onclick="loadExample()">
-    <svg class="icon"><use href="#icon-bolt"></use>
+    <svg class="icon">
+		<use href="#icon-bolt"></use>
     </svg>
     <span class="tooltiptext">Load Example</span>
   </button>
   
   <button class="tbtn tooltip" onclick="triggerMsgOpen()">
-    <svg class="icon"><use href="#icon-open"></use>
+    <svg class="icon">
+		<use href="#icon-open"></use>
     </svg>
-       <span class="tooltiptext">Load .msg file</span>
+    <span class="tooltiptext">Load .msg file</span>
   </button>
   
   <button class="tbtn tooltip" onclick="triggerPasOpen()">
-    <i class="ti ti-file-import"></i>
-       <span class="tooltiptext">Load .pas file</span>
+    <svg class="icon">
+		<use href="#icon-import"></use>
+    </svg>
+    <span class="tooltiptext">Load .pas file</span>
   </button>
   
   <input type="file" id="pas-file-input" accept=".pas" style="display:none" onchange="onPasFileSelected(event)">
   <input type="file" id="msg-file-input" accept=".msg" style="display:none" onchange="onMsgFileSelected(event)">
   
   <button class="tbtn tooltip" onclick="clearAll()">
-    <i class="ti ti-trash"></i>
-       <span class="tooltiptext">Clear highlighter</span>
+    <svg class="icon">
+		<use href="#icon-trash"></use>
+    </svg>
+    <span class="tooltiptext">Clear highlighter</span>
   </button>
   
   <!--<div class="vsep"></div>-->
   
   <button class="tbtn tooltip" onclick="doValidate()">
-    <i class="ti ti-shield-check"></i>
-      <span class="tooltiptext">Validate .msg</span>
+   <svg class="icon">
+		<use href="#icon-shield"></use>
+    </svg>
+    <span class="tooltiptext">Validate .msg</span>
   </button>
   
   <button class="tbtn tooltip" onclick="showPreview()">
@@ -121,16 +129,22 @@
   
   <!--<div class="vsep"></div>-->
   <a class="tbtn" href="https://github.com/GrooverMD/SynEditMsgDesigner/tree/main" target="_blank" rel="noopener" title="View on GitHub">
-    <i class="ti ti-brand-github"></i>
+    <svg class="icon">
+		<use href="#icon-github"></use>
+    </svg>
   </a>
   
   <a class="tbtn" href="https://claude.ai" target="_blank" rel="noopener" title="Claude AI">
-    <i class="ti ti-sparkles"></i>
+    <svg class="icon">
+		<use href="#icon-claude"></use>
+    </svg>
   </a>
   
   <button class="tbtn tooltip" onclick="openHelp()">
-    <i class="ti ti-help-circle"></i>
-       <span class="tooltiptext">Show help</span>
+    <svg class="icon">
+		<use href="#icon-heklp"></use>
+    </svg>
+    <span class="tooltiptext">Show help</span>
     </button>
 </div>
 
