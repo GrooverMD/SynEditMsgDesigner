@@ -87,18 +87,49 @@
       <span class="tooltiptext">Load Example</span>
   </button>
   
-  <button class="tbtn" onclick="triggerMsgOpen()"><i class="ti ti-folder-open"></i>Open .msg</button>
-  <button class="tbtn" onclick="triggerPasOpen()"><i class="ti ti-file-import"></i>Open .pas</button>
+  <button class="tbtn tooltip" onclick="triggerMsgOpen()">
+    <i class="ti ti-folder-open"></i>
+       <span class="tooltiptext">Load .msg file</span>
+  </button>
+  
+  <button class="tbtn tooltip" onclick="triggerPasOpen()">
+    <i class="ti ti-file-import"></i>
+       <span class="tooltiptext">Load .pas file</span>
+  </button>
+  
   <input type="file" id="pas-file-input" accept=".pas" style="display:none" onchange="onPasFileSelected(event)">
   <input type="file" id="msg-file-input" accept=".msg" style="display:none" onchange="onMsgFileSelected(event)">
-  <button class="tbtn" onclick="clearAll()"><i class="ti ti-trash"></i>Clear</button>
-  <div class="vsep"></div>
-  <button class="tbtn" onclick="doValidate()"><i class="ti ti-shield-check"></i>Validate</button>
-  <button class="tbtn hi" onclick="showPreview()"><i class="ti ti-file-export"></i>Generate .msg</button>
-  <div class="vsep"></div>
-  <a class="tbtn" href="https://github.com/GrooverMD/SynEditMsgDesigner/tree/main" target="_blank" rel="noopener" title="View on GitHub"><i class="ti ti-brand-github"></i>GitHub</a>
-  <a class="tbtn" href="https://claude.ai" target="_blank" rel="noopener" title="Claude AI"><i class="ti ti-sparkles"></i>Claude AI</a>
-  <button class="tbtn" onclick="openHelp()"><i class="ti ti-help-circle"></i>Help</button>
+  
+  <button class="tbtn tooltip" onclick="clearAll()">
+    <i class="ti ti-trash"></i>
+       <span class="tooltiptext">Clear highlighter</span>
+  </button>
+  
+  <!--<div class="vsep"></div>-->
+  
+  <button class="tbtn tooltip" onclick="doValidate()">
+    <i class="ti ti-shield-check"></i>
+      <span class="tooltiptext">Validate .msg</span>
+  </button>
+  
+  <button class="tbtn hi tooltip" onclick="showPreview()">
+    <i class="ti ti-file-export"></i>
+      <span class="tooltiptext">Generate .msg</span>
+  </button>
+  
+  <!--<div class="vsep"></div>-->
+  <a class="tbtn" href="https://github.com/GrooverMD/SynEditMsgDesigner/tree/main" target="_blank" rel="noopener" title="View on GitHub">
+    <i class="ti ti-brand-github"></i>
+  </a>
+  
+  <a class="tbtn" href="https://claude.ai" target="_blank" rel="noopener" title="Claude AI">
+    <i class="ti ti-sparkles"></i>
+  </a>
+  
+  <button class="tbtn tooltip" onclick="openHelp()">
+    <i class="ti ti-help-circle"></i>
+       <span class="tooltiptext">Show help</span>
+    </button>
 </div>
 
 
