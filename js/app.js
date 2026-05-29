@@ -502,8 +502,8 @@ function renderInsp(){
     </div>
     ${fld('Token prefix','prefix',c.prefix,true,'Prefix for TtkTokenKind enum values')}
     <div class="isec" style="margin-top:2px">Identifier characters</div>
-    ${fld('Ident start','identStart',c.identStart,true,'Also drives the auto-generated CHARS rule')}
-    ${fld('Ident continue','identCont',c.identCont,true)}`
+    ${fld('Identifier prefix','identStart',c.identStart,true,'Also drives the auto-generated CHARS rule')}
+    ${fld('Identifier suffix','identCont',c.identCont,true)}`
   }
 
   else if(c.type==='tokentype'){
