@@ -499,7 +499,6 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 .tooltip {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted black; /* Add dots under the hoverable text */
   cursor: pointer;
 }
 
