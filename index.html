@@ -135,14 +135,23 @@
 		<use href="#icon-github"></use>
     </svg>
   </a>
-  
-  <a class="tbtn" href="https://claude.ai" target="_blank" rel="noopener" title="Claude AI">
-    <svg class="icon">
+
+	
+
+<button class="tbtn tooltip" onclick="window.open('https://claude.ai', '_blank')">
+	<svg class="icon">
 		<use href="#icon-claude"></use>
-    </svg>
-  </a>
+	</svg>
+	<span class="tooltiptext">Claude AI</span>
+</button>
+	
+<!--<a class="tbtn" href="https://claude.ai" target="_blank" rel="noopener" title="Claude AI">
+<svg class="icon">
+	<use href="#icon-claude"></use>
+</svg>
+</a>-->
   
-  <button class="tbtn tooltip" onclick="openHelp()">
+<button class="tbtn tooltip" onclick="openHelp()">
     <svg class="icon">
 		<use href="#icon-help"></use>
     </svg>
@@ -408,11 +417,11 @@
   <div class="insp">
     <div class="panel-hd">Inspector</div>
     <div class="insp-body" id="insp"></div>
-  </div>
-
-  <!-- Icons -->
+  </div>  
+</div>
+	
+<!-- Icons -->
   <svg style="display:none;">
-    
     <symbol id="icon-bolt" viewBox="0 0 24 24">
       <path d="M13 3v7h6l-8 11v-7H5l8-11" />
     </symbol>
@@ -502,9 +511,6 @@
     </symbol>
     
   </svg>
-  
-</div>
-
 <!-- parser.js: colour data, .msg generator, .msg loader, .pas parser -->
 <script src="js/parser.js"></script>
 <!-- exporter.js: preview modal, clipboard, download, toast -->
