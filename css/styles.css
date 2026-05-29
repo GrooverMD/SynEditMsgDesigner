@@ -120,8 +120,8 @@ body{display:flex;flex-direction:column}
 
 /* ── Sidebar / Inspector panels ── */
 .sidebar,.insp{display:flex;flex-direction:column;min-height:0;overflow:hidden}
-.sidebar{background:var(--sidepanel);border-right:1px solid var(--resizer)}
-.insp{background:var(--sidepanel);border-left:1px solid var(--resizer)}
+.sidebar{background:var(--sidepanel);}
+.insp{background:var(--sidepanel);}
 .panel-hd{font-size:12px;font-weight:600;color:var(--apptext);letter-spacing:.1em;text-transform:uppercase;padding:10px 12px 8px;border-bottom:1px solid var(--panelhdrbg);flex-shrink:0;background:var(--panelhdrbg)}
 .pal-list{padding:9px 8px;display:flex;flex-direction:column;gap:4px;overflow-y:auto;flex:1}
 
