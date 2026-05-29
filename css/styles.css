@@ -517,8 +517,7 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
   background-color: black;
   color: #ffffff;
   text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
+  padding: 5px 5px;
   position: absolute;
   z-index: 16; /* Ensure tooltip is displayed above content */
   top: 105%;
