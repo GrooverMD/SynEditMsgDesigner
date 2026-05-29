@@ -531,7 +531,7 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
   padding: 5px 10px;
   position: absolute;
   z-index: 16; /* Ensure tooltip is displayed above content */
-  top: 112%;
+  top: 114%;
   left: 50%;
   transform: translateX(-50%);
   transition: opacity 0.25s ease;
