@@ -81,7 +81,13 @@
     SynGen&thinsp;<span>.msg</span>&thinsp;Designer
   </div>
   <div class="tl-sep"></div>
-  <button class="tbtn" onclick="loadExample()"><i class="ti ti-bolt"></i>Example</button>
+  
+  <button class="tbtn" onclick="loadExample()">
+    <i class="ti ti-bolt"></i>
+    Example
+     <span class="tooltiptext">Load Example</span>
+  </button>
+  
   <button class="tbtn" onclick="triggerMsgOpen()"><i class="ti ti-folder-open"></i>Open .msg</button>
   <button class="tbtn" onclick="triggerPasOpen()"><i class="ti ti-file-import"></i>Open .pas</button>
   <input type="file" id="pas-file-input" accept=".pas" style="display:none" onchange="onPasFileSelected(event)">
