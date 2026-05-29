@@ -68,12 +68,13 @@ body{display:flex;flex-direction:column}
   font-family:var(--sans);
   font-size:13px;
   font-weight:500;
-  padding:10px 12px;
+  padding:12px 10px;
   /*border-radius:var(--r1);*/
   border:1px transparent;
   
-  border:transparent;
-  background:transparent;
+  /*border:transparent;
+  background:transparent;*/
+  
   color:var(--tbtntext);
   cursor:pointer;
   display:inline-flex;
@@ -87,12 +88,18 @@ body{display:flex;flex-direction:column}
 
 .tbtn:hover{
   background:var(--tbtnhover);
-  /*border-color:var(--tbtnhoverborder);*/
+  border-color:var(--tbtnhoverborder);
   border:1px solid var(--tbtnhoverborder);
   color:var(--tbtntext);
-  padding:20px 5px;
+  /*padding:20px 5px;*/
 }
-.tbtn.hi{background:var(--a-bg);border-color:var(--a-bd);color:var(--a)}
+
+.tbtn.hi{
+  background:var(--a-bg);
+  border-color:var(--a-bd);
+  color:var(--a);
+}
+
 .tbtn.hi:hover{background:rgba(108,138,255,.2)}
 
 /* ── App grid — resizable via CSS vars ── */
