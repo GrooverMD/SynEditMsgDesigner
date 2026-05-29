@@ -69,6 +69,7 @@ body{display:flex;flex-direction:column}
   height: 20px;
   stroke-width: 1; /* thinner lines */
 }
+
 .tbtn {
   font-family: var(--sans);
   font-size: 13px;
