@@ -67,7 +67,7 @@ body{display:flex;flex-direction:column}
 .tbtn{
   font-family:var(--sans);
   font-size:13px;
-  font-weight:500;
+  font-weight:normal;
   padding:12px 10px;
   /*border-radius:var(--r1);*/
   border:1px transparent;
