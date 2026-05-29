@@ -88,8 +88,7 @@
   </button>-->
 
   <button class="tbtn tooltip" onclick="loadExample()">
-    <svg class="icon icon-bolt" viewBox="0 0 24 24">
-      <!--<path d="M13 3v7h6l-8 11v-7H5l8-11" />-->
+    <svg class="icon"><use href="#icon-bolt"></use>
     </svg>
     <span class="tooltiptext">Load Example</span>
   </button>
@@ -399,8 +398,18 @@
     <div class="insp-body" id="insp"></div>
   </div>
 
- <!-- Icons -->
- <svg class="icon icon-bolt" viewBox="0 0 24 24">
+  <!-- Icons -->
+  <svg style="display:none;">
+    <symbol id="icon-bolt" viewBox="0 0 24 24">
+      <path d="M13 3v7h6l-8 11v-7H5l8-11" />
+    </symbol>
+
+    <symbol id="icon-folder-open" viewBox="0 0 24 24">
+      <path d="M5 19l2.757 -7.351a1 1 0 0 1 .936 -.649h12.307a1 1 0 0 1 .986 1.164l-.996 5.211a2 2 0 0 1 -1.964 1.625h-14.026a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v2" />
+    </symbol>
+  </svg>
+  
+  <svg class="icon icon-bolt" viewBox="0 0 24 24">
   <path d="M13 3v7h6l-8 11v-7H5l8-11" />
   </svg> 
 
