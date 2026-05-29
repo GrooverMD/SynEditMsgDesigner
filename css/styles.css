@@ -72,8 +72,8 @@ body{display:flex;flex-direction:column}
   /*border-radius:var(--r1);*/
   border:1px transparent;
   
-  /*border:transparent;
-  background:transparent;*/
+  /*border:transparent;*/
+  background:transparent;
   
   color:var(--tbtntext);
   cursor:pointer;
