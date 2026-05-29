@@ -502,7 +502,6 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 /* Tooltip text */
 .tooltiptext {
   visibility: hidden; /* Hidden by default */
-  width: 130px;
   background-color: black;
   color: #ffffff;
   text-align: center;
@@ -512,7 +511,11 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
   z-index: 16; /* Ensure tooltip is displayed above content */
   top: 105%;
   left: 50%;
-  margin-left: -65px;
+  transform: translateX(-50%);
+  transition: opacity 0.25s ease;
+
+  white-space: nowrap; /* prevents wrapping */
+  /*margin-left: -65px;*/
 }
 
 /* Show the tooltip text on hover */
