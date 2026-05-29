@@ -64,34 +64,29 @@ body{display:flex;flex-direction:column}
 .tl-logo span{color:var(--brblue)} .tl-sep{flex:1}
 .vsep{width:1px;height:18px;background:var(--s4);margin:0 2px}
 
-.tbtn{
-  font-family:var(--sans);
-  font-size:13px;
-  font-weight:normal;
-  padding:12px 10px;
-  /*border-radius:var(--r1);*/
-  border:1px solid transparent;
-  
-  /*border:transparent;*/
-  background:transparent;
-  
-  color:var(--tbtntext);
-  cursor:pointer;
-  display:inline-flex;
-  align-items:center;
-  gap:5px;
-  /*transition:all .15s;*/
-  white-space:nowrap;
+.tbtn {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 200;
+  padding: 12px 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--tbtntext);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
 }
 
-.tbtn i{font-size:32px}
+.tbtn i {
+  font-size: 32px;
+}
 
-.tbtn:hover{
-  background:var(--tbtnhover);
-  border-color:var(--tbtnhoverborder);
-  border:1px solid var(--tbtnhoverborder);
-  color:var(--tbtntext);
-  /*padding:20px 5px;*/
+.tbtn:hover {
+  background: var(--tbtnhover);
+  border-color: var(--tbtnhoverborder);
+  color: var(--tbtntext);
 }
 
 .tbtn.hi{
