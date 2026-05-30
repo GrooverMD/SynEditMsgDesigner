@@ -528,13 +528,35 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 	background:var(--dialog-title);
 }
 .intro-hero-logo{font-size:22px;font-weight:700;color:var(--t0);letter-spacing:-.02em;margin-bottom:4px}
-.intro-hero-logo span{background:linear-gradient(90deg,var(--lh),var(--a));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+.intro-hero-logo span {
+	background: var(--brblue);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
 .intro-hero-sub{font-size:13px;color:var(--t1);line-height:1.6}
 .intro-body{padding:24px 36px;display:flex;flex-direction:column;gap:20px}
 .intro-section-title{font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
 .intro-steps{display:flex;flex-direction:column;gap:10px}
 .intro-step{display:flex;gap:12px;align-items:flex-start}
-.intro-step-num{width:22px;height:22px;border-radius:50%;background:var(--a-bg);border:1px solid var(--a-bd);color:var(--a);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+
+.intro-step-num {
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	background: transparent;
+	border: 1px solid var(--brblue);
+	color: var(--brblue);
+	font-size: 11px;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	margin-top: 1px;
+}
+
 .intro-step-text{font-size:12px;color:var(--t1);line-height:1.55}
 .intro-step-text b{color:var(--t0);font-weight:500}
 .intro-links{display:flex;gap:8px;flex-wrap:wrap}
