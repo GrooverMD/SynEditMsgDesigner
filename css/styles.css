@@ -440,7 +440,7 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:13px 16px;
+  padding:5px 16px;
   flex-shrink:0;
 }
 
@@ -468,7 +468,18 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 	background: var(--sidepanel);
 }
 
-.msg-pre{font-family:var(--mono);font-size:11px;line-height:1.9;color:var(--t0);white-space:pre-wrap;word-break:break-all;background:var(--s0);padding:12px 14px;border-radius:var(--r2);border:1px solid var(--s4)}
+.msg-pre{
+	font-family:var(--mono);
+	font-size:11px;
+	line-height:1.9;
+	color:var(--t0);
+	white-space:pre-wrap;
+	word-break:break-all;
+	background:var(--editcolor);
+	padding:12px 14px;
+	border-radius:var(--r1);
+	border:1px solid var(--s4);
+}
 .t-delim{color:var(--a)} .t-kw{color:var(--warn)} .t-val{color:var(--success)} .t-body{color:var(--t2)}
 .modal-btns{display:flex;gap:6px;margin-top:12px}
 .modal-btns .tbtn{flex:1;justify-content:center}
@@ -489,9 +500,33 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 }
 
 /* ── Intro overlay ── */
-.intro-overlay{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;background:rgba(10,12,20,.92);backdrop-filter:blur(6px)}
-.intro-box{background:var(--s1);border:1px solid var(--s5);border-radius:var(--r3);width:600px;max-height:90vh;overflow-y:auto;box-shadow:0 32px 80px rgba(0,0,0,.7);display:flex;flex-direction:column}
-.intro-hero{padding:32px 36px 24px;border-bottom:1px solid var(--s4);background:linear-gradient(135deg,#12172a,#1a2040)}
+.intro-overlay{
+	position:fixed;
+	inset:0;
+	z-index:200;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	background:rgba(26,31,37,.92);
+	backdrop-filter:blur(6px);
+}
+
+.intro-box{
+	background:var(--sidepanel);
+	border:1px solid var(--dialog-title);
+	border-radius:var(--r1);
+	width:600px;
+	max-height:90vh;
+	overflow-y:auto;
+	box-shadow:0 32px 80px rgba(0,0,0,.7);
+	display:flex;
+	flex-direction:column;
+}
+.intro-hero{
+	padding:32px 36px 24px;
+	border-bottom:1px solid var(--s4);
+	background:var(--dialog-title);
+}
 .intro-hero-logo{font-size:22px;font-weight:700;color:var(--t0);letter-spacing:-.02em;margin-bottom:4px}
 .intro-hero-logo span{background:linear-gradient(90deg,var(--lh),var(--a));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .intro-hero-sub{font-size:13px;color:var(--t1);line-height:1.6}
