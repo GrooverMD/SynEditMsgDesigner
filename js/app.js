@@ -823,7 +823,7 @@ function doValidate(){
     if(btn){
       const orig = btn.innerHTML
       btn.style.cssText='background:rgba(82,201,138,.15);border-color:rgba(82,201,138,.5);color:#52c98a'
-      btn.innerHTML='<i class="ti ti-check"></i> Valid'
+      btn.innerHTML='<i class="ti ti-check"></i>'
       setTimeout(()=>{btn.style.cssText='';btn.innerHTML=orig},2000)
     }
   }
