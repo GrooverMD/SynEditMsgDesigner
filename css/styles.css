@@ -158,11 +158,17 @@ body{display:flex;flex-direction:column}
 }
 
 /* ── Palette cards ── */
-.pc{padding:8px 10px;border-radius:var(--r2);border:1.5px solid var(--btnborder);cursor:grab;user-select:none;background:var(--cardcolor);transition:border-color .15s,background .15s,transform .1s;position:relative}
+.pc{
+	padding:8px 10px;
+	border-radius:var(--r1);
+	border:1.5px solid var(--btnborder);
+	cursor:grab;user-select:none;
+	background:var(--cardcolor);
+	 transition:border-color .15s,background .15s,transform .1s;position:relative}
 .pc:hover{
   border-color:var(--brblue);
   background:var(--cardcolor);
-  transform:translateY(-1px);
+  /*transform:translateY(-1px);*/
 }
 .pc:active{cursor:grabbing;opacity:.7;transform:translateY(0)}
 .pc-name{font-size:12px;font-weight:500;color:var(--t0);display:flex;align-items:center;gap:6px}
