@@ -817,7 +817,7 @@ function doValidate(){
   // Apply highlights to DOM
   applyValidationUI()
 
-  if(totalErrs === 0) {
+ /* if(totalErrs === 0) {
     // Flash green on Validate button briefly
     const btn = document.querySelector('.tbtn[onclick="doValidate()"]')
     if(btn){
@@ -829,6 +829,36 @@ function doValidate(){
       btn.innerHTML = `<svg class="icon"><use href="#icon-shield"></use></svg>`;
       
       setTimeout(()=>{btn.style.cssText='';btn.innerHTML=orig},2000)
+    }
+  } */
+
+  if (totalErrs === 0) {
+    // Flash green on Validate button briefly
+    const btn = document.querySelector('.tbtn[onclick="doValidate()"]');
+    if (btn) {
+        const orig = btn.innerHTML;
+        btn.style.cssText = 'background:rgba(82,201,138,.15);border-color:rgba(82,201,138,.5);color:#52c98a';
+
+        btn.innerHTML = `<svg class="icon"><use href="#icon-shield"></use></svg>`;
+
+        setTimeout(() => {
+            btn.style.cssText = '';
+            btn.innerHTML = orig;
+        }, 2000);
+    }
+} else {
+    // Flash red on Validate button briefly
+    const btn = document.querySelector('.tbtn[onclick="doValidate()"]');
+    if (btn) {
+        const orig = btn.innerHTML;
+        btn.style.cssText = 'background:rgba(240,96,96,.15);border-color:rgba(240,96,96,.5);color:#f06060';
+
+        btn.innerHTML = `<svg class="icon"><use href="#icon-shield"></use></svg>`;
+
+        setTimeout(() => {
+            btn.style.cssText = '';
+            btn.innerHTML = orig;
+        }, 2000);
     }
   }
 }
