@@ -437,11 +437,11 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 }
 
 .modal-hd{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:5px 16px;
-  flex-shrink:0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 16px;
+	flex-shrink: 0;
 }
 
 .modal-hd h3{
