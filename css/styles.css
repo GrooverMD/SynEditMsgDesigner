@@ -45,9 +45,9 @@
   --githubcolor:#1f2328;
   --iconclose:#9CA8B7;
   --laneerrorbg:#rgba(240,96,96,0.1);
-  --laneerrorbd:#rgb(240,96,96);
+  --laneerrorbd:#rgba(240,96,96,1);
   --lanesuccessbg:#rgba(94,255,115,0.1);
-  --lanesuccessbd:#rgb(94,255,115);
+  --lanesuccessbd:#rgba(94,255,115,1);
   
   --s0:#222933; --s1:#171b26; --s2:#3B4453; --s3:#252c3f; --s4:#1F252E; --s5:#3d4a6b;
   --t0:#e8ecf4; --t1:#8b92a8; --t2:#525b75;
@@ -189,7 +189,7 @@ body{display:flex;flex-direction:column}
 }
 .lane-hd{display:flex;align-items:center;gap:9px;padding:9px 13px;cursor:pointer;transition:background .15s;border-bottom:1px solid transparent}
 .lane-hd.has-cards{border-bottom-color:var(--s4)}
-.lane-hd.over{background:var(--lanesuccessbg);outline:1.5px dashed var(--lanesuccessbd);outline-offset:-2px;}
+.lane-hd.over{background:var(--a-bg);outline:1.5px dashed var(--a-bd);outline-offset:-2px;}
 .lane-hd.reject{background:var(--laneerrorbg);outline:1.5px dashed var(--laneerrorbd);outline-offset:-2px}
 .lane-ico{width:26px;height:26px;border-radius:var(--r1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
 .lane-title{font-size:12px;font-weight:600;color:var(--t0);flex:1;letter-spacing:-.01em}
