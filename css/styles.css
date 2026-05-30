@@ -79,13 +79,13 @@ body{display:flex;flex-direction:column}
 }
 
 .iconclose {
-  width: 12px;
-  height: 12px;
-  stroke: currentColor;
+  width: 15px;
+  height: 15px;
+  stroke: var(--iconclose);
   stroke-width: 1;
   stroke-linecap: round;
   stroke-linejoin: round;
-  fill: none;
+  fill: var(--iconclose);
   display: inline-block;
   vertical-align: middle;
 }
