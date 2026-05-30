@@ -511,17 +511,18 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 	backdrop-filter:blur(6px);
 }
 
-.intro-box{
-	background:var(--sidepanel);
-	border:1px solid var(--dialog-title);
-	border-radius:var(--r1);
-	width:600px;
-	max-height:90vh;
-	overflow-y:auto;
-	box-shadow:0 32px 80px rgba(0,0,0,.7);
-	display:flex;
-	flex-direction:column;
+.intro-box {
+	background: var(--sidepanel);
+	border: 1px solid var(--dialog-title);
+	border-radius: var(--r1);
+	width: 600px;
+	max-height: 90vh;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	filter: drop-shadow(0 0 8px #101010);
 }
+
 .intro-hero{
 	padding:32px 36px 24px;
 	border-bottom:1px solid var(--s4);
