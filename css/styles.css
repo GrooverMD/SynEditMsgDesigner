@@ -202,10 +202,11 @@ body{display:flex;flex-direction:column}
 }
 
 .lane-hd.over{
-  background:var(--a-bg);
-  outline:1.5px dashed var(--a-bd);
+  background:var(--lanesuccessbg);
+  outline:1.5px dashed var(--lanesuccessbd);
   outline-offset:-2px;
 }
+
 .lane-hd.reject{
   background:var(--d-bg);
   outline:1.5px dashed var(--d);
