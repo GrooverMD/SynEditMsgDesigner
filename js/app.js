@@ -390,7 +390,18 @@ function cardHtml(c,color){
       <i class="ti ${cardIcon(c.type)} card-ico" style="color:${color}"></i>
       <span class="card-lbl" title="Double-click to rename"
         ondblclick="event.stopPropagation();startCardRename(event,${c.id})">${esc(cardLabel(c))}</span>
-      ${noRm?'<i class="ti ti-lock" style="font-size:11px;color:var(--t2);opacity:.5;flex-shrink:0"></i>':`<span class="card-rm" onclick="event.stopPropagation();removeCard(${c.id})" title="Remove"><i class="ti ti-x"></i></span>`}
+      
+      /* ${noRm?'<i class="ti ti-lock" style="font-size:11px;color:var(--t2);opacity:.5;flex-shrink:0"></i>':`<span class="card-rm" onclick="event.stopPropagation();removeCard(${c.id})" title="Remove"><i class="ti ti-x"></i></span>`} */
+      
+      ${noRm? '<i class="ti ti-lock" style="font-size:11px;color:var(--t2);opacity:.5;flex-shrink:0"></i>'
+  : `
+    <span class="card-rm" onclick="event.stopPropagation();removeCard(${c.id})" title="Remove">
+      <svg class="icon">
+        <use href="#icon-close"></use>
+      </svg>
+    </span>`
+}
+      
     </div>
     ${body?`<div class="card-body">${body}</div>`:''}
   </div>`
