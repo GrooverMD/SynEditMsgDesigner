@@ -208,7 +208,6 @@ body{display:flex;flex-direction:column}
   flex-direction:column;
   gap:6px;
   min-height:0;
-  border-radius:0 0 var(--r3) var(--r3);
   background:var(--toolbar);
 }
 /* body drop zone (secondary fallback) */
