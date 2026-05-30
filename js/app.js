@@ -370,7 +370,7 @@ function cardBodyHtml(c){
     return `<div class="chips">${prev.map(w=>`<span class="chip">${esc(w)}</span>`).join('')}${more>0?`<span class="chip">+${more}</span>`:''}</div>`
   }
   if(c.type==='charrule'){
-    return `<div class="cr"><b class="mn">${esc(c.charset)}</b></div><div class="cr" style="opacity:.5;font-style:italic">read-only · auto-generated</div>`
+    return `<div class="cr"><b class="mn">${esc(c.charset)}</b></div><div class="cr" style="opacity:1;font-style:italic">read-only · auto-generated</div>`
   }
   if(c.type==='enclosure'){
     return `<div class="cr"><span>${esc(c.tokenType)}</span><b class="mn">${esc(c.openSeq)}…${esc(c.closeSeq)}</b><span>${c.multiLine?'multi':'single'}</span></div>`
