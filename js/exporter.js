@@ -72,7 +72,7 @@ function copyFallback(btn){
   document.body.removeChild(ta)
 }
 
-function doDownload(){
+/*function doDownload(){
   const hdr=doc.header[0]
   const core=hdr?buildClassName(hdr.classCore||'Custom').core:'Highlighter'
   const filename=core+'.msg'
@@ -87,7 +87,35 @@ function doDownload(){
   }catch(e){
     alert('Download not supported in this browser. Use Copy to clipboard instead.')
   }
+}*/
+
+async function doDownload() {
+  const hdr = doc.header[0];
+  const core = hdr ? buildClassName(hdr.classCore || 'Custom').core : 'Highlighter';
+  const filename = core + '.msg';
+
+  try {
+    const blob = new Blob([_previewText], { type: 'text/plain;charset=utf-8' });
+
+    // Modern Save As dialog
+    const handle = await window.showSaveFilePicker({
+      suggestedName: filename,
+      types: [{
+        description: 'MSG File',
+        accept: { 'text/plain': ['.msg'] }
+      }]
+    });
+
+    const writable = await handle.createWritable();
+    await writable.write(blob);
+    await writable.close();
+
+  } catch (e) {
+    console.error(e);
+    alert('Save As dialog not supported in this browser.');
+  }
 }
+
 
 /* ════════════════════════════════════════════════════════════════════════════
    VALIDATE — collects errors per lane, highlights problem lanes & cards
