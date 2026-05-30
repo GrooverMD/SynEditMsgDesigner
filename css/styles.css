@@ -44,10 +44,10 @@
   --claudecolor:#d97757;
   --githubcolor:#1f2328;
   --iconclose:#9CA8B7;
-  --laneerrorbg:#rgba(240,96,96,0.1);
-  --laneerrorbd:#rgba(240,96,96,1);
-  --lanesuccessbg:#rgba(94,255,115,0.1);
-  --lanesuccessbd:#rgba(94,255,115,1);
+  --laneerrorbg:rgba(240,96,96,0.1);
+  --laneerrorbd:rgba(240,96,96,1);
+  --lanesuccessbg:rgba(94,255,115,0.1);
+  --lanesuccessbd:rgba(94,255,115,1);
   
   --s0:#222933; --s1:#171b26; --s2:#3B4453; --s3:#252c3f; --s4:#1F252E; --s5:#3d4a6b;
   --t0:#e8ecf4; --t1:#8b92a8; --t2:#525b75;
