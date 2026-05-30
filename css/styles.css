@@ -242,7 +242,7 @@ body{display:flex;flex-direction:column}
 
 /* ── Cards ── */
 .card{
-  border-radius:var(--r2);
+  border-radius:var(--r1);
   border:1px solid var(--btnborder);
   background:var(--cardcolor);
   cursor:pointer;
