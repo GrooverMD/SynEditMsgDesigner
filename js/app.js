@@ -393,8 +393,7 @@ function cardHtml(c,color){
       
      
       
-      ${noRm? '<i class="ti ti-lock" style="font-size:11px;color:var(--t2);opacity:.5;flex-shrink:0"></i>':`<span class="card-rm" onclick="event.stopPropagation();removeCard(${c.id})" title="Remove"><svg class="icon"><use href="#icon-close"></use></svg></span>`}
-}
+      ${noRm? '<i class="ti ti-lock" style="font-size:11px;color:var(--t2);opacity:.5;flex-shrink:0"></i>':`<span class="card-rm" onclick="event.stopPropagation();removeCard(${c.id})" title="Remove"><svg class="iconclose"><use href="#icon-close"></use></svg></span>`}
       
     </div>
     ${body?`<div class="card-body">${body}</div>`:''}
