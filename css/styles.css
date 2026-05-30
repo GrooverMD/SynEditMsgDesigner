@@ -144,17 +144,17 @@ body{display:flex;flex-direction:column}
 .panel-hd{font-size:12px;font-weight:600;color:var(--apptext);letter-spacing:.1em;text-transform:uppercase;padding:10px 12px 8px;border-bottom:1px solid var(--dialog-title);flex-shrink:0;background:var(--dialog-title)}
 .pal-list{padding:9px 8px;display:flex;flex-direction:column;gap:4px;overflow-y:auto;flex:1}
 
-.pal-group{
-  font-size:11px;
-  font-weight:600;
-  height:28px;
-  color:var(--apptext);
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  padding:10px 0px;
-  background:var(--palgrpbg);
-  margin: 4px -8px 4px -8px;
-  padding-left:8px;
+.pal-group {
+	font-size: 11px;
+	font-weight: 600;
+	height: 28px;
+	color: var(--apptext);
+	letter-spacing: .08em;
+	text-transform: uppercase;
+	padding: 8px;
+	background: var(--palgrpbg);
+	margin: 4px -8px 4px -8px;
+	padding-left: 8px;
 }
 
 /* ── Palette cards ── */
@@ -312,7 +312,6 @@ body{display:flex;flex-direction:column}
   letter-spacing:.08em;
   text-transform:uppercase;
   padding:10px;
-  border-bottom:1px solid var(--s4);
   margin:0px -10px 0px -10px;
   background:var(--palgrpbg);
 }
