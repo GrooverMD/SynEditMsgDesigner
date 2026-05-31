@@ -91,7 +91,7 @@
 	padding:0;
 }
 
-html,body{
+/*html,body{
 	height:100%;
 	font-family:var(--sans);
 	font-size:13px;
@@ -104,7 +104,7 @@ html,body{
 body{
 	display:flex;
 	flex-direction:column;
-}
+}*/
 
 /* ── Titlebar ── */
 .titlebar{display:flex;align-items:center;gap:8px;padding:0 14px;height:70px;background:var(--toolbar);border-bottom:3px solid var(--resizer);flex-shrink:0}
