@@ -8,4 +8,6 @@ html, body {
 
 body {
   background: radial-gradient(circle, #3B4250, #252B37);
+  display:flex;
+	flex-direction:column
 }
