@@ -258,7 +258,7 @@ body{
 
 /* ── Lanes ── */
 .lane{
-	border:1px solid #171A21;
+	border:1.5px solid #171A21;
 	background:var(--dialog-title);
 	flex-shrink:0;
 	transition:border-color .15s;
