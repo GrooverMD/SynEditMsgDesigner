@@ -141,7 +141,19 @@ body{display:flex;flex-direction:column}
 .sidebar,.insp{display:flex;flex-direction:column;min-height:0;overflow:hidden}
 .sidebar{background:var(--sidepanel);}
 .insp{background:var(--sidepanel);}
-.panel-hd{font-size:12px;font-weight:600;color:var(--apptext);letter-spacing:.1em;text-transform:uppercase;padding:10px 12px 8px;border-bottom:1px solid var(--dialog-title);flex-shrink:0;background:var(--dialog-title)}
+
+.panel-hd{
+	font-size:12px;
+	font-weight:600;
+	color:var(--apptext);
+	letter-spacing:.1em;
+	text-transform:uppercase;
+	padding:10px 12px 8px;
+	flex-shrink:0;
+	background:var(--dialog-title);
+	margin-bottom: -12px;
+}
+
 .pal-list{padding:9px 8px;display:flex;flex-direction:column;gap:4px;overflow-y:auto;flex:1}
 
 .pal-group {
