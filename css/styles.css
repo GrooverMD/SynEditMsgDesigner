@@ -259,7 +259,7 @@ body{
 
 /* ── Lanes ── */
 .lane{
-  border:1px solid var(--s4);
+  border:2px solid var(--dialog-title);
   background:var(--dialog-title);
   flex-shrink:0;
   transition:border-color .15s;
