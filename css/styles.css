@@ -442,6 +442,7 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
   overflow-y: auto;
   resize: both;
 }
+
 .sp-comment   { font-style: italic; }
 .sp-string    { }
 .sp-keyword   { font-weight: 600; }
@@ -564,13 +565,16 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
   width:5px;
   height:5px;
 }
+
 ::-webkit-scrollbar-track{
   background:transparent;
 }
+
 ::-webkit-scrollbar-thumb{
   color:var(--scrollbarcolor);
   border-radius:3px;
 }
+
 ::-webkit-scrollbar-thumb:hover{
   color:var(--scrollbarhover);
 }
@@ -613,6 +617,7 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 }
 
 .intro-hero-sub{font-size:13px;color:var(--t1);line-height:1.6}
+
 .intro-body{padding:24px 36px;display:flex;flex-direction:column;gap:20px}
 
 .intro-section-title {
@@ -702,12 +707,21 @@ input[type="checkbox"]{width:14px;height:14px;accent-color:var(--a);cursor:point
 }
 
 .pal-preset {
-  font-size:12px; font-weight:500; padding:5px 6px;
-  border-radius:var(--r1); border:1px solid var(--btnborder);
-  background:var(--cardcolor); color:var(--t0);
-  cursor:pointer; text-align:left;
-  display:flex; align-items:center; gap:5px;
-  transition:all .15s; white-space:nowrap; overflow:hidden;
+  	font-size:10px; 
+	font-weight:500; 
+	padding:5px 6px;
+  	border-radius:var(--r1); 
+	border:1px solid var(--btnborder);
+  	background:var(--sidepanel); 
+	color:var(--t0);
+  	cursor:pointer; 
+	text-align:left;
+  	display:flex; 
+	align-items:center; 
+	gap:5px;
+  	transition:all .15s; 
+	white-space:nowrap; 
+	overflow:hidden;
 }
 
 .pal-preset i { 
